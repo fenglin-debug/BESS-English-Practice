@@ -1,0 +1,284 @@
+{
+  "packId": "battery_tech",
+  "packName": "电池技术",
+  "description": "锂电、钠电、液流电池、电化学结构与热失控核心词",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_lithium_ion_battery_bb5960af",
+      "seq": 24,
+      "zh": "锂离子电池",
+      "en": "Lithium-ion (Li-ion) battery",
+      "ttsText": "Lithium-ion battery",
+      "abbreviations": [
+        "Li-ion",
+        "Lithium-ion"
+      ],
+      "ipa": "ˈlɪθiəm ˈaɪɒn ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_lithium_iron_phosphate_b_c324aba2",
+      "seq": 25,
+      "zh": "磷酸铁锂电池",
+      "en": "Lithium iron phosphate (LFP) battery",
+      "ttsText": "Lithium iron phosphate battery",
+      "abbreviations": [
+        "LFP"
+      ],
+      "ipa": "ˈlɪθiəm aɪərn ˈfɑsfeɪt ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_nmc_nca_battery_c042e141",
+      "seq": 26,
+      "zh": "三元锂电池",
+      "en": "NMC/NCA (Nickel Manganese Cobalt / Nickel Cobalt Aluminum) battery",
+      "ttsText": "NMC/NCA, Nickel Manganese Cobalt, Nickel Cobalt Aluminum battery",
+      "abbreviations": [
+        "NMC",
+        "NCA"
+      ],
+      "ipa": "ɛn ɛm siː / ɛn siː eɪ ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_lithium_manganese_oxide_bdf0d15f",
+      "seq": 27,
+      "zh": "锰酸锂电池",
+      "en": "Lithium manganese oxide (LMO) battery",
+      "ttsText": "Lithium manganese oxide battery",
+      "abbreviations": [
+        "LMO"
+      ],
+      "ipa": "ˈlɪθiəm ˈmæŋgəˌniz ˈɑkˌsaɪd ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_lithium_titanate_battery_0ce73363",
+      "seq": 28,
+      "zh": "钛酸锂电池",
+      "en": "Lithium titanate (LTO) battery",
+      "ttsText": "Lithium titanate battery",
+      "abbreviations": [
+        "LTO"
+      ],
+      "ipa": "ˈlɪθiəm ˈtaɪtəˌneɪt ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_lead_acid_battery_f23afa94",
+      "seq": 29,
+      "zh": "铅酸电池",
+      "en": "Lead-acid (LA) battery",
+      "ttsText": "Lead-acid battery",
+      "abbreviations": [
+        "LA",
+        "Lead-acid"
+      ],
+      "ipa": "lɛd ˈæsɪd ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_valve_regulated_lead_aci_fdbd103f",
+      "seq": 30,
+      "zh": "阀控式铅酸电池",
+      "en": "Valve-regulated lead-acid (VRLA) battery",
+      "ttsText": "Valve-regulated lead-acid battery",
+      "abbreviations": [
+        "VRLA"
+      ],
+      "ipa": "vælv ˈrɛɡjəleɪtɪd lɛd ˈæsɪd ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_sodium_ion_battery_c443b7fe",
+      "seq": 31,
+      "zh": "钠离子电池",
+      "en": "Sodium-ion battery",
+      "ttsText": "Sodium-ion battery",
+      "abbreviations": [
+        "Sodium-ion"
+      ],
+      "ipa": "ˈsoʊdiəm ˈaɪɒn ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_sodium_sulfur_battery_5efd87e4",
+      "seq": 32,
+      "zh": "钠硫电池",
+      "en": "Sodium-sulfur (Na-S) battery",
+      "ttsText": "Sodium-sulfur battery",
+      "abbreviations": [
+        "Na-S"
+      ],
+      "ipa": "ˈsoʊdiəm ˈsʌlfər ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_vanadium_redox_flow_batt_a51ddb42",
+      "seq": 33,
+      "zh": "全钒液流电池",
+      "en": "Vanadium redox flow battery (VRFB)",
+      "ttsText": "Vanadium redox flow battery",
+      "abbreviations": [
+        "VRFB"
+      ],
+      "ipa": "vəˈneɪdiəm ˈriːdɒks floʊ ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_zinc_bromine_flow_batter_f5f1d645",
+      "seq": 34,
+      "zh": "锌溴液流电池",
+      "en": "Zinc-bromine flow battery (ZBFB)",
+      "ttsText": "Zinc-bromine flow battery",
+      "abbreviations": [
+        "ZBFB"
+      ],
+      "ipa": "zɪŋk ˈbroʊmiːn floʊ ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_flow_battery_13ddffa5",
+      "seq": 35,
+      "zh": "液流电池",
+      "en": "Flow battery",
+      "ttsText": "Flow battery",
+      "abbreviations": [],
+      "ipa": "floʊ ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_solid_state_battery_5ae7aef0",
+      "seq": 36,
+      "zh": "固态电池",
+      "en": "Solid-state battery",
+      "ttsText": "Solid-state battery",
+      "abbreviations": [
+        "Solid-state"
+      ],
+      "ipa": "ˈsɑlədˈsteɪt ˈbætəri",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_supercapacitor_electric_b47493f1",
+      "seq": 37,
+      "zh": "超级电容器/双电层电容器",
+      "en": "Supercapacitor / Electric double-layer capacitor (EDLC)",
+      "ttsText": "Supercapacitor, Electric double-layer capacitor",
+      "abbreviations": [
+        "EDLC"
+      ],
+      "ipa": "ˈsuːpərkəˈpæsɪtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_cathode_positive_electro_da8998fc",
+      "seq": 38,
+      "zh": "正极",
+      "en": "Cathode / Positive electrode",
+      "ttsText": "Cathode, Positive electrode",
+      "abbreviations": [],
+      "ipa": "ˈkæˌθoʊd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_anode_negative_electrode_4471421c",
+      "seq": 39,
+      "zh": "负极",
+      "en": "Anode / Negative electrode",
+      "ttsText": "Anode, Negative electrode",
+      "abbreviations": [],
+      "ipa": "ˈæˌnoʊd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_electrolyte_f2b8e962",
+      "seq": 40,
+      "zh": "电解液",
+      "en": "Electrolyte",
+      "ttsText": "Electrolyte",
+      "abbreviations": [],
+      "ipa": "ɪˈlɛktrəlaɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_separator_485b382c",
+      "seq": 41,
+      "zh": "隔膜",
+      "en": "Separator",
+      "ttsText": "Separator",
+      "abbreviations": [],
+      "ipa": "ˈsɛpəˌreɪtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_current_collector_210099b0",
+      "seq": 42,
+      "zh": "集流体",
+      "en": "Current collector",
+      "ttsText": "Current collector",
+      "abbreviations": [],
+      "ipa": "ˈkɑrənt kəˈlɛktər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

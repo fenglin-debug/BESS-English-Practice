@@ -1,0 +1,148 @@
+{
+  "packId": "other_storage_tech",
+  "packName": "其他储能技术",
+  "description": "抽水蓄能、压缩空气、飞轮、储热、储氢与超导储能",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_pumped_hydro_storage_ba614de0",
+      "seq": 136,
+      "zh": "抽水蓄能",
+      "en": "Pumped hydro storage (PHS)",
+      "ttsText": "Pumped hydro storage",
+      "abbreviations": [
+        "PHS"
+      ],
+      "ipa": "pəmpt ˈhaɪˌdroʊ ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_compressed_air_energy_st_c3b808ad",
+      "seq": 137,
+      "zh": "压缩空气储能",
+      "en": "Compressed air energy storage (CAES)",
+      "ttsText": "Compressed air energy storage",
+      "abbreviations": [
+        "CAES"
+      ],
+      "ipa": "kəmˈprɛst ɛr ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_flywheel_energy_storage_e1b50adc",
+      "seq": 138,
+      "zh": "飞轮储能",
+      "en": "Flywheel energy storage (FES)",
+      "ttsText": "Flywheel energy storage",
+      "abbreviations": [
+        "FES"
+      ],
+      "ipa": "ˈflaɪˌwil ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_hydrogen_energy_storage_fc56c2a4",
+      "seq": 139,
+      "zh": "氢能储能",
+      "en": "Hydrogen energy storage",
+      "ttsText": "Hydrogen energy storage",
+      "abbreviations": [],
+      "ipa": "ˈhaɪdrəʤən ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_green_hydrogen_58652e71",
+      "seq": 140,
+      "zh": "绿色氢能",
+      "en": "Green hydrogen",
+      "ttsText": "Green hydrogen",
+      "abbreviations": [],
+      "ipa": "grin ˈhaɪdrəʤən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_thermal_energy_storage_6d6259f5",
+      "seq": 141,
+      "zh": "热储能",
+      "en": "Thermal energy storage",
+      "ttsText": "Thermal energy storage",
+      "abbreviations": [],
+      "ipa": "ˈθərməl ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_molten_salt_storage_a8a0b527",
+      "seq": 142,
+      "zh": "熔融盐储能",
+      "en": "Molten salt storage",
+      "ttsText": "Molten salt storage",
+      "abbreviations": [],
+      "ipa": "ˈmoʊltən sɔlt ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_phase_change_material_st_59a94b05",
+      "seq": 143,
+      "zh": "相变储能",
+      "en": "Phase change material (PCM) storage",
+      "ttsText": "Phase change material storage",
+      "abbreviations": [
+        "PCM"
+      ],
+      "ipa": "feɪz ʧeɪnʤ məˈtɪriəl ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_electromagnetic_energy_s_c2db01ff",
+      "seq": 144,
+      "zh": "电磁储能",
+      "en": "Electromagnetic energy storage",
+      "ttsText": "Electromagnetic energy storage",
+      "abbreviations": [],
+      "ipa": "ˌɪˌlɛktroʊmægˈnɛtɪk ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_superconducting_magnetic_36af1c33",
+      "seq": 145,
+      "zh": "超导磁储能",
+      "en": "Superconducting magnetic energy storage (SMES)",
+      "ttsText": "Superconducting magnetic energy storage",
+      "abbreviations": [
+        "SMES"
+      ],
+      "ipa": "ˈsupərkənˌdəktɪŋ mægˈnɛtɪk ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

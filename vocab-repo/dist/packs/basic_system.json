@@ -1,0 +1,332 @@
+{
+  "packId": "basic_system",
+  "packName": "基础术语与系统",
+  "description": "储能电站、电芯/模组/包/簇/堆、预制舱与微电网基础术语",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_electrical_energy_storag_58e89d18",
+      "seq": 1,
+      "zh": "电力储能",
+      "en": "Electrical energy storage (EES)",
+      "ttsText": "Electrical energy storage",
+      "abbreviations": [
+        "EES"
+      ],
+      "ipa": "ɪˈlɛktrɪkəl ˈɛnərʤi ˈstɔrɪʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_electrical_energy_storag_8f3b5c54",
+      "seq": 2,
+      "zh": "电力储能系统",
+      "en": "Electrical energy storage system (EESS)",
+      "ttsText": "Electrical energy storage system",
+      "abbreviations": [
+        "EESS"
+      ],
+      "ipa": "ɪˈlɛktrɪkəl ˈɛnərʤi ˈstɔrɪʤ ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_energy_storage_s_c7610945",
+      "seq": 3,
+      "zh": "电池储能系统",
+      "en": "Battery energy storage system (BESS)",
+      "ttsText": "Battery energy storage system",
+      "abbreviations": [
+        "BESS"
+      ],
+      "ipa": "ˈbætəri ˈɛnərʤi ˈstɔrɪʤ ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_storage_power_sta_df9e6157",
+      "seq": 4,
+      "zh": "储能电站",
+      "en": "Energy storage power station",
+      "ttsText": "Energy storage power station",
+      "abbreviations": [],
+      "ipa": "ˈɛnərʤi ˈstɔrɪʤ paʊər ˈsteɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_storage_unit_ff57b6d0",
+      "seq": 5,
+      "zh": "储能单元",
+      "en": "Energy storage unit",
+      "ttsText": "Energy storage unit",
+      "abbreviations": [],
+      "ipa": "ˈɛnərʤi ˈstɔrɪʤ ˈjunɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_cell_e15abce2",
+      "seq": 6,
+      "zh": "电芯",
+      "en": "Battery cell",
+      "ttsText": "Battery cell",
+      "abbreviations": [],
+      "ipa": "ˈbætəri sɛl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_module_561bbc61",
+      "seq": 7,
+      "zh": "电池模组",
+      "en": "Battery module",
+      "ttsText": "Battery module",
+      "abbreviations": [],
+      "ipa": "ˈbætəri ˈmɑʤul",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_pack_10e330d1",
+      "seq": 8,
+      "zh": "电池包",
+      "en": "Battery pack",
+      "ttsText": "Battery pack",
+      "abbreviations": [],
+      "ipa": "ˈbætəri pæk",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_cluster_battery_43d7af17",
+      "seq": 9,
+      "zh": "电池簇",
+      "en": "Battery cluster / Battery rack",
+      "ttsText": "Battery cluster, Battery rack",
+      "abbreviations": [],
+      "ipa": "ˈbætəri ˈkləstər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_stack_battery_ar_d062128f",
+      "seq": 10,
+      "zh": "电池堆",
+      "en": "Battery stack / Battery array",
+      "ttsText": "Battery stack, Battery array",
+      "abbreviations": [],
+      "ipa": "ˈbætəri stæk",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_collection_panel_d222161b",
+      "seq": 11,
+      "zh": "电池汇流柜",
+      "en": "Battery collection panel (BCP)",
+      "ttsText": "Battery collection panel",
+      "abbreviations": [
+        "BCP"
+      ],
+      "ipa": "ˈbætəri kəˈlɛkʃən ˈpænəl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_high_voltage_box_high_vo_0d20c8fe",
+      "seq": 12,
+      "zh": "高压箱/高压盒",
+      "en": "High voltage box / High voltage panel",
+      "ttsText": "High voltage box, High voltage panel",
+      "abbreviations": [],
+      "ipa": "haɪ ˈvoʊltɪʤ bɑks",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_self_contained_eess_cont_12129ea4",
+      "seq": 13,
+      "zh": "预制舱式储能系统",
+      "en": "Self-contained EESS / Containerized BESS",
+      "ttsText": "Self-contained EESS, Containerized BESS",
+      "abbreviations": [
+        "EESS",
+        "BESS"
+      ],
+      "ipa": "sɛlf kənˈteɪnd iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_low_voltage_eess_3773a6df",
+      "seq": 14,
+      "zh": "低压储能系统",
+      "en": "Low voltage EESS",
+      "ttsText": "Low voltage EESS",
+      "abbreviations": [
+        "EESS"
+      ],
+      "ipa": "loʊ ˈvoʊltɪdʒ iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_medium_voltage_eess_a7ba1196",
+      "seq": 15,
+      "zh": "中压储能系统",
+      "en": "Medium voltage EESS",
+      "ttsText": "Medium voltage EESS",
+      "abbreviations": [
+        "EESS"
+      ],
+      "ipa": "ˈmiːdiəm ˈvoʊltɪdʒ iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_high_voltage_eess_d8dddd63",
+      "seq": 16,
+      "zh": "高压储能系统",
+      "en": "High voltage EESS",
+      "ttsText": "High voltage EESS",
+      "abbreviations": [
+        "EESS"
+      ],
+      "ipa": "haɪ ˈvoʊltɪdʒ iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_residential_eess_546c909d",
+      "seq": 17,
+      "zh": "居民储能系统",
+      "en": "Residential EESS",
+      "ttsText": "Residential EESS",
+      "abbreviations": [
+        "EESS"
+      ],
+      "ipa": "ˌrɛzɪˈdɛnʃəl iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_commercial_and_industria_981108e0",
+      "seq": 18,
+      "zh": "工商业储能系统",
+      "en": "Commercial and industrial (C&I) EESS",
+      "ttsText": "Commercial and industrial EESS",
+      "abbreviations": [
+        "C&I"
+      ],
+      "ipa": "kəˈmɜrʃəl ænd ɪnˈdʌstriəl iː iː ɛs ɛs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_grid_connected_ecfb7cc1",
+      "seq": 19,
+      "zh": "并网",
+      "en": "Grid-connected",
+      "ttsText": "Grid-connected",
+      "abbreviations": [],
+      "ipa": "ɡrɪd kəˈnɛktɪd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_microgrid_4ee1d5ad",
+      "seq": 20,
+      "zh": "微电网",
+      "en": "Microgrid",
+      "ttsText": "Microgrid",
+      "abbreviations": [],
+      "ipa": "ˈmaɪkroʊɡrɪd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_islanding_78b082de",
+      "seq": 21,
+      "zh": "孤岛运行",
+      "en": "Islanding",
+      "ttsText": "Islanding",
+      "abbreviations": [],
+      "ipa": "ˈaɪləndɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_virtual_power_plant_607577a1",
+      "seq": 22,
+      "zh": "虚拟电厂",
+      "en": "Virtual power plant (VPP)",
+      "ttsText": "Virtual power plant",
+      "abbreviations": [
+        "VPP"
+      ],
+      "ipa": "ˈvərʧuəl paʊər plænt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_distributed_energy_resou_0e3ffaa2",
+      "seq": 23,
+      "zh": "分布式能源资源",
+      "en": "Distributed energy resource (DER)",
+      "ttsText": "Distributed energy resource",
+      "abbreviations": [
+        "DER"
+      ],
+      "ipa": "dɪˈstrɪbjətəd ˈɛnərʤi ˈrisɔrs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

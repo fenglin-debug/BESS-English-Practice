@@ -1,0 +1,36 @@
+{
+  "categories": {
+    "基础术语与系统": {
+      "id": "basic_system",
+      "description": "储能电站、电芯/模组/包/簇/堆、预制舱与微电网基础术语"
+    },
+    "电池技术": {
+      "id": "battery_tech",
+      "description": "锂电、钠电、液流电池、电化学结构与热失控核心词"
+    },
+    "储能变流器与电气": {
+      "id": "pcs_electrical",
+      "description": "PCS、逆变器、IGBT、断路器、并网电气与电能质量术语"
+    },
+    "管理系统": {
+      "id": "management_systems",
+      "description": "BMS、EMS、SCADA、通信协议（IEC 61850/Modbus）与OTA"
+    },
+    "性能参数": {
+      "id": "performance_params",
+      "description": "SOC/SOH/DoD、C-rate、RTE、循环寿命与均衡参数"
+    },
+    "储能应用场景": {
+      "id": "application_scenarios",
+      "description": "峰谷套利、调频调压、黑启动、光储联动与V2G"
+    },
+    "其他储能技术": {
+      "id": "other_storage_tech",
+      "description": "抽水蓄能、压缩空气、飞轮、储热、储氢与超导储能"
+    },
+    "商务与经济": {
+      "id": "business_economics",
+      "description": "LCOS、PPA、分时电价、EPC、COD与需求侧管理"
+    }
+  }
+}

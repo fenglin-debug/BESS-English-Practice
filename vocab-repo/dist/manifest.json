@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "datasetVersion": "2026.11.23.1",
+  "updatedAt": "2026-11-23T22:54:53+08:00",
+  "minAppVersionCode": 1,
+  "totalWords": 162,
+  "packs": [
+    {
+      "id": "basic_system",
+      "name": "基础术语与系统",
+      "description": "储能电站、电芯/模组/包/簇/堆、预制舱与微电网基础术语",
+      "order": 1,
+      "wordCount": 23,
+      "version": 1,
+      "sha256": "b4ebcab48d352be071787c223015c90f541c82ca85d6fe13d00f795a082976d9",
+      "contentSha256": "c8d19da24d194a026d7b91707371c4612f7e0e464f382c346946a3afd449d387",
+      "path": "packs/basic_system.json"
+    },
+    {
+      "id": "battery_tech",
+      "name": "电池技术",
+      "description": "锂电、钠电、液流电池、电化学结构与热失控核心词",
+      "order": 2,
+      "wordCount": 19,
+      "version": 1,
+      "sha256": "bbe6d0edac769b2f8fd8bf2931ca8a926e1d4e86fe44eb094339b6300223a96d",
+      "contentSha256": "101c64b447b361a3dc70d4210304b7c0b6cf94ec1f7281b2977f0b3b83a21739",
+      "path": "packs/battery_tech.json"
+    },
+    {
+      "id": "pcs_electrical",
+      "name": "储能变流器与电气",
+      "description": "PCS、逆变器、IGBT、断路器、并网电气与电能质量术语",
+      "order": 3,
+      "wordCount": 24,
+      "version": 1,
+      "sha256": "d96a26cc58abae42b42c0798f7d39de4ec2f7cbf96cf2dde545f46d8a7cb4624",
+      "contentSha256": "0daf9e3ae3de0af8113b4b8a8ee42c2b686c430ecd68c92e46ab7516ca0cd3d8",
+      "path": "packs/pcs_electrical.json"
+    },
+    {
+      "id": "management_systems",
+      "name": "管理系统",
+      "description": "BMS、EMS、SCADA、通信协议（IEC 61850/Modbus）与OTA",
+      "order": 4,
+      "wordCount": 24,
+      "version": 1,
+      "sha256": "041c695c9986b1ca23d000698b439c64a7c15f6da1fb217fc56bba2c11a120a0",
+      "contentSha256": "608d356fa0b2ffd1e5a57a0704d51d351fe3dd00060b21b419a7e695b818d9c2",
+      "path": "packs/management_systems.json"
+    },
+    {
+      "id": "performance_params",
+      "name": "性能参数",
+      "description": "SOC/SOH/DoD、C-rate、RTE、循环寿命与均衡参数",
+      "order": 5,
+      "wordCount": 21,
+      "version": 1,
+      "sha256": "34330ae86a0ff2f4506ed505cb4adb6e8a808fa39ad6390b8f85cb969733e82a",
+      "contentSha256": "ab1bd4f8f577cc9ea4f42b0026776e497cd4143c99ef44fe64934f319134b8ca",
+      "path": "packs/performance_params.json"
+    },
+    {
+      "id": "application_scenarios",
+      "name": "储能应用场景",
+      "description": "峰谷套利、调频调压、黑启动、光储联动与V2G",
+      "order": 6,
+      "wordCount": 24,
+      "version": 1,
+      "sha256": "f9ea98d3ecf1214eea67f3d9c55fd6b6c17088eaf1ff3ad32f9aaab33903b0cf",
+      "contentSha256": "64c9814f276d41e4970fdea2398a72e559af7735f044568a8ca2f996debf838f",
+      "path": "packs/application_scenarios.json"
+    },
+    {
+      "id": "other_storage_tech",
+      "name": "其他储能技术",
+      "description": "抽水蓄能、压缩空气、飞轮、储热、储氢与超导储能",
+      "order": 7,
+      "wordCount": 10,
+      "version": 1,
+      "sha256": "92a93832fb721ace78c7c22bcb4bc0a281e8f8a6452104c4c86ddb369e3596c1",
+      "contentSha256": "dff6aab569cbd8b7310b235fb265eeaf7812ff357ca657e73c90d5292038f6bf",
+      "path": "packs/other_storage_tech.json"
+    },
+    {
+      "id": "business_economics",
+      "name": "商务与经济",
+      "description": "LCOS、PPA、分时电价、EPC、COD与需求侧管理",
+      "order": 8,
+      "wordCount": 17,
+      "version": 1,
+      "sha256": "9239b2660f87217b862ac1ab82a6e2bf7589cc5021d9d1929d44de5ce30378dd",
+      "contentSha256": "ef65d66fc1f1bfc7e8a4c7cc3569d2c9eda7d3e2dbe2928f27fdc386b1e26737",
+      "path": "packs/business_economics.json"
+    }
+  ]
+}

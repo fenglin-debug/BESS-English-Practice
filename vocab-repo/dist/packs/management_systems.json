@@ -1,0 +1,346 @@
+{
+  "packId": "management_systems",
+  "packName": "管理系统",
+  "description": "BMS、EMS、SCADA、通信协议（IEC 61850/Modbus）与OTA",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_battery_management_syste_7899d391",
+      "seq": 67,
+      "zh": "电池管理系统",
+      "en": "Battery management system (BMS)",
+      "ttsText": "Battery management system",
+      "abbreviations": [
+        "BMS"
+      ],
+      "ipa": "ˈbætəri ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_management_unit_ed9ae0e7",
+      "seq": 68,
+      "zh": "电池管理单元",
+      "en": "Battery management unit (BMU)",
+      "ttsText": "Battery management unit",
+      "abbreviations": [
+        "BMU"
+      ],
+      "ipa": "ˈbætəri ˈmænɪʤmənt ˈjunɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_cluster_manageme_031d5e22",
+      "seq": 69,
+      "zh": "电池簇管理单元",
+      "en": "Battery cluster management unit (BCU)",
+      "ttsText": "Battery cluster management unit",
+      "abbreviations": [
+        "BCU"
+      ],
+      "ipa": "ˈbætəri ˈkləstər ˈmænɪʤmənt ˈjunɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_battery_array_unit_7bd54651",
+      "seq": 70,
+      "zh": "电池系统管理单元",
+      "en": "Battery array unit (BAU)",
+      "ttsText": "Battery array unit",
+      "abbreviations": [
+        "BAU"
+      ],
+      "ipa": "ˈbætəri əreɪ ˈjunɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_management_system_b83c0a78",
+      "seq": 71,
+      "zh": "能量管理系统",
+      "en": "Energy management system (EMS)",
+      "ttsText": "Energy management system",
+      "abbreviations": [
+        "EMS"
+      ],
+      "ipa": "ˈɛnərʤi ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_home_energy_management_s_7263bd70",
+      "seq": 72,
+      "zh": "家庭能量管理系统",
+      "en": "Home energy management system (HEMS)",
+      "ttsText": "Home energy management system",
+      "abbreviations": [
+        "HEMS"
+      ],
+      "ipa": "hoʊm ˈɛnərʤi ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_building_energy_manageme_26294711",
+      "seq": 73,
+      "zh": "建筑能量管理系统",
+      "en": "Building energy management system (BEMS)",
+      "ttsText": "Building energy management system",
+      "abbreviations": [
+        "BEMS"
+      ],
+      "ipa": "ˈbɪldɪŋ ˈɛnərʤi ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_local_power_management_s_f579b6d9",
+      "seq": 74,
+      "zh": "本地电力管理系统",
+      "en": "Local power management system (LPMS)",
+      "ttsText": "Local power management system",
+      "abbreviations": [
+        "LPMS"
+      ],
+      "ipa": "ˈloʊkəl paʊər ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_scada_d178a760",
+      "seq": 75,
+      "zh": "数据采集与监控系统",
+      "en": "SCADA (Supervisory Control and Data Acquisition)",
+      "ttsText": "SCADA, Supervisory Control and Data Acquisition",
+      "abbreviations": [
+        "SCADA"
+      ],
+      "ipa": "ˈskeɪdə",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_programmable_logic_contr_e9ebc70a",
+      "seq": 76,
+      "zh": "可编程逻辑控制器",
+      "en": "Programmable logic controller (PLC)",
+      "ttsText": "Programmable logic controller",
+      "abbreviations": [
+        "PLC"
+      ],
+      "ipa": "ˈproʊˌgræməbəl ˈlɑʤɪk kənˈtroʊlər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_human_machine_interface_1e48abc6",
+      "seq": 77,
+      "zh": "人机界面",
+      "en": "Human-machine interface (HMI)",
+      "ttsText": "Human-machine interface",
+      "abbreviations": [
+        "HMI"
+      ],
+      "ipa": "ˈhjuːmən məˈʃiːn ˈɪntərfeɪs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_distributed_energy_resou_42cf4fa6",
+      "seq": 78,
+      "zh": "分布式能源资源管理系统",
+      "en": "Distributed energy resource management system (DERMS)",
+      "ttsText": "Distributed energy resource management system",
+      "abbreviations": [
+        "DERMS"
+      ],
+      "ipa": "dɪˈstrɪbjətəd ˈɛnərʤi ˈrisɔrs ˈmænɪʤmənt ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_remote_monitoring_c3c42af4",
+      "seq": 79,
+      "zh": "远程监控",
+      "en": "Remote monitoring",
+      "ttsText": "Remote monitoring",
+      "abbreviations": [],
+      "ipa": "rɪˈmoʊt ˈmɑnətərɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_data_logging_8d299b45",
+      "seq": 80,
+      "zh": "数据记录",
+      "en": "Data logging",
+      "ttsText": "Data logging",
+      "abbreviations": [],
+      "ipa": "ˈdætə ˈlɔgɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_alarm_system_efa553d8",
+      "seq": 81,
+      "zh": "报警系统",
+      "en": "Alarm system",
+      "ttsText": "Alarm system",
+      "abbreviations": [],
+      "ipa": "əˈlɑrm ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_fault_diagnosis_8a2a40a1",
+      "seq": 82,
+      "zh": "故障诊断",
+      "en": "Fault diagnosis",
+      "ttsText": "Fault diagnosis",
+      "abbreviations": [],
+      "ipa": "fɔlt ˌdaɪəgˈnoʊsəs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_communication_protocol_a0f9ec9e",
+      "seq": 83,
+      "zh": "通信协议",
+      "en": "Communication protocol",
+      "ttsText": "Communication protocol",
+      "abbreviations": [],
+      "ipa": "kəmˌjunəˈkeɪʃən ˈproʊtəˌkɔl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_iec_61850_8785616b",
+      "seq": 84,
+      "zh": "IEC 61850",
+      "en": "IEC 61850 (电力系统自动化通信标准)",
+      "ttsText": "IEC 61850",
+      "abbreviations": [],
+      "ipa": "aɪ iː siː sɪks wʌn eɪt faɪv ziːroʊ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_modbus_7c0f5eaf",
+      "seq": 85,
+      "zh": "Modbus",
+      "en": "Modbus (工业通信协议)",
+      "ttsText": "Modbus",
+      "abbreviations": [],
+      "ipa": "ˈmɒdbʌs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_over_the_air_update_6ed06a43",
+      "seq": 86,
+      "zh": "空中升级",
+      "en": "Over-the-air (OTA) update",
+      "ttsText": "Over-the-air update",
+      "abbreviations": [
+        "OTA"
+      ],
+      "ipa": "ˈoʊvər ðə ɛr ˈʌpdeɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_redundancy_control_c744a6ab",
+      "seq": 87,
+      "zh": "冗余控制",
+      "en": "Redundancy control",
+      "ttsText": "Redundancy control",
+      "abbreviations": [],
+      "ipa": "rɪˈdəndənsi kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_sequence_control_f85f665c",
+      "seq": 88,
+      "zh": "顺序控制",
+      "en": "Sequence control",
+      "ttsText": "Sequence control",
+      "abbreviations": [],
+      "ipa": "ˈsikwəns kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_automatic_control_89e8c4b5",
+      "seq": 89,
+      "zh": "自动控制",
+      "en": "Automatic control",
+      "ttsText": "Automatic control",
+      "abbreviations": [],
+      "ipa": "ˌɔtəˈmætɪk kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_manual_control_8790a925",
+      "seq": 90,
+      "zh": "手动控制",
+      "en": "Manual control",
+      "ttsText": "Manual control",
+      "abbreviations": [],
+      "ipa": "ˈmænjuəl kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

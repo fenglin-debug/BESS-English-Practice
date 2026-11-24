@@ -1,0 +1,294 @@
+{
+  "packId": "performance_params",
+  "packName": "性能参数",
+  "description": "SOC/SOH/DoD、C-rate、RTE、循环寿命与均衡参数",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_capacity_7cb1f56d",
+      "seq": 91,
+      "zh": "容量",
+      "en": "Capacity",
+      "ttsText": "Capacity",
+      "abbreviations": [],
+      "ipa": "kəˈpæsɪti",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_rated_power_power_rating_07d86042",
+      "seq": 92,
+      "zh": "额定功率",
+      "en": "Rated power / Power rating",
+      "ttsText": "Rated power, Power rating",
+      "abbreviations": [],
+      "ipa": "ˈreɪtɪd paʊər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_density_79c8cd50",
+      "seq": 93,
+      "zh": "能量密度",
+      "en": "Energy density",
+      "ttsText": "Energy density",
+      "abbreviations": [],
+      "ipa": "ˈɛnərʤi ˈdɛnsɪti",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_power_density_f8594c41",
+      "seq": 94,
+      "zh": "功率密度",
+      "en": "Power density",
+      "ttsText": "Power density",
+      "abbreviations": [],
+      "ipa": "paʊər ˈdɛnsɪti",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_state_of_charge_b3fc7f66",
+      "seq": 95,
+      "zh": "荷电状态",
+      "en": "State of charge (SOC)",
+      "ttsText": "State of charge",
+      "abbreviations": [
+        "SOC"
+      ],
+      "ipa": "steɪt əv ʧɑrʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_state_of_health_ef671bce",
+      "seq": 96,
+      "zh": "健康状态",
+      "en": "State of health (SOH)",
+      "ttsText": "State of health",
+      "abbreviations": [
+        "SOH"
+      ],
+      "ipa": "steɪt əv hɛlθ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_state_of_energy_d1c101ff",
+      "seq": 97,
+      "zh": "能量状态",
+      "en": "State of energy (SOE)",
+      "ttsText": "State of energy",
+      "abbreviations": [
+        "SOE"
+      ],
+      "ipa": "steɪt əv ˈɛnərʤi",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_depth_of_discharge_dab9e075",
+      "seq": 98,
+      "zh": "放电深度",
+      "en": "Depth of discharge (DoD)",
+      "ttsText": "Depth of discharge",
+      "abbreviations": [
+        "DoD"
+      ],
+      "ipa": "dɛpθ əv ˈdɪsˌʧɑrʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_c_rate_72bded54",
+      "seq": 99,
+      "zh": "充放电倍率",
+      "en": "C-rate (Charge/Discharge rate)",
+      "ttsText": "C-rate, Charge/Discharge rate",
+      "abbreviations": [
+        "C-rate"
+      ],
+      "ipa": "siː reɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_cycle_life_5b0803ca",
+      "seq": 100,
+      "zh": "循环寿命",
+      "en": "Cycle life",
+      "ttsText": "Cycle life",
+      "abbreviations": [],
+      "ipa": "ˈsaɪkəl laɪf",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_calendar_life_45df7068",
+      "seq": 101,
+      "zh": "日历寿命",
+      "en": "Calendar life",
+      "ttsText": "Calendar life",
+      "abbreviations": [],
+      "ipa": "ˈkæləndər laɪf",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_round_trip_efficiency_db6f3f4b",
+      "seq": 102,
+      "zh": "往返效率/循环效率",
+      "en": "Round-trip efficiency (RTE)",
+      "ttsText": "Round-trip efficiency",
+      "abbreviations": [
+        "RTE",
+        "Round-trip"
+      ],
+      "ipa": "raʊnd trɪp ɪˈfɪʃənsi",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_self_discharge_rate_29e844f9",
+      "seq": 103,
+      "zh": "自放电率",
+      "en": "Self-discharge rate",
+      "ttsText": "Self-discharge rate",
+      "abbreviations": [],
+      "ipa": "sɛlf ˈdɪstʃɑrdʒ reɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_degradation_b927ef9b",
+      "seq": 104,
+      "zh": "衰减/退化",
+      "en": "Degradation",
+      "ttsText": "Degradation",
+      "abbreviations": [],
+      "ipa": "ˌdɛgrəˈdeɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_response_time_2d09a418",
+      "seq": 105,
+      "zh": "响应时间",
+      "en": "Response time",
+      "ttsText": "Response time",
+      "abbreviations": [],
+      "ipa": "rɪˈspɑns taɪm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_dead_band_d38ffbe7",
+      "seq": 106,
+      "zh": "死区",
+      "en": "Dead band",
+      "ttsText": "Dead band",
+      "abbreviations": [],
+      "ipa": "dɛd bænd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_thermal_runaway_471793d3",
+      "seq": 107,
+      "zh": "热失控",
+      "en": "Thermal runaway",
+      "ttsText": "Thermal runaway",
+      "abbreviations": [],
+      "ipa": "ˈθərməl ˈrənəˌweɪ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_thermal_management_afd58897",
+      "seq": 108,
+      "zh": "热管理",
+      "en": "Thermal management",
+      "ttsText": "Thermal management",
+      "abbreviations": [],
+      "ipa": "ˈθərməl ˈmænɪʤmənt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_balancing_equalization_b6e6be98",
+      "seq": 109,
+      "zh": "均衡",
+      "en": "Balancing / Equalization",
+      "ttsText": "Balancing, Equalization",
+      "abbreviations": [],
+      "ipa": "ˈbælənsɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_active_balancing_8b520269",
+      "seq": 110,
+      "zh": "主动均衡",
+      "en": "Active balancing",
+      "ttsText": "Active balancing",
+      "abbreviations": [],
+      "ipa": "ˈæktɪv ˈbælənsɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_passive_balancing_fc0f0faf",
+      "seq": 111,
+      "zh": "被动均衡",
+      "en": "Passive balancing",
+      "ttsText": "Passive balancing",
+      "abbreviations": [],
+      "ipa": "ˈpæsɪv ˈbælənsɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

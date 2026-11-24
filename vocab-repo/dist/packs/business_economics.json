@@ -1,0 +1,251 @@
+{
+  "packId": "business_economics",
+  "packName": "商务与经济",
+  "description": "LCOS、PPA、分时电价、EPC、COD与需求侧管理",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_levelized_cost_of_energy_418112a9",
+      "seq": 146,
+      "zh": "平准化储能成本",
+      "en": "Levelized cost of energy storage (LCOS)",
+      "ttsText": "Levelized cost of energy storage",
+      "abbreviations": [
+        "LCOS"
+      ],
+      "ipa": "ˈlɛvəlaɪzd kɔst əv ˈɛnərdʒi ˈstɔrɪdʒ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_cost_per_kilowatt_hour_3e8683d1",
+      "seq": 147,
+      "zh": "度电成本",
+      "en": "Cost per kilowatt-hour",
+      "ttsText": "Cost per kilowatt-hour",
+      "abbreviations": [],
+      "ipa": "kɔst pɜr ˈkɪləwɒt aʊər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_power_purchase_agreement_ee3e55ff",
+      "seq": 148,
+      "zh": "电力购买协议",
+      "en": "Power purchase agreement (PPA)",
+      "ttsText": "Power purchase agreement",
+      "abbreviations": [
+        "PPA"
+      ],
+      "ipa": "paʊər ˈpərʧəs əˈgrimənt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_net_metering_ea054355",
+      "seq": 149,
+      "zh": "净计量",
+      "en": "Net metering",
+      "ttsText": "Net metering",
+      "abbreviations": [],
+      "ipa": "nɛt ˈmitərɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_time_of_use_pricing_b3df7e58",
+      "seq": 150,
+      "zh": "分时电价",
+      "en": "Time-of-use (TOU) pricing",
+      "ttsText": "Time-of-use pricing",
+      "abbreviations": [
+        "TOU",
+        "Time-of-use"
+      ],
+      "ipa": "taɪm əv juːs ˈpraɪsɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_demand_charge_5c23b513",
+      "seq": 151,
+      "zh": "需量电费",
+      "en": "Demand charge",
+      "ttsText": "Demand charge",
+      "abbreviations": [],
+      "ipa": "dɪˈmænd ʧɑrʤ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_service_company_d942f875",
+      "seq": 152,
+      "zh": "能源服务公司",
+      "en": "Energy service company (ESCO)",
+      "ttsText": "Energy service company",
+      "abbreviations": [
+        "ESCO"
+      ],
+      "ipa": "ˈɛnərʤi ˈsərvɪs ˈkəmpəˌni",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_independent_power_produc_902fd3d0",
+      "seq": 153,
+      "zh": "独立发电商",
+      "en": "Independent power producer (IPP)",
+      "ttsText": "Independent power producer",
+      "abbreviations": [
+        "IPP"
+      ],
+      "ipa": "ˌɪndɪˈpɛndənt paʊər prəˈdusər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_load_serving_entity_68c18291",
+      "seq": 154,
+      "zh": "负荷服务实体",
+      "en": "Load-serving entity (LSE)",
+      "ttsText": "Load-serving entity",
+      "abbreviations": [
+        "LSE"
+      ],
+      "ipa": "loʊd ˈsɜrvɪŋ ˈɛntɪti",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_engineering_procurement_2e51113c",
+      "seq": 155,
+      "zh": "工程总承包",
+      "en": "Engineering, procurement, and construction (EPC)",
+      "ttsText": "Engineering, procurement, and construction",
+      "abbreviations": [
+        "EPC"
+      ],
+      "ipa": "ˈɛnʤəˈnɪrɪŋ, proʊˈkjʊrmənt, ənd kənˈstrəkʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_commercial_operation_dat_e56a13ac",
+      "seq": 156,
+      "zh": "商业运营日期",
+      "en": "Commercial operation date (COD)",
+      "ttsText": "Commercial operation date",
+      "abbreviations": [
+        "COD"
+      ],
+      "ipa": "kəˈmərʃəl ˌɑpərˈeɪʃən deɪt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_payback_time_0afdbb51",
+      "seq": 157,
+      "zh": "能源回收期",
+      "en": "Energy payback time (EPBT)",
+      "ttsText": "Energy payback time",
+      "abbreviations": [
+        "EPBT"
+      ],
+      "ipa": "ˈɛnərʤi ˈpeɪˌbæk taɪm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_grid_parity_d854520a",
+      "seq": 158,
+      "zh": "电网平价",
+      "en": "Grid parity",
+      "ttsText": "Grid parity",
+      "abbreviations": [],
+      "ipa": "grɪd ˈpɛrəti",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_curtailment_44557cca",
+      "seq": 159,
+      "zh": "能源削减",
+      "en": "Energy curtailment",
+      "ttsText": "Energy curtailment",
+      "abbreviations": [],
+      "ipa": "ˈɛnərʤi kərˈteɪlmənt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_grid_resiliency_30220ab6",
+      "seq": 160,
+      "zh": "电网韧性",
+      "en": "Grid resiliency",
+      "ttsText": "Grid resiliency",
+      "abbreviations": [],
+      "ipa": "grɪd rɪˈzɪljənsi",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_smart_grid_037825ef",
+      "seq": 161,
+      "zh": "智能电网",
+      "en": "Smart grid",
+      "ttsText": "Smart grid",
+      "abbreviations": [],
+      "ipa": "smɑrt grɪd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_demand_side_management_f7d10811",
+      "seq": 162,
+      "zh": "需求侧管理",
+      "en": "Demand-side management (DSM)",
+      "ttsText": "Demand-side management",
+      "abbreviations": [
+        "DSM",
+        "Demand-side"
+      ],
+      "ipa": "dɪˈmænd saɪd ˈmænɪdʒmənt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

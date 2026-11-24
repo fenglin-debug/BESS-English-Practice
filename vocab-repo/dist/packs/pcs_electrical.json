@@ -1,0 +1,345 @@
+{
+  "packId": "pcs_electrical",
+  "packName": "储能变流器与电气",
+  "description": "PCS、逆变器、IGBT、断路器、并网电气与电能质量术语",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_power_conversion_system_2014afe4",
+      "seq": 43,
+      "zh": "储能变流器/功率转换系统",
+      "en": "Power conversion system (PCS)",
+      "ttsText": "Power conversion system",
+      "abbreviations": [
+        "PCS"
+      ],
+      "ipa": "paʊər kənˈvərʒən ˈsɪstəm",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_rectifier_85684ef3",
+      "seq": 44,
+      "zh": "整流器",
+      "en": "Rectifier",
+      "ttsText": "Rectifier",
+      "abbreviations": [],
+      "ipa": "ˈrɛktəˌfaɪər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_inverter_3013bf74",
+      "seq": 45,
+      "zh": "逆变器",
+      "en": "Inverter",
+      "ttsText": "Inverter",
+      "abbreviations": [],
+      "ipa": "ɪnˈvɜrtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_dc_dc_converter_9dfbcd10",
+      "seq": 46,
+      "zh": "DC/DC转换器",
+      "en": "DC/DC converter",
+      "ttsText": "DC/DC converter",
+      "abbreviations": [],
+      "ipa": "diː siː / diː siː kənˈvɜrtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_boost_converter_2fab6784",
+      "seq": 47,
+      "zh": "升压转换器",
+      "en": "Boost converter",
+      "ttsText": "Boost converter",
+      "abbreviations": [],
+      "ipa": "bust kənˈvərtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_buck_converter_ae50eb43",
+      "seq": 48,
+      "zh": "降压转换器",
+      "en": "Buck converter",
+      "ttsText": "Buck converter",
+      "abbreviations": [],
+      "ipa": "bək kənˈvərtər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_dc_bus_6706fa88",
+      "seq": 49,
+      "zh": "直流母线",
+      "en": "DC bus",
+      "ttsText": "DC bus",
+      "abbreviations": [],
+      "ipa": "ˌdiˈsi bəs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_ac_bus_792cac10",
+      "seq": 50,
+      "zh": "交流母线",
+      "en": "AC bus",
+      "ttsText": "AC bus",
+      "abbreviations": [],
+      "ipa": "ˈeɪˈsi bəs",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_insulated_gate_bipolar_t_73ccd736",
+      "seq": 51,
+      "zh": "绝缘栅双极型晶体管",
+      "en": "Insulated gate bipolar transistor (IGBT)",
+      "ttsText": "Insulated gate bipolar transistor",
+      "abbreviations": [
+        "IGBT"
+      ],
+      "ipa": "ˈɪnsəˌleɪtɪd geɪt baɪˈpoʊlər trænˈzɪstər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_integrated_gate_commutat_74c30cb0",
+      "seq": 52,
+      "zh": "集成门极换流型晶闸管",
+      "en": "Integrated gate commutated thyristor (IGCT)",
+      "ttsText": "Integrated gate commutated thyristor",
+      "abbreviations": [
+        "IGCT"
+      ],
+      "ipa": "ˈɪntəɡreɪtɪd ɡeɪt ˈkɒmjuteɪtɪd ˈθaɪrɪstər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_circuit_breaker_c143a1e2",
+      "seq": 53,
+      "zh": "断路器",
+      "en": "Circuit breaker (CB)",
+      "ttsText": "Circuit breaker",
+      "abbreviations": [
+        "CB"
+      ],
+      "ipa": "ˈsərkət ˈbreɪkər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_air_circuit_breaker_596c2fdc",
+      "seq": 54,
+      "zh": "空气断路器",
+      "en": "Air circuit breaker (ACB)",
+      "ttsText": "Air circuit breaker",
+      "abbreviations": [
+        "ACB"
+      ],
+      "ipa": "ɛr ˈsərkət ˈbreɪkər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_high_speed_circuit_break_946d7846",
+      "seq": 55,
+      "zh": "高速断路器",
+      "en": "High-speed circuit breaker (HSCB)",
+      "ttsText": "High-speed circuit breaker",
+      "abbreviations": [
+        "HSCB",
+        "High-speed"
+      ],
+      "ipa": "ˈhaɪˌspid ˈsərkət ˈbreɪkər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_gas_insulation_switchgea_5198e0b4",
+      "seq": 56,
+      "zh": "气体绝缘开关柜",
+      "en": "Gas insulation switchgear (GIS)",
+      "ttsText": "Gas insulation switchgear",
+      "abbreviations": [
+        "GIS"
+      ],
+      "ipa": "ɡæs ˌɪnsəˈleɪʃən swɪtʃɡɪr",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_electric_insulation_swit_0bcabcec",
+      "seq": 57,
+      "zh": "绝缘开关柜",
+      "en": "Electric insulation switchgear (EIS)",
+      "ttsText": "Electric insulation switchgear",
+      "abbreviations": [
+        "EIS"
+      ],
+      "ipa": "ɪˈlɛktrɪk ˌɪnsəˈleɪʃən swɪtʃɡɪr",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_filter_4bb4ca75",
+      "seq": 58,
+      "zh": "滤波器",
+      "en": "Filter",
+      "ttsText": "Filter",
+      "abbreviations": [],
+      "ipa": "ˈfɪltər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_uninterruptible_power_su_b956cab4",
+      "seq": 59,
+      "zh": "不间断电源",
+      "en": "Uninterruptible power supply (UPS)",
+      "ttsText": "Uninterruptible power supply",
+      "abbreviations": [
+        "UPS"
+      ],
+      "ipa": "ənɪnərˈəptəbəl paʊər səˈplaɪ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_transformer_9236e026",
+      "seq": 60,
+      "zh": "变压器",
+      "en": "Transformer",
+      "ttsText": "Transformer",
+      "abbreviations": [],
+      "ipa": "trænsˈfɔrmər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_point_of_common_coupling_c286fcf7",
+      "seq": 61,
+      "zh": "公共连接点",
+      "en": "Point of common coupling (PCC)",
+      "ttsText": "Point of common coupling",
+      "abbreviations": [
+        "PCC"
+      ],
+      "ipa": "pɔɪnt əv ˈkɑmən ˈkəplɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_grid_following_mode_e0ff5d4e",
+      "seq": 62,
+      "zh": "并网模式",
+      "en": "Grid-following mode",
+      "ttsText": "Grid-following mode",
+      "abbreviations": [],
+      "ipa": "ɡrɪd ˈfɒloʊɪŋ moʊd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_grid_forming_mode_5ef99b2b",
+      "seq": 63,
+      "zh": "构网模式",
+      "en": "Grid-forming mode",
+      "ttsText": "Grid-forming mode",
+      "abbreviations": [],
+      "ipa": "ɡrɪd ˈfɔrmɪŋ moʊd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_harmonic_distortion_5639e4ed",
+      "seq": 64,
+      "zh": "谐波畸变",
+      "en": "Harmonic distortion",
+      "ttsText": "Harmonic distortion",
+      "abbreviations": [],
+      "ipa": "hɑrˈmɑnɪk dɪˈstɔrʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_total_harmonic_distortio_012cbd2d",
+      "seq": 65,
+      "zh": "总谐波畸变率",
+      "en": "Total harmonic distortion (THD)",
+      "ttsText": "Total harmonic distortion",
+      "abbreviations": [
+        "THD"
+      ],
+      "ipa": "ˈtoʊtəl hɑrˈmɑnɪk dɪˈstɔrʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_power_factor_55aff8af",
+      "seq": 66,
+      "zh": "功率因数",
+      "en": "Power factor (PF)",
+      "ttsText": "Power factor",
+      "abbreviations": [
+        "PF"
+      ],
+      "ipa": "paʊər ˈfæktər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}

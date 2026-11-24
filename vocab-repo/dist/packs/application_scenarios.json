@@ -1,0 +1,334 @@
+{
+  "packId": "application_scenarios",
+  "packName": "储能应用场景",
+  "description": "峰谷套利、调频调压、黑启动、光储联动与V2G",
+  "version": 1,
+  "words": [
+    {
+      "id": "ess_peak_shaving_71592623",
+      "seq": 112,
+      "zh": "削峰填谷",
+      "en": "Peak shaving",
+      "ttsText": "Peak shaving",
+      "abbreviations": [],
+      "ipa": "pik ˈʃeɪvɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_load_shifting_be2f4f9c",
+      "seq": 113,
+      "zh": "负荷转移",
+      "en": "Load shifting",
+      "ttsText": "Load shifting",
+      "abbreviations": [],
+      "ipa": "loʊd ˈʃɪftɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_demand_charge_management_5670af53",
+      "seq": 114,
+      "zh": "需量管理",
+      "en": "Demand charge management",
+      "ttsText": "Demand charge management",
+      "abbreviations": [],
+      "ipa": "dɪˈmænd ʧɑrʤ ˈmænɪʤmənt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_energy_arbitrage_time_of_8c5844cc",
+      "seq": 115,
+      "zh": "峰谷套利",
+      "en": "Energy arbitrage / Time-of-use arbitrage",
+      "ttsText": "Energy arbitrage, Time-of-use arbitrage",
+      "abbreviations": [
+        "Time-of-use"
+      ],
+      "ipa": "ˈɛnərʤi ˈɑrbɪˌtrɑʒ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_primary_frequency_regula_d4287af3",
+      "seq": 116,
+      "zh": "一次调频",
+      "en": "Primary frequency regulation (PFR)",
+      "ttsText": "Primary frequency regulation",
+      "abbreviations": [
+        "PFR"
+      ],
+      "ipa": "ˈpraɪˌmɛri ˈfrikwənsi ˌrɛgjəˈleɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_secondary_frequency_regu_6292ae36",
+      "seq": 117,
+      "zh": "二次调频",
+      "en": "Secondary frequency regulation (SFR)",
+      "ttsText": "Secondary frequency regulation",
+      "abbreviations": [
+        "SFR"
+      ],
+      "ipa": "ˈsɛkənˌdɛri ˈfrikwənsi ˌrɛgjəˈleɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_enhanced_frequency_respo_d0fdd984",
+      "seq": 118,
+      "zh": "增强型频率响应",
+      "en": "Enhanced frequency response (EFR)",
+      "ttsText": "Enhanced frequency response",
+      "abbreviations": [
+        "EFR"
+      ],
+      "ipa": "ɛnˈhænst ˈfrikwənsi rɪˈspɑns",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_voltage_regulation_volta_0b4202d1",
+      "seq": 119,
+      "zh": "电压调节",
+      "en": "Voltage regulation / Voltage support",
+      "ttsText": "Voltage regulation, Voltage support",
+      "abbreviations": [],
+      "ipa": "ˈvoʊltɪʤ ˌrɛgjəˈleɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_reactive_power_compensat_105c2cb3",
+      "seq": 120,
+      "zh": "无功补偿",
+      "en": "Reactive power compensation",
+      "ttsText": "Reactive power compensation",
+      "abbreviations": [],
+      "ipa": "riˈæktɪv paʊər ˌkɑmpənˈseɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_variability_damping_smoo_d803f0da",
+      "seq": 121,
+      "zh": "波动平抑",
+      "en": "Variability damping / Smoothing",
+      "ttsText": "Variability damping, Smoothing",
+      "abbreviations": [],
+      "ipa": "vɛriəˈbɪlɪti ˈdæmpɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_backup_power_46efc53c",
+      "seq": 122,
+      "zh": "备用电源",
+      "en": "Backup power",
+      "ttsText": "Backup power",
+      "abbreviations": [],
+      "ipa": "ˈbæˌkəp paʊər",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_black_start_0f118f3a",
+      "seq": 123,
+      "zh": "黑启动",
+      "en": "Black start",
+      "ttsText": "Black start",
+      "abbreviations": [],
+      "ipa": "blæk stɑrt",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_demand_response_0067d1cd",
+      "seq": 124,
+      "zh": "需求响应",
+      "en": "Demand response (DR)",
+      "ttsText": "Demand response",
+      "abbreviations": [
+        "DR"
+      ],
+      "ipa": "dɪˈmænd rɪˈspɑns",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_load_forecasting_cb2abda7",
+      "seq": 125,
+      "zh": "负荷预测",
+      "en": "Load forecasting",
+      "ttsText": "Load forecasting",
+      "abbreviations": [],
+      "ipa": "loʊd ˈfɔrˌkæstɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_renewable_energy_forecas_0f68f060",
+      "seq": 126,
+      "zh": "新能源预测",
+      "en": "Renewable energy forecasting",
+      "ttsText": "Renewable energy forecasting",
+      "abbreviations": [],
+      "ipa": "riˈnuəbəl ˈɛnərʤi ˈfɔrˌkæstɪŋ",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_pv_storage_integration_s_1bd5bd49",
+      "seq": 127,
+      "zh": "光储联动",
+      "en": "PV-storage integration / Solar-plus-storage",
+      "ttsText": "PV-storage integration, Solar-plus-storage",
+      "abbreviations": [
+        "PV-storage"
+      ],
+      "ipa": "piː viː ˈstɔrɪdʒ ˌɪntəˈɡreɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_vehicle_to_grid_894e3485",
+      "seq": 128,
+      "zh": "车网互动",
+      "en": "Vehicle-to-grid (V2G)",
+      "ttsText": "Vehicle-to-grid",
+      "abbreviations": [
+        "V2G"
+      ],
+      "ipa": "ˈviːɪkəl tə ɡrɪd",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_ancillary_services_ed924065",
+      "seq": 129,
+      "zh": "辅助服务",
+      "en": "Ancillary services",
+      "ttsText": "Ancillary services",
+      "abbreviations": [],
+      "ipa": "ˈænsəˌlɛri ˈsərvɪsɪz",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_spinning_reserve_8ce70194",
+      "seq": 130,
+      "zh": "旋转备用",
+      "en": "Spinning reserve",
+      "ttsText": "Spinning reserve",
+      "abbreviations": [],
+      "ipa": "ˈspɪnɪŋ rɪˈzərv",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_non_spinning_reserve_f1c54675",
+      "seq": 131,
+      "zh": "非旋转备用",
+      "en": "Non-spinning reserve",
+      "ttsText": "Non-spinning reserve",
+      "abbreviations": [],
+      "ipa": "nɒn ˈspɪnɪŋ rɪˈzɜrv",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_active_power_flow_contro_0f2bf99c",
+      "seq": 132,
+      "zh": "有功潮流控制",
+      "en": "Active power flow control",
+      "ttsText": "Active power flow control",
+      "abbreviations": [],
+      "ipa": "ˈæktɪv paʊər floʊ kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_feeder_current_control_20738ecf",
+      "seq": 133,
+      "zh": "馈线电流控制",
+      "en": "Feeder current control",
+      "ttsText": "Feeder current control",
+      "abbreviations": [],
+      "ipa": "ˈfidər ˈkɑrənt kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_nodal_voltage_control_9232d73d",
+      "seq": 134,
+      "zh": "节点电压控制",
+      "en": "Nodal voltage control",
+      "ttsText": "Nodal voltage control",
+      "abbreviations": [],
+      "ipa": "ˈnoʊdəl ˈvoʊltɪdʒ kənˈtroʊl",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    },
+    {
+      "id": "ess_power_quality_events_mit_48116a55",
+      "seq": 135,
+      "zh": "电能质量事件治理",
+      "en": "Power quality events mitigation",
+      "ttsText": "Power quality events mitigation",
+      "abbreviations": [],
+      "ipa": "paʊər kˈwɑləti ɪˈvɛnts ˌmɪtɪˈgeɪʃən",
+      "exampleEn": null,
+      "exampleZh": null,
+      "note": null,
+      "audioUrl": null
+    }
+  ]
+}
