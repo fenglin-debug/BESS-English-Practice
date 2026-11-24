@@ -60,7 +60,6 @@ import java.util.Locale
 fun HomeScreen(
     onStartStudy: (packId: String?) -> Unit,
     onOpenPackDictionary: (packId: String) -> Unit,
-    onOpenSettings: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -139,7 +138,6 @@ fun HomeScreen(
                             consentGranted = state.settings.onlineSyncConsentGranted,
                             onConsentAndSync = { viewModel.confirmConsentAndSync(forceFullCheck = true) },
                             onRetrySync = { viewModel.requestSync(forceFullCheck = true) },
-                            onOpenSettings = onOpenSettings,
                         )
                     }
                 }
@@ -226,7 +224,7 @@ private fun OnlineSyncConsentDialog(
         },
         confirmButton = {
             Button(onClick = onConfirm) {
-                Text("同意并开始使用")
+                Text("同意并自动更新")
             }
         },
         dismissButton = {
@@ -317,7 +315,6 @@ private fun EmptyVocabOnboardingCard(
     consentGranted: Boolean,
     onConsentAndSync: () -> Unit,
     onRetrySync: () -> Unit,
-    onOpenSettings: () -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(22.dp),
@@ -345,9 +342,9 @@ private fun EmptyVocabOnboardingCard(
             )
             Text(
                 text = if (consentGranted) {
-                    "请检查手机网络连接后重试，同步完成后即可离线学习全部储能专业词汇。"
+                    "请检查手机网络连接后点击重试，同步完成后即可离线学习全部储能专业词汇。"
                 } else {
-                    "本安装包不含内置语料。授权联网更新后，应用将自动为您同步最新储能行业专业词库并持续保持最新。"
+                    "本安装包不含内置语料。点击下方按钮同意后，应用将自动为您联网更新最新储能专业词库，无需手动填写任何配置。"
                 },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -364,15 +361,9 @@ private fun EmptyVocabOnboardingCard(
                 Icon(Icons.Rounded.CloudDownload, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text = if (consentGranted) "重新获取词库" else "同意联网更新并自动获取词库",
+                    text = if (consentGranted) "重新自动获取词库" else "同意联网并自动更新词库",
                     style = MaterialTheme.typography.titleMedium,
                 )
-            }
-
-            if (consentGranted) {
-                TextButton(onClick = onOpenSettings) {
-                    Text("在设置中检查网络或词库源")
-                }
             }
         }
     }

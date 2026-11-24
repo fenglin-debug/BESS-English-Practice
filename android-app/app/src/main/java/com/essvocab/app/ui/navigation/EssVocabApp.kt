@@ -89,15 +89,6 @@ fun EssVocabApp() {
                     onOpenPackDictionary = { packId ->
                         navController.navigate("dictionary?packId=$packId")
                     },
-                    onOpenSettings = {
-                        navController.navigate(TopTab.SETTINGS.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    },
                 )
             }
 

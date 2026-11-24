@@ -15,8 +15,8 @@ android {
         applicationId = "com.essvocab.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -106,4 +106,16 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.robolectric)
+}
+
+// Workaround for AGP incremental APK packager failing to overwrite existing APKs under non-ASCII Windows paths
+tasks.configureEach {
+    if (name == "packageDebug" || name == "packageRelease") {
+        doFirst {
+            layout.buildDirectory.dir("outputs/apk").get().asFile
+                .walkTopDown()
+                .filter { it.isFile && it.extension == "apk" }
+                .forEach { it.delete() }
+        }
+    }
 }

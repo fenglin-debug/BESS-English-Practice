@@ -72,9 +72,19 @@ class AppPreferencesRepository @Inject constructor(
     }
 
     val settingsFlow: Flow<AppSettings> = context.settingsDataStore.data.map { prefs ->
+        val rawUrl = prefs[Keys.MANIFEST_URL]
+        val resolvedUrl = if (
+            rawUrl.isNullOrBlank() ||
+            rawUrl.contains("<YOUR_GITHUB_USER>") ||
+            rawUrl.contains("<你的用户名>")
+        ) {
+            AppSettings.DEFAULT_MANIFEST_URL
+        } else {
+            rawUrl
+        }
         AppSettings(
             onlineSyncConsentGranted = prefs[Keys.ONLINE_SYNC_CONSENT] ?: false,
-            manifestUrl = prefs[Keys.MANIFEST_URL] ?: AppSettings.DEFAULT_MANIFEST_URL,
+            manifestUrl = resolvedUrl,
             datasetVersion = prefs[Keys.DATASET_VERSION] ?: "",
             manifestEtag = prefs[Keys.MANIFEST_ETAG] ?: "",
             lastSyncAtMillis = prefs[Keys.LAST_SYNC_AT] ?: 0L,
