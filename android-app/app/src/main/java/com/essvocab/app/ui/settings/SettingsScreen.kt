@@ -205,6 +205,32 @@ fun SettingsScreen(
                         steps = 10,
                     )
 
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("每日复习上限（防积压）", style = MaterialTheme.typography.bodyLarge)
+                            Text(
+                                text = "单日最多安排的旧词复习量，避免断签后复习雪崩",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            text = "${state.settings.dailyReviewLimit} 词/天",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                    Slider(
+                        value = state.settings.dailyReviewLimit.toFloat().coerceIn(20f, 150f),
+                        onValueChange = { viewModel.updateDailyReviewLimit((it / 10f).roundToInt() * 10) },
+                        valueRange = 20f..150f,
+                        steps = 12,
+                    )
+
                     Text("目标记忆保持率（越高复习越密）", style = MaterialTheme.typography.bodyLarge)
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         listOf(

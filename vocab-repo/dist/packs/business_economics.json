@@ -2,7 +2,7 @@
   "packId": "business_economics",
   "packName": "商务与经济",
   "description": "LCOS、PPA、分时电价、EPC、COD与需求侧管理",
-  "version": 1,
+  "version": 4,
   "words": [
     {
       "id": "ess_levelized_cost_of_energy_418112a9",
@@ -14,10 +14,10 @@
         "LCOS"
       ],
       "ipa": "ˈlɛvəlaɪzd kɔst əv ˈɛnərdʒi ˈstɔrɪdʒ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Longer cycle life and 88% RTE reduced the project's levelized cost of energy storage (LCOS) below $0.08 per kWh.",
+      "exampleZh": "更长的循环寿命与 88% 的往返效率将该项目的平准化储能度电成本（LCOS）降至每千瓦时 0.08 美元以下。",
+      "note": "评估储能经济性的黄金指标（类比光伏 LCOE），综合计入 Capex、Opex、补容成本、RTE 损耗与全寿命吞吐电量。",
+      "audioUrl": "audio/ess_levelized_cost_of_energy_418112a9.mp3"
     },
     {
       "id": "ess_cost_per_kilowatt_hour_3e8683d1",
@@ -27,10 +27,10 @@
       "ttsText": "Cost per kilowatt-hour",
       "abbreviations": [],
       "ipa": "kɔst pɜr ˈkɪləwɒt aʊər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Falling LFP cell prices drove turnkey DC-block cost per kilowatt-hour down to historic lows in recent international tenders.",
+      "exampleZh": "磷酸铁锂电芯降价推动近期国际招标中直流侧交钥匙单位瓦时造价（元/Wh 或 $/kWh）创下历史新低。",
+      "note": "商务报价核心口径：$/kWh（系统单瓦时投资成本）或 $/kW（功率单位造价），需注意与全寿命度电成本 LCOS 区分。",
+      "audioUrl": "audio/ess_cost_per_kilowatt_hour_3e8683d1.mp3"
     },
     {
       "id": "ess_power_purchase_agreement_ee3e55ff",
@@ -42,10 +42,10 @@
         "PPA"
       ],
       "ipa": "paʊər ˈpərʧəs əˈgrimənt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The developer secured a 15-year tolling and power purchase agreement with the local utility to achieve project bankability.",
+      "exampleZh": "开发商与当地电力公司签署了 15 年期容量租赁及购电协议（PPA），从而顺利获得项目融资认可。",
+      "note": "海外新能源长期售电合同（纯储能项目还常签署 Tolling Agreement 充放电代工协议或 Capacity Contract）。",
+      "audioUrl": "audio/ess_power_purchase_agreement_ee3e55ff.mp3"
     },
     {
       "id": "ess_net_metering_ea054355",
@@ -55,10 +55,10 @@
       "ttsText": "Net metering",
       "abbreviations": [],
       "ipa": "nɛt ˈmitərɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "As regulators phase out one-for-one net metering, homeowners increasingly add batteries to maximize solar self-consumption.",
+      "exampleZh": "随着监管机构逐步取消 1:1 净计量电价政策，户用光伏业主越来越多地加装电池以提升自发自用比例。",
+      "note": "北美/欧洲户储核心驱动政策：Net Metering 3.0（如加州 NEM 3.0）压低上网电价后，光储一体经济性反超纯光伏。",
+      "audioUrl": "audio/ess_net_metering_ea054355.mp3"
     },
     {
       "id": "ess_time_of_use_pricing_b3df7e58",
@@ -67,14 +67,13 @@
       "en": "Time-of-use (TOU) pricing",
       "ttsText": "Time-of-use pricing",
       "abbreviations": [
-        "TOU",
-        "Time-of-use"
+        "TOU"
       ],
       "ipa": "taɪm əv juːs ˈpraɪsɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Steep time-of-use (TOU) pricing spreads between midday solar troughs and evening peaks justify 4-hour commercial batteries.",
+      "exampleZh": "午间低谷与晚高峰之间拉大的分时电价（TOU）价差，使 4 小时工商业储能具备良好投资回报。",
+      "note": "分时电价通常划分尖（Critical Peak）、峰（Peak）、平（Shoulder/Mid-peak）、谷（Off-peak）四个时段。",
+      "audioUrl": "audio/ess_time_of_use_pricing_b3df7e58.mp3"
     },
     {
       "id": "ess_demand_charge_5c23b513",
@@ -84,10 +83,10 @@
       "ttsText": "Demand charge",
       "abbreviations": [],
       "ipa": "dɪˈmænd ʧɑrʤ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "A single 15-minute factory startup spike can trigger a steep monthly demand charge unless shaved by the BESS.",
+      "exampleZh": "工厂开机瞬间哪怕只有一次 15 分钟功率尖峰，若无储能削峰，就可能触发高昂的整月需量电费。",
+      "note": "对应国内两部制电价中的“基本电费/最大需量费”，按月计量最高功率（$/kW-month）而非用电度数。",
+      "audioUrl": "audio/ess_demand_charge_5c23b513.mp3"
     },
     {
       "id": "ess_energy_service_company_d942f875",
@@ -99,10 +98,10 @@
         "ESCO"
       ],
       "ipa": "ˈɛnərʤi ˈsərvɪs ˈkəmpəˌni",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "An energy service company financed, installed, and operates the behind-the-meter BESS under a shared-savings contract.",
+      "exampleZh": "一家综合能源服务公司（ESCO）采用节能效益分享模式，为业主出资建设并运维该表后储能项目。",
+      "note": "对应国内合同能源管理（EMC/EMCA）投资方，业主零首付，双方按约定比例分成峰谷套利与需量节省收益。",
+      "audioUrl": "audio/ess_energy_service_company_d942f875.mp3"
     },
     {
       "id": "ess_independent_power_produc_902fd3d0",
@@ -114,10 +113,10 @@
         "IPP"
       ],
       "ipa": "ˌɪndɪˈpɛndənt paʊər prəˈdusər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Global independent power producers are expanding wind-plus-storage portfolios to win firm renewable capacity tenders.",
+      "exampleZh": "全球各大独立发电商（IPP）正加速扩张风储一体化资产组合，以竞标稳定出力的可再生能源容量标段。",
+      "note": "指非电网公司控股、自行投资运营发电与储能电站向电网售电的市场主体（如 AES、Neoen、NextEra 等）。",
+      "audioUrl": "audio/ess_independent_power_produc_902fd3d0.mp3"
     },
     {
       "id": "ess_load_serving_entity_68c18291",
@@ -129,10 +128,10 @@
         "LSE"
       ],
       "ipa": "loʊd ˈsɜrvɪŋ ˈɛntɪti",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Regulators require every load-serving entity to procure multi-hour storage adequacy to cover evening net-load ramps.",
+      "exampleZh": "监管机构要求每家负荷服务实体（售电/供电主体）配置多小时储能容量裕度，以应对晚高峰净负荷爬坡。",
+      "note": "北美电力市场高频词（LSE，如公用事业售电公司、社区聚合商 CCA），承担终端用户供电可靠性考核指标（RA）。",
+      "audioUrl": "audio/ess_load_serving_entity_68c18291.mp3"
     },
     {
       "id": "ess_engineering_procurement_2e51113c",
@@ -144,10 +143,10 @@
         "EPC"
       ],
       "ipa": "ˈɛnʤəˈnɪrɪŋ, proʊˈkjʊrmənt, ənd kənˈstrəkʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The EPC contractor assumes single-point responsibility for civil works, battery integration, and substation commissioning.",
+      "exampleZh": "EPC 总承包方对土建施工、储能系统集成及升压站并网调试承担总包履约责任。",
+      "note": "海外招投标常见分工：Equipment Supply（仅设备供货）、EPC（设计-采购-施工总包）及 Turnkey（交钥匙工程）。",
+      "audioUrl": "audio/ess_engineering_procurement_2e51113c.mp3"
     },
     {
       "id": "ess_commercial_operation_dat_e56a13ac",
@@ -159,10 +158,10 @@
         "COD"
       ],
       "ipa": "kəˈmərʃəl ˌɑpərˈeɪʃən deɪt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Liquidated damages apply per day if grid testing delays push the project past its guaranteed commercial operation date (COD).",
+      "exampleZh": "若并网测试延误导致项目未能按期达成承诺的商业运营日（COD），将按天触发违约金（LD）扣罚。",
+      "note": "储能项目里程碑绝对红线（Achieve COD）；达成 COD 标志着通过 SAT 与电网考核、正式开始计费发电与计算质保期。",
+      "audioUrl": "audio/ess_commercial_operation_dat_e56a13ac.mp3"
     },
     {
       "id": "ess_energy_payback_time_0afdbb51",
@@ -174,10 +173,10 @@
         "EPBT"
       ],
       "ipa": "ˈɛnərʤi ˈpeɪˌbæk taɪm",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Life-cycle assessments show a utility LFP battery achieves an energy payback time of roughly one to two years in grid service.",
+      "exampleZh": "全生命周期评估显示，电网侧磷酸铁锂储能电站的能源回收期约为一至两年。",
+      "note": "指系统运行节省/吞吐的清洁能源等效抵消其全产业链制造能耗所需的时间（注意区分财务投资回收期 Payback period）。",
+      "audioUrl": "audio/ess_energy_payback_time_0afdbb51.mp3"
     },
     {
       "id": "ess_grid_parity_d854520a",
@@ -187,10 +186,10 @@
       "ttsText": "Grid parity",
       "abbreviations": [],
       "ipa": "grɪd ˈpɛrəti",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Solar-plus-storage has reached grid parity in sunny regions, beating new natural gas peaker plants on levelized cost.",
+      "exampleZh": "在光照充足地区，光储一体化度电成本已实现平价，并在平准化成本上优于新建燃气调峰电厂。",
+      "note": "新能源+储能发电成本无需财政补贴即可与传统电网基准电价或燃气调峰电站竞争的行业临界点。",
+      "audioUrl": "audio/ess_grid_parity_d854520a.mp3"
     },
     {
       "id": "ess_energy_curtailment_44557cca",
@@ -200,10 +199,10 @@
       "ttsText": "Energy curtailment",
       "abbreviations": [],
       "ipa": "ˈɛnərʤi kərˈteɪlmənt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Installing a 200 MWh BESS beside the wind farm slashed annual energy curtailment from 14% down to under 2%.",
+      "exampleZh": "在风电场旁配置 200 MWh 储能后，电站年弃风限电率从 14% 大幅降至 2% 以下。",
+      "note": "海外项目背景常见“弃风弃光（Wind/Solar curtailment）”，储能是消纳限发电量最直接的技术手段。",
+      "audioUrl": "audio/ess_energy_curtailment_44557cca.mp3"
     },
     {
       "id": "ess_grid_resiliency_30220ab6",
@@ -213,10 +212,10 @@
       "ttsText": "Grid resiliency",
       "abbreviations": [],
       "ipa": "grɪd rɪˈzɪljənsi",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Extreme weather events have pushed utilities to prioritize grid resiliency investments such as microgrid-ready BESS.",
+      "exampleZh": "极端天气频发促使电网公司优先投资具备微网孤岛及黑启动能力的储能系统，以增强电网韧性。",
+      "note": "区别于传统可靠性（Reliability）：Resiliency 强调在极端飓风、野火、冰灾冲击下的快速抗毁恢复能力。",
+      "audioUrl": "audio/ess_grid_resiliency_30220ab6.mp3"
     },
     {
       "id": "ess_smart_grid_037825ef",
@@ -226,10 +225,10 @@
       "ttsText": "Smart grid",
       "abbreviations": [],
       "ipa": "smɑrt grɪd",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Automated BESS dispatch, smart meters, and DERMS form the operational backbone of a modern smart grid.",
+      "exampleZh": "自动化储能调度、智能电表与分布式能源管理系统共同构成了现代智能电网的运行底座。",
+      "note": "核心特征是双向潮流互动与信息通信高度融合，储能是智能电网实现“源网荷储”实时互动的柔性节点。",
+      "audioUrl": "audio/ess_smart_grid_037825ef.mp3"
     },
     {
       "id": "ess_demand_side_management_f7d10811",
@@ -238,14 +237,13 @@
       "en": "Demand-side management (DSM)",
       "ttsText": "Demand-side management",
       "abbreviations": [
-        "DSM",
-        "Demand-side"
+        "DSM"
       ],
       "ipa": "dɪˈmænd saɪd ˈmænɪdʒmənt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "C&I batteries serve as the most flexible asset in demand-side management without disrupting core factory production lines.",
+      "exampleZh": "工商业储能是需求侧管理中最具柔性的资源，可在不干扰工厂核心产线的前提下削减电网购电需求。",
+      "note": "与 Supply-side（电源侧）相对，涵盖用户侧节能改造、储能削峰、分时用电调整与可中断负荷响应。",
+      "audioUrl": "audio/ess_demand_side_management_f7d10811.mp3"
     }
   ]
 }

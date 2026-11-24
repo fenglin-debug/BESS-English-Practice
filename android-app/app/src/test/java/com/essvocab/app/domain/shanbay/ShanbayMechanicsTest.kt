@@ -40,6 +40,36 @@ class ShanbayMechanicsTest {
     }
 
     @Test
+    fun buildProgressiveHintPrioritizesEnglishContextBeforeChineseClue() {
+        assertEquals(2, ShanbayMechanics.maxHintLevel("The containerized BESS delivers 5 MWh."))
+        assertEquals(1, ShanbayMechanics.maxHintLevel(null))
+        assertEquals(1, ShanbayMechanics.maxHintLevel("   "))
+
+        val level1 = ShanbayMechanics.buildProgressiveHint(
+            zh = "电池储能系统",
+            packName = "基础术语与系统",
+            abbreviations = listOf("BESS"),
+            exampleEn = "The containerized BESS delivers 5 MWh.",
+            hintLevel = 1,
+        )
+        assertTrue(level1.contains("The containerized BESS delivers 5 MWh."))
+        assertTrue(level1.contains("BESS"))
+        assertFalse("Level 1 with example should not leak Chinese clue yet", level1.contains("中文首字提示"))
+        assertFalse("Hint must never leak the full Chinese answer", level1.contains("电池储能系统"))
+
+        val level2 = ShanbayMechanics.buildProgressiveHint(
+            zh = "电池储能系统",
+            packName = "基础术语与系统",
+            abbreviations = listOf("BESS"),
+            exampleEn = "The containerized BESS delivers 5 MWh.",
+            hintLevel = 2,
+        )
+        assertTrue(level2.contains("The containerized BESS delivers 5 MWh."))
+        assertTrue(level2.contains("电 _ _ _ _ _"))
+        assertFalse("Hint must never leak the full Chinese answer", level2.contains("电池储能系统"))
+    }
+
+    @Test
     fun calculateStreakHandlesConsecutiveAndMissedDaysAcrossSevenDayWindow() {
         val today = LocalDate.of(2026, 11, 24)
         // Checked in today, yesterday, and 2 days ago -> streak = 3

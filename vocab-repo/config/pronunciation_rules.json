@@ -1,0 +1,21 @@
+{
+  "voice": "en-US-AndrewNeural",
+  "fallbackVoice": "en-US-GuyNeural",
+  "rate": "+0%",
+  "replacements": {
+    "DC/DC": "D C to D C",
+    "AC/DC": "A C to D C",
+    "C&I": "C and I",
+    "V2G": "V to G",
+    "C-rate": "C rate",
+    "IEC 61850": "I E C 6 1 8 5 0",
+    "NMC/NCA": "N M C and N C A",
+    "kWh": "kilowatt hour",
+    "EESS": "E E S S",
+    "BESS": "B E S S"
+  },
+  "wordOverrides": {
+    "ess_nmc_nca_battery_c042e141": "N M C or N C A battery",
+    "ess_c_rate_72bded54": "C rate, charge or discharge rate"
+  }
+}

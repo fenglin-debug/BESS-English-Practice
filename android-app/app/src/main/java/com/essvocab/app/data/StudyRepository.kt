@@ -6,7 +6,7 @@ import com.essvocab.app.data.local.ReviewCardEntity
 import com.essvocab.app.data.local.ReviewDao
 import com.essvocab.app.data.local.VocabDao
 import com.essvocab.app.data.local.WordWithReview
-import com.essvocab.app.data.preferences.AppPreferencesRepository
+import com.essvocab.app.data.preferences.StudySettingsSource
 import com.essvocab.app.domain.fsrs.FsrsRating
 import com.essvocab.app.domain.fsrs.FsrsScheduleOutcome
 import com.essvocab.app.domain.fsrs.FsrsScheduler
@@ -34,13 +34,20 @@ data class BookStats(
     val unseenWords: Int = 0,
     val todayNewLearned: Int = 0,
     val todayReviewed: Int = 0,
+    val todayOldReviewed: Int = 0,
+)
+
+data class RecordedReview(
+    val outcome: FsrsScheduleOutcome,
+    val previousCard: ReviewCardEntity?,
+    val logId: Long,
 )
 
 @Singleton
 class StudyRepository @Inject constructor(
     private val vocabDao: VocabDao,
     private val reviewDao: ReviewDao,
-    private val preferencesRepository: AppPreferencesRepository,
+    private val preferencesRepository: StudySettingsSource,
     private val fsrsScheduler: FsrsScheduler,
 ) {
     fun observePackSummaries(nowMillis: Long = System.currentTimeMillis()): Flow<List<PackSummaryRow>> =
@@ -60,8 +67,9 @@ class StudyRepository @Inject constructor(
             combine(
                 reviewDao.observeTodayNewLearnedCount(startOfDay),
                 reviewDao.observeTodayReviewedCount(startOfDay),
-            ) { newToday, revToday -> newToday to revToday },
-        ) { total, mastered, due, unseen, (newToday, revToday) ->
+                reviewDao.observeTodayOldReviewedWordCount(startOfDay),
+            ) { newToday, revToday, oldRevToday -> Triple(newToday, revToday, oldRevToday) },
+        ) { total, mastered, due, unseen, (newToday, revToday, oldRevToday) ->
             BookStats(
                 totalWords = total,
                 masteredWords = mastered,
@@ -69,6 +77,7 @@ class StudyRepository @Inject constructor(
                 unseenWords = unseen,
                 todayNewLearned = newToday,
                 todayReviewed = revToday,
+                todayOldReviewed = oldRevToday,
             )
         }
     }
@@ -89,7 +98,7 @@ class StudyRepository @Inject constructor(
 
     /**
      * Builds a study queue according to Shanbay mode:
-     * - DAILY_BOOK: due reviews first, then remaining daily new quota.
+     * - DAILY_BOOK: due reviews capped by dailyReviewLimit (anti-avalanche), then remaining daily new quota.
      * - EXTRA_PRACTICE: additional unseen words, falling back to lowest-stability words.
      * - NOTEBOOK: favorited & lapsed difficult words.
      */
@@ -102,7 +111,13 @@ class StudyRepository @Inject constructor(
         return when (mode) {
             StudyMode.DAILY_BOOK -> {
                 val settings = preferencesRepository.getCurrentSettings()
-                val dueWords = reviewDao.getDueWords(packId = scopedPackId, nowMillis = nowMillis, limit = 40)
+                val reviewedOldToday = reviewDao.countTodayOldReviewedWords(startOfTodayMillis())
+                val remainingReviewQuota = max(0, settings.dailyReviewLimit - reviewedOldToday)
+                val dueWords = if (remainingReviewQuota > 0) {
+                    reviewDao.getDueWords(packId = scopedPackId, nowMillis = nowMillis, limit = remainingReviewQuota)
+                } else {
+                    emptyList()
+                }
                 val learnedNewToday = reviewDao.countTodayNewLearned(startOfTodayMillis())
                 val remainingNewQuota = max(0, settings.dailyNewLimit - learnedNewToday)
                 val newWords = if (remainingNewQuota > 0) {
@@ -147,7 +162,7 @@ class StudyRepository @Inject constructor(
         item: WordWithReview,
         rating: FsrsRating,
         nowMillis: Long = System.currentTimeMillis(),
-    ): FsrsScheduleOutcome {
+    ): RecordedReview {
         val retention = preferencesRepository.getCurrentSettings().desiredRetention
         val latestCard = reviewDao.getCard(item.word.id) ?: item.card
         val outcome = fsrsScheduler.review(
@@ -161,8 +176,12 @@ class StudyRepository @Inject constructor(
             isFavorite = latestCard?.isFavorite ?: false,
             isMasteredBypass = false,
         )
-        reviewDao.recordReview(mergedCard, outcome.reviewLog)
-        return outcome.copy(updatedCard = mergedCard)
+        val logId = reviewDao.recordReview(mergedCard, outcome.reviewLog)
+        return RecordedReview(
+            outcome = outcome.copy(updatedCard = mergedCard),
+            previousCard = latestCard,
+            logId = logId,
+        )
     }
 
     /**
@@ -185,7 +204,7 @@ class StudyRepository @Inject constructor(
     suspend fun markTooEasy(
         item: WordWithReview,
         nowMillis: Long = System.currentTimeMillis(),
-    ): FsrsScheduleOutcome {
+    ): RecordedReview {
         val retention = preferencesRepository.getCurrentSettings().desiredRetention
         val latestCard = reviewDao.getCard(item.word.id) ?: item.card
         val outcome = fsrsScheduler.review(
@@ -199,8 +218,20 @@ class StudyRepository @Inject constructor(
             isFavorite = latestCard?.isFavorite ?: false,
             isMasteredBypass = true,
         )
-        reviewDao.recordReview(bypassed, outcome.reviewLog)
-        return outcome.copy(updatedCard = bypassed)
+        val logId = reviewDao.recordReview(bypassed, outcome.reviewLog)
+        return RecordedReview(
+            outcome = outcome.copy(updatedCard = bypassed),
+            previousCard = latestCard,
+            logId = logId,
+        )
+    }
+
+    suspend fun undoReview(
+        wordId: String,
+        previousCard: ReviewCardEntity?,
+        logId: Long,
+    ) {
+        reviewDao.undoReview(wordId, previousCard, logId)
     }
 
     suspend fun restoreFromMastered(wordId: String, nowMillis: Long = System.currentTimeMillis()) {

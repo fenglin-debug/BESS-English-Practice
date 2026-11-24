@@ -1,0 +1,117 @@
+{
+  "ess_electrical_energy_storag_58e89d18": {
+    "exampleEn": "Grid operators deploy electrical energy storage to balance renewable intermittency and defer transmission upgrades.",
+    "exampleZh": "电网运营商部署电力储能，以平衡可再生能源的间歇性并延缓输电扩容。",
+    "note": "广义行业总称（含电化学、抽蓄、压缩空气、飞轮等），IEC 62933 标准系列中常用此术语。"
+  },
+  "ess_electrical_energy_storag_8f3b5c54": {
+    "exampleEn": "The electrical energy storage system must comply with IEC 62933 safety requirements before site commissioning.",
+    "exampleZh": "该电力储能系统在现场调试前必须符合 IEC 62933 安全标准要求。",
+    "note": "比 EES 更强调成套“系统”边界，在 IEC 国际标准与海外并网规范（Grid Code）中高频出现。"
+  },
+  "ess_battery_energy_storage_s_c7610945": {
+    "exampleEn": "The 100 MW / 200 MWh battery energy storage system (BESS) passed grid compliance testing ahead of schedule.",
+    "exampleZh": "这套 100 MW / 200 MWh 电池储能系统提前通过了并网合规测试。",
+    "note": "储能出海最核心缩写。与 EESS 相比，BESS 特指电化学电池储能系统，常搭配 utility-scale / containerized 使用。"
+  },
+  "ess_energy_storage_power_sta_df9e6157": {
+    "exampleEn": "The standalone energy storage power station connects directly to the 220 kV substation via a step-up transformer.",
+    "exampleZh": "该独立储能电站通过升压变压器直接接入 220 kV 变电站。",
+    "note": "指百兆瓦级独立/集中式储能场站（海外标书也常用 standalone BESS plant / facility）。"
+  },
+  "ess_energy_storage_unit_ff57b6d0": {
+    "exampleEn": "Each 5 MWh energy storage unit integrates a battery container, liquid-cooling loop, and fire suppression panel.",
+    "exampleZh": "每个 5 MWh 储能单元均集成了电池舱、液冷回路和消防控制盘。",
+    "note": "电站由多个可独立切投的储能单元并联组成，常指“一组电池舱+对应 PCS”的最小功率/能量单元。"
+  },
+  "ess_battery_cell_e15abce2": {
+    "exampleEn": "The manufacturer upgraded the rack design from 280 Ah to 314 Ah LFP battery cells to cut system footprint.",
+    "exampleZh": "制造商将电池簇由 280 Ah 升级为 314 Ah 磷酸铁锂电芯，以缩减系统占地面积。",
+    "note": "电化学层级最底层：Cell（电芯）→ Module（模组）→ Pack（电池包）→ Cluster/Rack（簇）→ Stack（堆）。"
+  },
+  "ess_battery_module_561bbc61": {
+    "exampleEn": "Each battery module houses 52 prismatic cells connected in series with integrated voltage and NTC temperature sensors.",
+    "exampleZh": "每个电池模组内置 52 只串联方形电芯，并集成电压与 NTC 温度采样传感器。",
+    "note": "多只电芯经串并联及结构件封装成模组，是模组级热管理与 BMU 采样的基本单位。"
+  },
+  "ess_battery_pack_10e330d1": {
+    "exampleEn": "The IP65-rated battery pack protects internal modules from dust and moisture in coastal C&I installations.",
+    "exampleZh": "具备 IP65 防护等级的电池包可在沿海工商业安装场景中保护内部模组免受灰尘和潮气侵袭。",
+    "note": "带完整外壳、高压接口和保护结构的独立电池包；在部分液冷大储中也可跳过 Module 直接 CTP 成包。"
+  },
+  "ess_battery_cluster_battery_43d7af17": {
+    "exampleEn": "A single 1500 V battery rack delivers 418 kWh and communicates with the PCS via a dedicated cluster controller.",
+    "exampleZh": "单个 1500 V 电池簇可提供 418 kWh 电量，并通过专用簇控器与 PCS 通信。",
+    "note": "海外文档中 Battery rack 比 Battery cluster 更地道常用；多簇并联前需严格控制簇间压差。"
+  },
+  "ess_battery_stack_battery_ar_d062128f": {
+    "exampleEn": "Eight battery racks are connected in parallel on the DC bus to form one battery stack managed by a BAU.",
+    "exampleZh": "八个电池簇在直流母线上并联组成一个电池堆，由系统管理单元 BAU 统一管控。",
+    "note": "由多簇并联接入同一台 PCS 直流侧的集合；英文技术规格书也常用 battery bank 或 battery array。"
+  },
+  "ess_battery_collection_panel_d222161b": {
+    "exampleEn": "Fault current from parallel racks is isolated by DC fuses and contactors inside the battery collection panel.",
+    "exampleZh": "并联电池簇的故障电流由电池汇流柜内的直流熔断器和接触器进行隔离。",
+    "note": "汇流多簇直流输出后送往 PCS 的关键柜体（又称直流汇流柜 DC combiner cabinet）。"
+  },
+  "ess_high_voltage_box_high_vo_0d20c8fe": {
+    "exampleEn": "Before replacing the pre-charge resistor inside the high voltage box, verify zero voltage across the rack terminals.",
+    "exampleZh": "更换高压箱内的预充电阻前，务必确认电池簇端电压已降至零。",
+    "note": "位于每簇前端（又称 BDU/SBOX），集成主正/主负接触器、预充回路、霍尔电流传感器与熔断器。"
+  },
+  "ess_self_contained_eess_cont_12129ea4": {
+    "exampleEn": "A 20-foot containerized BESS arrives pre-wired from the factory, reducing on-site installation time by half.",
+    "exampleZh": "20 英尺预制舱式储能系统在工厂完成预接线出厂，可将现场安装工期缩短一半。",
+    "note": "Self-contained EESS 偏 IEC 规范用语；海外招投标与工程交付中最常用 Containerized BESS。"
+  },
+  "ess_low_voltage_eess_3773a6df": {
+    "exampleEn": "Low voltage EESS architectures operating at 48 V DC remain popular for off-grid residential backup applications.",
+    "exampleZh": "工作在 48 V 直流平台的低压储能系统在户用离网备电场景中依然十分普及。",
+    "note": "通常指直流侧 48 V~60 V 的安全特低电压系统，常见于户用备电与通信基站。"
+  },
+  "ess_medium_voltage_eess_a7ba1196": {
+    "exampleEn": "The medium voltage EESS steps up inverter output to 33 kV for direct interconnection with the distribution feeder.",
+    "exampleZh": "中压储能系统将变流器输出升压至 33 kV，直接接入配电网馈线。",
+    "note": "工商业及中小型电站主流并网电压等级（常见 10 kV~35 kV 交流接入）。"
+  },
+  "ess_high_voltage_eess_d8dddd63": {
+    "exampleEn": "Large-scale high voltage EESS plants use 1500 V DC battery strings paired with 110 kV or 220 kV substations.",
+    "exampleZh": "大型高压储能电站普遍采用 1500 V 直流电池串并配套 110 kV 或 220 kV 升压站。",
+    "note": "指直流 1500 V 平台或交流 66 kV 以上网侧大型电站（Utility-scale），注意区分直流高压与交流高压。"
+  },
+  "ess_residential_eess_546c909d": {
+    "exampleEn": "The residential EESS pairs rooftop solar with a 10 kWh wall-mounted battery to maximize household self-consumption.",
+    "exampleZh": "该户用储能系统将屋顶光伏与 10 kWh 壁挂电池结合，以最大化家庭自发自用率。",
+    "note": "欧美市场常简称为 Home battery 或 Residential storage，核心卖点是电费节省与停电无缝备电。"
+  },
+  "ess_commercial_and_industria_981108e0": {
+    "exampleEn": "Factories deploy commercial and industrial EESS cabinets to shave peak demand charges and capture TOU spreads.",
+    "exampleZh": "工厂部署工商业储能一体柜，用于削减需量电费并赚取峰谷分时电价差。",
+    "note": "工商业储能（C&I 读作 C and I），海外常见百千瓦时级户外一体柜（All-in-one cabinet）。"
+  },
+  "ess_grid_connected_ecfb7cc1": {
+    "exampleEn": "In grid-connected operation, the PCS synchronizes with utility voltage and injects active power per EMS dispatch.",
+    "exampleZh": "在并网运行模式下，PCS 与电网电压保持同步，并按 EMS 调度指令输出有功功率。",
+    "note": "反义词为 Off-grid（离网）；海外规范中也常用 Grid-tied 表示并网。"
+  },
+  "ess_microgrid_4ee1d5ad": {
+    "exampleEn": "The island microgrid combines solar, diesel generators, and BESS to maintain continuous power during utility outages.",
+    "exampleZh": "该海岛微电网融合光伏、柴油发电机与储能系统，在主网停电时维持连续供电。",
+    "note": "可作为可控单元并网运行，也能在外部电网故障时无缝切入孤岛模式独立维持电压与频率。"
+  },
+  "ess_islanding_78b082de": {
+    "exampleEn": "Anti-islanding protection must trip the inverter within two seconds after an unplanned utility grid loss.",
+    "exampleZh": "防孤岛保护必须在电网非计划失电后两秒内使逆变器跳闸脱网。",
+    "note": "工程上严格区分“非计划孤岛（Unintentional islanding，需防孤岛保护）”与“计划内离网微网运行”。"
+  },
+  "ess_virtual_power_plant_607577a1": {
+    "exampleEn": "A virtual power plant aggregates thousands of distributed home batteries to bid into the frequency ancillary market.",
+    "exampleZh": "虚拟电厂聚合数千套分布式户用电池，参与电网调频辅助服务市场竞价。",
+    "note": "VPP 不新建实体电厂，而是通过云端软件聚合分散的 BESS、光伏与可调负荷统一参与电力市场。"
+  },
+  "ess_distributed_energy_resou_0e3ffaa2": {
+    "exampleEn": "IEEE 1547 defines interconnection and ride-through rules for every distributed energy resource connected to the grid.",
+    "exampleZh": "IEEE 1547 标准规定了接入电网的各类分布式能源资源的并网与故障穿越规则。",
+    "note": "DER 涵盖配电网侧光伏、储能、可控负荷与充电桩等；在北美并网认证（如 IEEE 1547）中极高频。"
+  }
+}

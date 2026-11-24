@@ -105,12 +105,28 @@ interface ReviewDao {
     suspend fun upsertCard(card: ReviewCardEntity)
 
     @Insert
-    suspend fun insertLog(log: ReviewLogEntity)
+    suspend fun insertLog(log: ReviewLogEntity): Long
 
     @Transaction
-    suspend fun recordReview(card: ReviewCardEntity, log: ReviewLogEntity) {
+    suspend fun recordReview(card: ReviewCardEntity, log: ReviewLogEntity): Long {
         upsertCard(card)
-        insertLog(log)
+        return insertLog(log)
+    }
+
+    @Query("DELETE FROM review_cards WHERE wordId = :wordId")
+    suspend fun deleteCard(wordId: String)
+
+    @Query("DELETE FROM review_logs WHERE id = :logId")
+    suspend fun deleteLogById(logId: Long)
+
+    @Transaction
+    suspend fun undoReview(wordId: String, previousCard: ReviewCardEntity?, logId: Long) {
+        if (previousCard == null) {
+            deleteCard(wordId)
+        } else {
+            upsertCard(previousCard)
+        }
+        deleteLogById(logId)
     }
 
     @Query(
@@ -176,6 +192,22 @@ interface ReviewDao {
 
     @Query("SELECT COUNT(*) FROM review_logs WHERE reviewedAtMillis >= :startOfDayMillis")
     suspend fun countTodayReviewed(startOfDayMillis: Long): Int
+
+    @Query(
+        """
+        SELECT COUNT(DISTINCT wordId) FROM review_logs
+        WHERE reviewedAtMillis >= :startOfDayMillis AND stateBefore != 0
+        """,
+    )
+    fun observeTodayOldReviewedWordCount(startOfDayMillis: Long): Flow<Int>
+
+    @Query(
+        """
+        SELECT COUNT(DISTINCT wordId) FROM review_logs
+        WHERE reviewedAtMillis >= :startOfDayMillis AND stateBefore != 0
+        """,
+    )
+    suspend fun countTodayOldReviewedWords(startOfDayMillis: Long): Int
 
     @Query("SELECT COUNT(*) FROM review_logs")
     fun observeTotalReviewsAllTime(): Flow<Int>

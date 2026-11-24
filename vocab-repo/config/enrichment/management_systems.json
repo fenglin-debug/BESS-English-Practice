@@ -1,0 +1,122 @@
+{
+  "ess_battery_management_syste_7899d391": {
+    "exampleEn": "The three-tier battery management system continuously monitors cell voltages, estimates SOC/SOH, and commands protective trips.",
+    "exampleZh": "三级架构电池管理系统持续监测单体电芯电压、估算 SOC/SOH 状态，并在异常时下发保护跳闸指令。",
+    "note": "储能电池的“安全管家”，行业主流采用三级架构：BMU（从控）→ BCU（簇控）→ BAU（主控/堆控）。"
+  },
+  "ess_battery_management_unit_ed9ae0e7": {
+    "exampleEn": "Each battery management unit samples 24 cell voltages and 8 temperature points inside a single module via AFE chips.",
+    "exampleZh": "每个电池管理单元通过模拟前端（AFE）芯片采集单个模组内 24 串电芯电压与 8 路温度信号。",
+    "note": "又称 CSC（Cell Supervision Circuit）或从控单元，负责模组级电压/温度采样及被动均衡控制。"
+  },
+  "ess_battery_cluster_manageme_031d5e22": {
+    "exampleEn": "The battery cluster management unit controls the rack's high-voltage contactors and reports aggregated limits to the BAU.",
+    "exampleZh": "电池簇管理单元控制本簇高压接触器通断，并将整簇可充放电功率限值上报给 BAU。",
+    "note": "又称 RBMS（Rack BMS）或高压管理单元（HVU），管一簇的电流、绝缘检测、预充控制及故障保护。"
+  },
+  "ess_battery_array_unit_7bd54651": {
+    "exampleEn": "The battery array unit consolidates telemetry from eight BCU racks and forwards real-time alarms to the EMS over Modbus TCP.",
+    "exampleZh": "电池系统管理单元汇总八个 BCU 电池簇的遥测数据，并通过 Modbus TCP 向 EMS 上报实时告警。",
+    "note": "又称 MBMS（Master BMS）或堆控单元，是整个电池堆与上层 EMS/PCS 交互的唯一主通信网关。"
+  },
+  "ess_energy_management_system_b83c0a78": {
+    "exampleEn": "The energy management system optimizes dispatch schedules based on electricity tariffs, grid commands, and battery SOC limits.",
+    "exampleZh": "能量管理系统依据分时电价、电网调度指令及电池 SOC 限值，对系统充放电计划进行全局优化。",
+    "note": "电站的“大脑”（区别于保护电芯的 BMS）；协调 PCS、BMS、空调/液冷、消防与电表实现经济与安全调度。"
+  },
+  "ess_home_energy_management_s_7263bd70": {
+    "exampleEn": "A home energy management system coordinates rooftop PV, wall battery, and EV charger to avoid tripping the main breaker.",
+    "exampleZh": "家庭能量管理系统协同屋顶光伏、壁挂储能和家用充电桩，避免家庭总进线开关过载跳闸。",
+    "note": "面向户用侧的能量网关，常集成动态防逆流（Zero-export）与智能家电负载优先调度功能。"
+  },
+  "ess_building_energy_manageme_26294711": {
+    "exampleEn": "Integrating BESS into the building energy management system cuts HVAC peak loads during afternoon tariff peaks.",
+    "exampleZh": "将储能系统接入建筑能量管理系统，可在午后高电价时段有效削减暖通空调高峰负荷。",
+    "note": "楼宇/商业综合体配储的核心集成接口，多与楼宇自控协议 BACnet 对接。"
+  },
+  "ess_local_power_management_s_f579b6d9": {
+    "exampleEn": "Even if cloud connectivity drops, the local power management system continues executing fast frequency and anti-backflow control.",
+    "exampleZh": "即使云端网络断开，本地电力管理系统仍能继续执行快速调频与防逆流控制。",
+    "note": "强调本地控制器（PPC, Power Plant Controller）在毫秒至百毫秒级实时功率闭环与断网自治中的作用。"
+  },
+  "ess_scada_d178a760": {
+    "exampleEn": "Operators rely on the SCADA dashboard to track multi-megawatt substation switchgear status, alarms, and historical trends.",
+    "exampleZh": "运维人员通过 SCADA 监控画面实时查看兆瓦级升压站开关状态、告警信息与历史运行曲线。",
+    "note": "注意发音：行业内通常连读为 /ˈskeɪdə/（非逐字母念）。常位于场站监控层，对接升压站综自与 EMS。"
+  },
+  "ess_programmable_logic_contr_e9ebc70a": {
+    "exampleEn": "A safety-rated PLC coordinates fire-damper interlocks, ventilation fans, and emergency stop relays across the container.",
+    "exampleZh": "安全级可编程逻辑控制器负责联动控制预制舱内的防火阀、排风风机及紧急停机继电器。",
+    "note": "工业级硬实时逻辑控制核心，在储能舱常承担热管理水泵阀门控制与消防硬接线安全联锁。"
+  },
+  "ess_human_machine_interface_1e48abc6": {
+    "exampleEn": "Site technicians use the cabinet's touchscreen human-machine interface to inspect fault codes and run manual commissioning tests.",
+    "exampleZh": "现场调试工程师通过储能柜门上的触摸屏人机界面查看故障码并执行手动调试测试。",
+    "note": "即现场本地触控操作屏，用于就地查看参数、一键起停与检修模式切换。"
+  },
+  "ess_distributed_energy_resou_42cf4fa6": {
+    "exampleEn": "Utility companies deploy a DERMS platform to orchestrate thousands of C&I batteries and rooftop inverters across feeders.",
+    "exampleZh": "电网公司部署分布式能源管理系统平台，以统筹调度各条配电馈线上的数千台工商业储能和屋顶逆变器。",
+    "note": "偏电网公司或电力调度侧使用的广域聚合平台（与用户侧 EMS 处于不同管理层级）。"
+  },
+  "ess_remote_monitoring_c3c42af4": {
+    "exampleEn": "24/7 cloud-based remote monitoring helps O&M teams spot cell voltage drift weeks before an unplanned shutdown.",
+    "exampleZh": "7×24 小时云端远程监控可帮助运维团队在非计划停机发生前数周及时发现电芯压差漂移。",
+    "note": "结合云平台大数据做压差预警、SOH 趋势跟踪与工单派发，减少现场巡检成本。"
+  },
+  "ess_data_logging_8d299b45": {
+    "exampleEn": "High-resolution data logging at 100 ms intervals is mandatory to verify grid fault ride-through performance.",
+    "exampleZh": "必须具备 100 ms 级高频数据记录功能，才能有效验证电网故障穿越性能。",
+    "note": "标书常要求黑匣子式录波/数据记录（如故障前后秒级或毫秒级波形，用于 RCA 事故追因与质保核验）。"
+  },
+  "ess_alarm_system_efa553d8": {
+    "exampleEn": "The multi-level alarm system classifies faults into warning, derating, and emergency shutdown thresholds.",
+    "exampleZh": "多级报警系统将故障划分为预警提示、降额运行和紧急停机三级响应阈值。",
+    "note": "储能工程惯例为三级告警（一级轻微提示、二级降功率运行、三级立即断开接触器停机）。"
+  },
+  "ess_fault_diagnosis_8a2a40a1": {
+    "exampleEn": "Automated fault diagnosis narrows down an insulation fault to a specific battery rack within seconds.",
+    "exampleZh": "自动化故障诊断可在数秒内将绝缘故障精确定位到具体的某一簇电池。",
+    "note": "现场调试（SAT）与售后运维高频词；常用流程为告警码解析 → 故障树排查 → Root Cause Analysis (RCA)。"
+  },
+  "ess_communication_protocol_a0f9ec9e": {
+    "exampleEn": "Verify communication protocol compatibility between the customer's substation RTU and our EMS prior to factory acceptance.",
+    "exampleZh": "在工厂出厂验收（FAT）前，务必核实客户变电站 RTU 与我方 EMS 的通信协议兼容性。",
+    "note": "储能常见协议栈：电池内部 CAN/RS485；PCS/EMS 间 Modbus TCP；并网调度 IEC 61850 / IEC 104 / DNP3。"
+  },
+  "ess_iec_61850_8785616b": {
+    "exampleEn": "The utility tender mandates IEC 61850 MMS communication between the BESS plant controller and the grid substation.",
+    "exampleZh": "该电网招标明确要求储能电站控制器与升压站之间采用 IEC 61850 MMS 通信。",
+    "note": "国际大型储能并网（尤其欧洲、中东、澳洲、拉美）变电站自动化核心协议；北美地区则常考 DNP3。"
+  },
+  "ess_modbus_7c0f5eaf": {
+    "exampleEn": "The EMS polls battery rack SOC and cell extreme temperatures from the BAU every 500 ms via Modbus TCP.",
+    "exampleZh": "EMS 每 500 毫秒通过 Modbus TCP 向 BAU 轮询一次电池簇 SOC 及单体极值温度。",
+    "note": "工业控制最通用协议，分串口 Modbus RTU（RS485）和以太网 Modbus TCP 两种；出海交付必写点表（Point list）。"
+  },
+  "ess_over_the_air_update_6ed06a43": {
+    "exampleEn": "Secure over-the-air updates allow engineers to patch BMS balancing algorithms across 500 C&I cabinets without site visits.",
+    "exampleZh": "安全的空中升级功能使工程师无需前往现场，即可为 500 台工商业储能柜远程更新 BMS 均衡算法。",
+    "note": "出海运维刚需，但大储涉及电网安全时通常需经客户授权及双签名/回滚保护（Rollback protection）。"
+  },
+  "ess_redundancy_control_c744a6ab": {
+    "exampleEn": "Dual-server EMS redundancy control ensures seamless failover within 200 ms if the primary controller loses power.",
+    "exampleZh": "双机热备 EMS 冗余控制可确保主控制器失电时在 200 毫秒内无扰切换至备机。",
+    "note": "常见双网口冗余（PRP/HSR/环网）、双电源冗余与主备控制主机（Hot-standby redundancy）。"
+  },
+  "ess_sequence_control_f85f665c": {
+    "exampleEn": "During startup, sequence control checks insulation resistance, closes pre-charge relays, and enables PCS IGBT pulses in order.",
+    "exampleZh": "开机过程中，顺序控制依次校验绝缘阻值、闭合预充继电器并解锁 PCS 脉冲。",
+    "note": "即按严格工艺时序执行的一键上电/下电与并离网切换流程，避免带载合闸拉弧或冲击电流。"
+  },
+  "ess_automatic_control_89e8c4b5": {
+    "exampleEn": "Under automatic control, the EMS follows day-ahead arbitrage curves and AGC frequency signals without operator intervention.",
+    "exampleZh": "在自动控制模式下，EMS 无需人工干预即可自动跟踪日前套利曲线与电网 AGC 调频信号。",
+    "note": "标书常区分 Remote AGC（远方自动调度）与 Local Auto（本地自动计划曲线）两种运行状态。"
+  },
+  "ess_manual_control_8790a925": {
+    "exampleEn": "Technicians switch the PCS to manual control on the HMI to verify reactive power step response during SAT.",
+    "exampleZh": "现场验收测试（SAT）期间，调试人员在 HMI 上将 PCS 切至手动控制模式以验证无功阶跃响应。",
+    "note": "又称就地手动（Local manual），多用于 FAT/SAT 单机调试、检修测试或故障隔离。"
+  }
+}

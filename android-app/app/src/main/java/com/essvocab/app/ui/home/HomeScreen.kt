@@ -186,6 +186,8 @@ fun HomeScreen(
                     ShanbayDailyTaskCard(
                         newRemaining = state.todayNewRemaining,
                         reviewRemaining = state.todayReviewRemaining,
+                        dailyReviewLimit = state.settings.dailyReviewLimit,
+                        overdueBacklogCount = state.overdueBacklogCount,
                         onStartBookStudy = onStartBookStudy,
                         onStartExtraStudy = onStartExtraStudy,
                     )
@@ -401,6 +403,8 @@ private fun ActiveVocabBookCard(
 private fun ShanbayDailyTaskCard(
     newRemaining: Int,
     reviewRemaining: Int,
+    dailyReviewLimit: Int,
+    overdueBacklogCount: Int,
     onStartBookStudy: () -> Unit,
     onStartExtraStudy: () -> Unit,
 ) {
@@ -461,6 +465,22 @@ private fun ShanbayDailyTaskCard(
                         text = "今日复习",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+
+            if (overdueBacklogCount > 0) {
+                Surface(
+                    color = GoogleYellowSoft,
+                    contentColor = GoogleYellowOnSoft,
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(
+                        text = "已按每日上限 $dailyReviewLimit 词分流，另有 $overdueBacklogCount 词顺延复习",
+                        style = MaterialTheme.typography.labelMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     )
                 }
             }

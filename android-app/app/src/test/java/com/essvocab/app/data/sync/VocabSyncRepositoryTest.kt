@@ -259,6 +259,38 @@ class VocabSyncRepositoryTest {
     }
 
     @Test
+    fun resolveAssetUrlResolvesRelativeAudioPathsAcrossCdnAndProxyMirrors() {
+        assertEquals(
+            "https://cdn.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/audio/ess_bess_001.mp3",
+            VocabSyncRepository.resolveAssetUrl(
+                "https://cdn.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/manifest.json",
+                "audio/ess_bess_001.mp3",
+            ),
+        )
+        assertEquals(
+            "https://ghfast.top/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/audio/ess_bess_001.mp3",
+            VocabSyncRepository.resolveAssetUrl(
+                "https://ghfast.top/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/manifest.json",
+                "audio/ess_bess_001.mp3",
+            ),
+        )
+        assertEquals(
+            "https://audio.example.com/custom.mp3",
+            VocabSyncRepository.resolveAssetUrl(
+                "https://cdn.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/manifest.json",
+                "https://audio.example.com/custom.mp3",
+            ),
+        )
+        assertEquals(
+            null,
+            VocabSyncRepository.resolveAssetUrl(
+                "https://cdn.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/manifest.json",
+                "   ",
+            ),
+        )
+    }
+
+    @Test
     fun syncMirrorRaceSucceedsWhenPrimaryMirrorFails() = runTest {
         val mirror2 = MockWebServer()
         mirror2.start()

@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.essvocab.app.data.local.EssVocabDatabase
 import com.essvocab.app.data.local.ReviewDao
 import com.essvocab.app.data.local.VocabDao
+import com.essvocab.app.data.preferences.AppPreferencesRepository
+import com.essvocab.app.data.preferences.StudySettingsSource
 import com.essvocab.app.data.sync.PreferencesSyncStateStore
 import com.essvocab.app.data.sync.SyncStateStore
 import dagger.Binds
@@ -65,4 +67,8 @@ abstract class SyncBindingsModule {
     @Binds
     @Singleton
     abstract fun bindSyncStateStore(impl: PreferencesSyncStateStore): SyncStateStore
+
+    @Binds
+    @Singleton
+    abstract fun bindStudySettingsSource(impl: AppPreferencesRepository): StudySettingsSource
 }

@@ -1,0 +1,122 @@
+{
+  "ess_power_conversion_system_2014afe4": {
+    "exampleEn": "The bidirectional 1500 V PCS converts DC battery power to grid-synchronized AC and supports four-quadrant reactive control.",
+    "exampleZh": "这台 1500 V 双向储能变流器可将电池直流电转换为并网同步交流电，并支持四象限无功调节。",
+    "note": "储能核心设备（区别于单向光伏逆变器 PV inverter），负责双向 AC/DC 变换并响应 EMS 有功/无功调度指令。"
+  },
+  "ess_rectifier_85684ef3": {
+    "exampleEn": "During the charging window, the PCS operates as an active rectifier drawing AC power from the grid to charge the DC bus.",
+    "exampleZh": "在充电时段，PCS 作为有源整流器运行，从电网吸收交流电为直流母线充电。",
+    "note": "AC→DC 转换单元；储能充电时即处于整流（Rectification）工况。"
+  },
+  "ess_inverter_3013bf74": {
+    "exampleEn": "String inverters offer modular rack-level MPPT or DC control, limiting single-point failure impact across the plant.",
+    "exampleZh": "组串式逆变器/变流器支持簇级精细化控制，能够将单点故障对整站的影响降至最低。",
+    "note": "DC→AC 转换单元；储能行业常见集中式（Central PCS）与组串式（String PCS）两大技术路线对比。"
+  },
+  "ess_dc_dc_converter_9dfbcd10": {
+    "exampleEn": "Adding a rack-level DC/DC converter eliminates circulating currents caused by SOC mismatch across parallel battery racks.",
+    "exampleZh": "增加簇级 DC/DC 转换器可消除并联电池簇因 SOC 不一致而产生的环流问题。",
+    "note": "常用于直流耦合光储系统或组串式直流侧均衡（实现“一簇一管理”及新旧电池混用扩容）。"
+  },
+  "ess_boost_converter_2fab6784": {
+    "exampleEn": "When battery terminal voltage drops near end of discharge, the boost converter maintains a steady 1500 V DC link.",
+    "exampleZh": "当电池在放电末期端电压下降时，升压转换器仍可维持 1500 V 直流母线电压稳定。",
+    "note": "用于将较低的直流电压抬升至母线所需工作电压（如光伏组件或低压电池接入高压直流母线）。"
+  },
+  "ess_buck_converter_ae50eb43": {
+    "exampleEn": "An auxiliary buck converter steps down the high-voltage DC bus to 24 V DC to power cooling fans and BMS controllers.",
+    "exampleZh": "辅助降压转换器将高压直流母线降至 24 V 直流，为冷却风机与 BMS 控制器供电。",
+    "note": "DC 降压变换器（与 Boost 升压对应）；双向储能 DC/DC 拓扑常结合 Buck-Boost 电路。"
+  },
+  "ess_dc_bus_6706fa88": {
+    "exampleEn": "In a DC-coupled solar-plus-storage plant, both PV strings and battery racks share a common 1500 V DC bus.",
+    "exampleZh": "在直流耦合光储电站中，光伏组串与电池簇共用一条 1500 V 直流母线。",
+    "note": "连接电池侧、DC/DC 与 PCS 直流输入端的高压直流汇流节点（也称 DC link）。"
+  },
+  "ess_ac_bus_792cac10": {
+    "exampleEn": "Multiple PCS skids feed into a medium-voltage AC bus before connecting to the main step-up substation.",
+    "exampleZh": "多套 PCS 一体机汇流至中压交流母线后，再接入主升压变电站。",
+    "note": "交流侧电能汇流节点；AC-coupled（交流耦合）系统即光伏与储能在交流母线侧汇合。"
+  },
+  "ess_insulated_gate_bipolar_t_73ccd736": {
+    "exampleEn": "Liquid cooling on the IGBT power modules enables continuous 1.1x overload operation during peak grid support.",
+    "exampleZh": "IGBT 功率模块的液冷散热设计使变流器在电网支撑高峰期可实现 1.1 倍持续过载运行。",
+    "note": "中大功率 PCS 核心功率开关器件（正逐步与 SiC 碳化硅模块形成效率对比）。"
+  },
+  "ess_integrated_gate_commutat_74c30cb0": {
+    "exampleEn": "IGCT devices are favored in ultra-high-power medium-voltage drives and STATCOM units due to low conduction losses.",
+    "exampleZh": "凭借较低的导通损耗，IGCT 器件常用于超大功率中压传动及静止同步补偿器（STATCOM）装置。",
+    "note": "集成门极换流晶闸管，通流能力极强、开关损耗低于传统 GTO，多见于数十兆瓦级高压大功率电力电子装置。"
+  },
+  "ess_circuit_breaker_c143a1e2": {
+    "exampleEn": "The main DC circuit breaker tripped automatically after detecting an overcurrent fault on Battery Stack 2.",
+    "exampleZh": "检测到 2 号电池堆发生过流故障后，主直流断路器自动跳闸切断回路。",
+    "note": "能关合、承载并开断正常及故障电流的保护开关；工程中需严格区分交直流分断能力（DC breaker 灭弧更难）。"
+  },
+  "ess_air_circuit_breaker_596c2fdc": {
+    "exampleEn": "A 4000 A air circuit breaker protects the AC combiner busbar at the output of the central PCS skid.",
+    "exampleZh": "一台 4000 A 框架/空气断路器用于保护集中式 PCS 一体机输出端的交流汇流母排。",
+    "note": "俗称框架断路器（ACB），常见于 PCS 交流侧 400V/690V/800V 主出线大电流开断保护，区别于塑壳断路器 MCCB。"
+  },
+  "ess_high_speed_circuit_break_946d7846": {
+    "exampleEn": "A high-speed circuit breaker clears DC short-circuit faults within milliseconds before battery cells suffer arc damage.",
+    "exampleZh": "高速断路器可在数毫秒内切除直流短路故障，避免电芯承受电弧损伤。",
+    "note": "用于抑制千安级直流短路电流峰值，常与直流快熔配合做分级保护设计。"
+  },
+  "ess_gas_insulation_switchgea_5198e0b4": {
+    "exampleEn": "Compact SF6-free gas insulation switchgear fits neatly inside the substation skid for coastal wind-storage projects.",
+    "exampleZh": "紧凑型无六氟化硫气体绝缘开关柜可完美适配海边风光储项目的升压站预制舱空间。",
+    "note": "全密封充气柜（传统充 SF6，欧美环保标书常强制要求 SF6-free 环保气体），防盐雾、体积小、免维护。"
+  },
+  "ess_electric_insulation_swit_0bcabcec": {
+    "exampleEn": "The specification allows either GIS or solid-dielectric electric insulation switchgear for the 35 kV collector line.",
+    "exampleZh": "技术规范允许在 35 kV 集电线路中选用气体绝缘开关柜或固体绝缘开关柜。",
+    "note": "以环氧树脂或空气作为主绝缘介质（Air-insulated AIS / Solid-insulated SIS 相对 GIS 而言），无温室气体泄漏。"
+  },
+  "ess_filter_4bb4ca75": {
+    "exampleEn": "An LCL output filter suppresses switching ripples from the PCS to keep current harmonics well within IEEE 519 limits.",
+    "exampleZh": "LCL 输出滤波器用于抑制 PCS 的开关纹波，确保电流谐波远低于 IEEE 519 标准限值。",
+    "note": "PCS 出口标配 LCL 交流滤波器（滤除高频开关谐波），大型场站还可能配置 EMI 滤波器与有源滤波。"
+  },
+  "ess_uninterruptible_power_su_b956cab4": {
+    "exampleEn": "The auxiliary UPS keeps the EMS server, fire panel, and SCADA gateways alive for two hours during blackouts.",
+    "exampleZh": "辅助 UPS 能在电站失电时为 EMS 服务器、消防主机及 SCADA 网关维持两小时不间断供电。",
+    "note": "BESS 电站内部辅助供电系统的“最后防线”，防止主电池跳闸后监控、告警和消防同时失电。"
+  },
+  "ess_transformer_9236e026": {
+    "exampleEn": "A double-split step-up transformer isolates two 1.725 MW PCS units and boosts voltage from 690 V to 34.5 kV.",
+    "exampleZh": "双分裂升压变压器可隔离两台 1.725 MW PCS 机组，并将电压从 690 V 升至 34.5 kV。",
+    "note": "储能变流升压一体机常见双分裂干式变或油浸变（Pad-mounted / Skid-mounted transformer）。"
+  },
+  "ess_point_of_common_coupling_c286fcf7": {
+    "exampleEn": "Active power, reactive power, and harmonic compliance are metered directly at the point of common coupling (PCC).",
+    "exampleZh": "有功功率、无功功率及谐波合规指标均直接在电网公共连接点（PCC）处进行计量考核。",
+    "note": "业主电站与公共电网的分界点（又称 POI, Point of Interconnection）；所有并网考核与电度表计量均以此处为准。"
+  },
+  "ess_grid_following_mode_e0ff5d4e": {
+    "exampleEn": "In grid-following mode, the PCS uses a phase-locked loop to track grid voltage and inject commanded current.",
+    "exampleZh": "在跟网模式下，PCS 通过锁相环追踪电网电压相位并按指令注入电流。",
+    "note": "也称 GFL（电流源控制）；依赖强电网电压支撑，电网短路比（SCR）过低时易发生振荡脱网。"
+  },
+  "ess_grid_forming_mode_5ef99b2b": {
+    "exampleEn": "Grid-forming mode enables the BESS to act as a virtual voltage source, providing synthetic inertia and black-start capability.",
+    "exampleZh": "构网模式使储能系统表现为虚拟电压源，从而为弱电网提供虚拟惯量与黑启动能力。",
+    "note": "也称 GFM（电压源控制，出海高热词汇）；无需依赖外电网即可主动建立电压与频率支撑，是弱电网标书加分/必选项。"
+  },
+  "ess_harmonic_distortion_5639e4ed": {
+    "exampleEn": "Excessive harmonic distortion from power electronics can overheat substation transformers and trigger nuisance relay trips.",
+    "exampleZh": "电力电子设备产生的过量谐波畸变可能导致变电站变压器过热，并引发继电保护误动作。",
+    "note": "需重点关注奇次谐波（如 5/7/11/13 次），出海项目常依据 IEEE 519 或 IEC 61000 进行谐波仿真与测试。"
+  },
+  "ess_total_harmonic_distortio_012cbd2d": {
+    "exampleEn": "The PCS specification guarantees a current total harmonic distortion (THDi) below 3% at rated output power.",
+    "exampleZh": "PCS 技术规格书保证在额定输出功率下，电流总谐波畸变率（THDi）低于 3%。",
+    "note": "工程中通常区分电流总谐波畸变率（THDi，常见要求 <3%）与电压总谐波畸变率（THDv）。"
+  },
+  "ess_power_factor_55aff8af": {
+    "exampleEn": "Utility interconnection rules require the BESS to adjust its power factor dynamically between 0.95 leading and 0.95 lagging.",
+    "exampleZh": "电网并网规范要求储能系统能够在超前 0.95 至滞后 0.95 的范围内动态调节功率因数。",
+    "note": "PF = 有功功率(kW) / 视在功率(kVA)；超前（Leading）发容性无功，滞后（Lagging）发感性无功。"
+  }
+}

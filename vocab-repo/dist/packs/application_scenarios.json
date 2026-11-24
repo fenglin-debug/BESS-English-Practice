@@ -2,7 +2,7 @@
   "packId": "application_scenarios",
   "packName": "储能应用场景",
   "description": "峰谷套利、调频调压、黑启动、光储联动与V2G",
-  "version": 1,
+  "version": 4,
   "words": [
     {
       "id": "ess_peak_shaving_71592623",
@@ -12,10 +12,10 @@
       "ttsText": "Peak shaving",
       "abbreviations": [],
       "ipa": "pik ˈʃeɪvɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The industrial park deploys a 4 MWh BESS for peak shaving, cutting midday grid draw during the utility's highest tariff window.",
+      "exampleZh": "该工业园区部署 4 MWh 储能用于削峰，在高电价午高峰时段显著压低从主网购电功率。",
+      "note": "既可在电网侧缓解线路/主变重过载，也可在用户侧配合需量电费管理降低最大功率尖峰。",
+      "audioUrl": "audio/ess_peak_shaving_71592623.mp3"
     },
     {
       "id": "ess_load_shifting_be2f4f9c",
@@ -25,10 +25,10 @@
       "ttsText": "Load shifting",
       "abbreviations": [],
       "ipa": "loʊd ˈʃɪftɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "By storing surplus midday solar for evening load shifting, the plant avoids burning expensive diesel peaking generation.",
+      "exampleZh": "通过把午间富余光伏电力存储并转移至晚高峰使用，电站避免了开启昂贵的柴油调峰机组。",
+      "note": "核心是“能量在时间轴上的平移”，常搭配新能源消纳或 4 小时以上长时储能项目。",
+      "audioUrl": "audio/ess_load_shifting_be2f4f9c.mp3"
     },
     {
       "id": "ess_demand_charge_management_5670af53",
@@ -38,10 +38,10 @@
       "ttsText": "Demand charge management",
       "abbreviations": [],
       "ipa": "dɪˈmænd ʧɑrʤ ˈmænɪʤmənt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "In California commercial tariffs, demand charge management alone often generates half of a C&I battery's annual savings.",
+      "exampleZh": "在加州工商业电价体系下，仅需量管理一项往往就能贡献工商业储能全年一半的电费收益。",
+      "note": "专门针对电费账单中按月最大 15 分钟平均功率（kW）计收的“需量电费”进行精确压峰。",
+      "audioUrl": "audio/ess_demand_charge_management_5670af53.mp3"
     },
     {
       "id": "ess_energy_arbitrage_time_of_8c5844cc",
@@ -49,14 +49,12 @@
       "zh": "峰谷套利",
       "en": "Energy arbitrage / Time-of-use arbitrage",
       "ttsText": "Energy arbitrage, Time-of-use arbitrage",
-      "abbreviations": [
-        "Time-of-use"
-      ],
+      "abbreviations": [],
       "ipa": "ˈɛnərʤi ˈɑrbɪˌtrɑʒ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The merchant BESS earns daily revenue through energy arbitrage by charging at negative midday prices and discharging at evening peaks.",
+      "exampleZh": "该独立市场化储能电站通过峰谷套利获取日收益：午间负电价时充电、晚高峰高价时放电。",
+      "note": "国内对应“峰谷分时电价套利”；海外现货市场（Spot market）也称 Wholesale arbitrage（批发市场套利）。",
+      "audioUrl": "audio/ess_energy_arbitrage_time_of_8c5844cc.mp3"
     },
     {
       "id": "ess_primary_frequency_regula_d4287af3",
@@ -68,10 +66,10 @@
         "PFR"
       ],
       "ipa": "ˈpraɪˌmɛri ˈfrikwənsi ˌrɛgjəˈleɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Battery stations provide fast primary frequency regulation within seconds to arrest frequency drops after a generator trip.",
+      "exampleZh": "储能电站可在机组跳闸后数秒内提供快速一次调频，第一时间遏制电网频率跌落。",
+      "note": "本地自治、秒级/亚秒级响应（基于下垂控制 Droop control），与二次调频 AGC 远方集中指令区分。",
+      "audioUrl": "audio/ess_primary_frequency_regula_d4287af3.mp3"
     },
     {
       "id": "ess_secondary_frequency_regu_6292ae36",
@@ -83,10 +81,10 @@
         "SFR"
       ],
       "ipa": "ˈsɛkənˌdɛri ˈfrikwənsi ˌrɛgjəˈleɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "During secondary frequency regulation, the BESS follows AGC setpoints sent every four seconds to restore grid frequency to 50 Hz.",
+      "exampleZh": "在二次调频工况下，储能系统每 4 秒跟踪一次调度 AGC 目标指令，将电网频率精确拉回 50 Hz。",
+      "note": "即 AGC（Automatic Generation Control）自动发电控制，由调度中心统一下发有功追踪指令。",
+      "audioUrl": "audio/ess_secondary_frequency_regu_6292ae36.mp3"
     },
     {
       "id": "ess_enhanced_frequency_respo_d0fdd984",
@@ -98,10 +96,10 @@
         "EFR"
       ],
       "ipa": "ɛnˈhænst ˈfrikwənsi rɪˈspɑns",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Enhanced frequency response contracts in Great Britain pushed BESS developers to achieve sub-second inverter response speeds.",
+      "exampleZh": "英国增强型频率响应（EFR）合约曾推动储能开发商将变流器响应速度提升至亚秒级。",
+      "note": "英国电网率先推出的亚秒级（<1 秒）快速调频服务品种，现已演进为 Dynamic Containment (DC) 等产品。",
+      "audioUrl": "audio/ess_enhanced_frequency_respo_d0fdd984.mp3"
     },
     {
       "id": "ess_voltage_regulation_volta_0b4202d1",
@@ -111,10 +109,10 @@
       "ttsText": "Voltage regulation, Voltage support",
       "abbreviations": [],
       "ipa": "ˈvoʊltɪʤ ˌrɛgjəˈleɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "At the end of long rural feeders, the BESS performs dynamic voltage regulation to prevent rooftop PV overvoltage trips.",
+      "exampleZh": "在长距离农村配电馈线末端，储能系统通过动态电压调节防止分布式光伏因过压脱网。",
+      "note": "主要通过调节无功功率（Q-V 控制）或有功削减来稳定节点电压。",
+      "audioUrl": "audio/ess_voltage_regulation_volta_0b4202d1.mp3"
     },
     {
       "id": "ess_reactive_power_compensat_105c2cb3",
@@ -124,10 +122,10 @@
       "ttsText": "Reactive power compensation",
       "abbreviations": [],
       "ipa": "riˈæktɪv paʊər ˌkɑmpənˈseɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Even when the battery is idle at zero active power, the PCS continues providing reactive power compensation to support the grid.",
+      "exampleZh": "即使电池处于零有功静置状态，PCS 仍可持续提供无功补偿以支撑电网电压（类似 SVG 功能）。",
+      "note": "四象限 PCS 重要附加价值（STATCOM / SVG mode），可在夜间或等待充放电期间提供功率因数校正。",
+      "audioUrl": "audio/ess_reactive_power_compensat_105c2cb3.mp3"
     },
     {
       "id": "ess_variability_damping_smoo_d803f0da",
@@ -137,10 +135,10 @@
       "ttsText": "Variability damping, Smoothing",
       "abbreviations": [],
       "ipa": "vɛriəˈbɪlɪti ˈdæmpɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Colocated storage executes variability damping to smooth sudden wind-gust power ramps before feeding the transmission line.",
+      "exampleZh": "风电场配套储能执行波动平抑控制，在电能送入输电线路前平滑突风引发的功率剧烈爬坡。",
+      "note": "工程中常配合爬坡率限制（Ramp-rate control，如限制每分钟功率变化不超过装机容量的 10%）考核。",
+      "audioUrl": "audio/ess_variability_damping_smoo_d803f0da.mp3"
     },
     {
       "id": "ess_backup_power_46efc53c",
@@ -150,10 +148,10 @@
       "ttsText": "Backup power",
       "abbreviations": [],
       "ipa": "ˈbæˌkəp paʊər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Data centers increasingly pair lithium racks with generators as fast-acting backup power to bridge transfer delays.",
+      "exampleZh": "数据中心越来越多地将锂电池簇与柴油发电机组合作为快速备用电源，以桥接柴发启动切换延时。",
+      "note": "侧重断电保供与关键负荷不间断切换（Critical load backup）；注意与柴油发电机的黑启动配合。",
+      "audioUrl": "audio/ess_backup_power_46efc53c.mp3"
     },
     {
       "id": "ess_black_start_0f118f3a",
@@ -163,10 +161,10 @@
       "ttsText": "Black start",
       "abbreviations": [],
       "ipa": "blæk stɑrt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Equipped with grid-forming inverters, the BESS executed a black start to re-energize the local substation after a blackout.",
+      "exampleZh": "配备构网型变流器的储能系统成功执行黑启动，在全网失电后率先恢复了当地变电站供电。",
+      "note": "指系统大停电后，不依赖外部电网电源、靠自身构网能力建立参考电压与频率，并带动周边机组恢复供电的能力。",
+      "audioUrl": "audio/ess_black_start_0f118f3a.mp3"
     },
     {
       "id": "ess_demand_response_0067d1cd",
@@ -178,10 +176,10 @@
         "DR"
       ],
       "ipa": "dɪˈmænd rɪˈspɑns",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Supermarket chains enroll behind-the-meter batteries in utility demand response programs to earn seasonal capacity payments.",
+      "exampleZh": "连锁商超将表后储能纳入电网需求响应项目，在电网迎峰度夏期间响应削减负荷并获取容量补贴。",
+      "note": "属于电力需求侧交互机制（由电网发出价格或事件信号，用户侧 BESS 主动减少网购电负荷）。",
+      "audioUrl": "audio/ess_demand_response_0067d1cd.mp3"
     },
     {
       "id": "ess_load_forecasting_cb2abda7",
@@ -191,10 +189,10 @@
       "ttsText": "Load forecasting",
       "abbreviations": [],
       "ipa": "loʊd ˈfɔrˌkæstɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Accurate short-term load forecasting lets the EMS reserve sufficient battery headroom ahead of evening factory startup peaks.",
+      "exampleZh": "精准的短期负荷预测可使 EMS 在晚间工厂开工高峰前预留充足的电池放电裕度。",
+      "note": "现代 EMS/VPP 智慧调度算法核心模块之一，通常结合历史用电曲线、生产排班与气象数据。",
+      "audioUrl": "audio/ess_load_forecasting_cb2abda7.mp3"
     },
     {
       "id": "ess_renewable_energy_forecas_0f68f060",
@@ -204,10 +202,10 @@
       "ttsText": "Renewable energy forecasting",
       "abbreviations": [],
       "ipa": "riˈnuəbəl ˈɛnərʤi ˈfɔrˌkæstɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Combining cloud-camera solar irradiance data with renewable energy forecasting cuts imbalance penalties in day-ahead markets.",
+      "exampleZh": "将云图辐照数据与新能源功率预测相结合，可大幅降低电站参与日前市场的偏差考核罚款。",
+      "note": "用于光储/风储联合场站规划充放电曲线，减少因弃光/弃风预测误差导致的能量浪费或市场罚金。",
+      "audioUrl": "audio/ess_renewable_energy_forecas_0f68f060.mp3"
     },
     {
       "id": "ess_pv_storage_integration_s_1bd5bd49",
@@ -215,14 +213,12 @@
       "zh": "光储联动",
       "en": "PV-storage integration / Solar-plus-storage",
       "ttsText": "PV-storage integration, Solar-plus-storage",
-      "abbreviations": [
-        "PV-storage"
-      ],
+      "abbreviations": [],
       "ipa": "piː viː ˈstɔrɪdʒ ˌɪntəˈɡreɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "DC-coupled PV-storage integration captures clipped afternoon solar energy that would otherwise exceed the inverter rating.",
+      "exampleZh": "直流耦合光储联动方案可回收午后原本因超出逆变器额定功率而被限发的“削峰弃光”电量。",
+      "note": "海外新闻与项目新闻稿最常用 Solar-plus-storage；技术选型分直流耦合（DC-coupled）与交流耦合（AC-coupled）。",
+      "audioUrl": "audio/ess_pv_storage_integration_s_1bd5bd49.mp3"
     },
     {
       "id": "ess_vehicle_to_grid_894e3485",
@@ -234,10 +230,10 @@
         "V2G"
       ],
       "ipa": "ˈviːɪkəl tə ɡrɪd",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Bidirectional chargers enable vehicle-to-grid operation, allowing parked electric bus fleets to feed peak power back to depots.",
+      "exampleZh": "双向充电桩可实现车网互动（V2G），让停驶的电动公交车队在高峰时段向场站反向馈电。",
+      "note": "把电动汽车动力电池作为移动式分布式储能聚合资源；需车辆 BMS、双向充电机与电网聚合平台协同。",
+      "audioUrl": "audio/ess_vehicle_to_grid_894e3485.mp3"
     },
     {
       "id": "ess_ancillary_services_ed924065",
@@ -247,10 +243,10 @@
       "ttsText": "Ancillary services",
       "abbreviations": [],
       "ipa": "ˈænsəˌlɛri ˈsərvɪsɪz",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "In ERCOT and Australia, ancillary services account for a major share of utility-scale BESS revenue alongside arbitrage.",
+      "exampleZh": "在德州 ERCOT 及澳洲电力市场中，辅助服务与峰谷套利共同构成了大型储能电站的核心收入来源。",
+      "note": "除单纯买卖电量（Energy market）之外，为保障电网安全稳定提供的调频、调压、备用、黑启动等服务统称。",
+      "audioUrl": "audio/ess_ancillary_services_ed924065.mp3"
     },
     {
       "id": "ess_spinning_reserve_8ce70194",
@@ -260,10 +256,10 @@
       "ttsText": "Spinning reserve",
       "abbreviations": [],
       "ipa": "ˈspɪnɪŋ rɪˈzərv",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Online BESS capacity held at partial output counts as instant spinning reserve without burning fossil fuel.",
+      "exampleZh": "保留部分出力裕度的在线储能容量可作为瞬时旋转备用，且无需消耗化石燃料空转。",
+      "note": "传统指同步发电机已并网空转随时可顶上的备用容量；BESS 因毫秒级响应能力正逐步取代火电旋转备用。",
+      "audioUrl": "audio/ess_spinning_reserve_8ce70194.mp3"
     },
     {
       "id": "ess_non_spinning_reserve_f1c54675",
@@ -273,10 +269,10 @@
       "ttsText": "Non-spinning reserve",
       "abbreviations": [],
       "ipa": "nɒn ˈspɪnɪŋ rɪˈzɜrv",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Utilities procure non-spinning reserve resources capable of ramping to full contracted output within ten minutes of dispatch.",
+      "exampleZh": "电网公司采购非旋转备用资源，要求在收到调度指令后十分钟内爬坡至合约满发功率。",
+      "note": "无需始终并网带电热备用，允许从冷备或停机状态在规定分钟级时间内启动并网顶峰的备用容量。",
+      "audioUrl": "audio/ess_non_spinning_reserve_f1c54675.mp3"
     },
     {
       "id": "ess_active_power_flow_contro_0f2bf99c",
@@ -286,10 +282,10 @@
       "ttsText": "Active power flow control",
       "abbreviations": [],
       "ipa": "ˈæktɪv paʊər floʊ kənˈtroʊl",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The substation battery performs active power flow control to relieve thermal congestion on the 132 kV transmission corridor.",
+      "exampleZh": "变电站侧储能执行有功潮流控制，以缓解 132 kV 输电走廊的热稳定阻塞。",
+      "note": "电网“虚拟输电线（Virtual transmission）”典型应用，通过精准吞吐有功改变线路断面潮流分布。",
+      "audioUrl": "audio/ess_active_power_flow_contro_0f2bf99c.mp3"
     },
     {
       "id": "ess_feeder_current_control_20738ecf",
@@ -299,10 +295,10 @@
       "ttsText": "Feeder current control",
       "abbreviations": [],
       "ipa": "ˈfidər ˈkɑrənt kənˈtroʊl",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Feeder current control caps transformer loading below 80% during summer evening air-conditioning peaks.",
+      "exampleZh": "馈线电流控制可在夏季晚间空调负荷高峰期将配电变压器负载率限制在 80% 以下。",
+      "note": "配电网延缓增容（Distribution deferral）核心控制逻辑，盯紧主变或出线电流限值动态释放储能功率。",
+      "audioUrl": "audio/ess_feeder_current_control_20738ecf.mp3"
     },
     {
       "id": "ess_nodal_voltage_control_9232d73d",
@@ -312,10 +308,10 @@
       "ttsText": "Nodal voltage control",
       "abbreviations": [],
       "ipa": "ˈnoʊdəl ˈvoʊltɪdʒ kənˈtroʊl",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Distributed storage units coordinate nodal voltage control across weak rural buses where tap changers react too slowly.",
+      "exampleZh": "分布式储能单元在传统分接开关动作过慢的农村薄弱母线处协同执行节点电压控制。",
+      "note": "相比机械有载调压分接开关（OLTC），PCS 无功/有功响应速度快数个数量级且无机械触头磨损。",
+      "audioUrl": "audio/ess_nodal_voltage_control_9232d73d.mp3"
     },
     {
       "id": "ess_power_quality_events_mit_48116a55",
@@ -325,10 +321,10 @@
       "ttsText": "Power quality events mitigation",
       "abbreviations": [],
       "ipa": "paʊər kˈwɑləti ɪˈvɛnts ˌmɪtɪˈgeɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Semiconductor fabs deploy high-rate storage for power quality events mitigation against millisecond voltage sags and swells.",
+      "exampleZh": "半导体晶圆厂部署高倍率储能用于电能质量事件治理，抵御毫秒级电压暂降与暂升冲击。",
+      "note": "针对 Voltage sag（电压暂降）、Flicker（闪变）、瞬时中断等敏荷供电问题的毫秒级治理方案。",
+      "audioUrl": "audio/ess_power_quality_events_mit_48116a55.mp3"
     }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "ess_pumped_hydro_storage_ba614de0": {
+    "exampleEn": "Pumped hydro storage still accounts for the majority of global gigawatt-hour grid storage, though siting is geographically constrained.",
+    "exampleZh": "抽水蓄能目前仍占据全球吉瓦时级电网储能的主导份额，但其选址受地理落差条件限制明显。",
+    "note": "最成熟、单站规模最大、度电成本最低的物理储能，循环效率约 75%~80%，建设周期通常 6~8 年。"
+  },
+  "ess_compressed_air_energy_st_c3b808ad": {
+    "exampleEn": "Advanced adiabatic compressed air energy storage uses underground salt caverns to store multi-day grid energy cleanly.",
+    "exampleZh": "先进绝热压缩空气储能利用地下盐穴储存多日规模的电网能量，全过程零燃料燃烧。",
+    "note": "长时物理储能（4~12 小时以上），关键瓶颈是地下储气洞穴地质条件与压缩热高效回收。"
+  },
+  "ess_flywheel_energy_storage_e1b50adc": {
+    "exampleEn": "Magnetic-bearing flywheel energy storage excels in sub-second frequency regulation and UPS ride-through with virtually unlimited cycles.",
+    "exampleZh": "磁悬浮飞轮储能在亚秒级调频与 UPS 故障穿越中表现卓越，且几乎具备无限次循环寿命。",
+    "note": "以高转速转子动能形式储电，功率极高但持续放电时间通常仅数十秒至 15 分钟，常与电化学混用。"
+  },
+  "ess_hydrogen_energy_storage_fc56c2a4": {
+    "exampleEn": "Hydrogen energy storage bridges seasonal wind surpluses by converting curtailed power into fuel for winter reconversion.",
+    "exampleZh": "氢能储能将弃风弃光电力制氢储存，实现跨周甚至跨季节的长时间尺度能量转移。",
+    "note": "电→氢→电往返效率仅约 30%~45%，但胜在存储周期可达数月且储罐扩容边际成本极低。"
+  },
+  "ess_green_hydrogen_58652e71": {
+    "exampleEn": "Dedicated solar-storage microgrids power electrolyzers to produce certified green hydrogen without grid carbon emissions.",
+    "exampleZh": "专用光储微电网为电解槽供电，在零电网碳排放条件下生产经认证的绿色氢能。",
+    "note": "行业按碳足迹分颜色：绿氢（可再生能源电解水）、蓝氢（化石能源+CCUS）、灰氢（传统煤/天然气制氢）。"
+  },
+  "ess_thermal_energy_storage_6d6259f5": {
+    "exampleEn": "Industrial steam users adopt thermal energy storage to absorb cheap off-peak electricity and supply continuous process heat.",
+    "exampleZh": "工业用汽企业采用热储能消纳低谷廉价电力，转化为连续稳定供给的工艺蒸汽热能。",
+    "note": "分显热（水/固体蓄热砖）、潜热（相变材料）及热化学储能三类，常见于火电灵活性改造与工业供热。"
+  },
+  "ess_molten_salt_storage_a8a0b527": {
+    "exampleEn": "Concentrated solar power plants rely on two-tank molten salt storage at 565 °C to generate electricity well after sunset.",
+    "exampleZh": "光热发电站依赖 565 °C 双罐熔融盐储热系统，在日落后依然能持续稳定发电。",
+    "note": "工作温区通常 290~565 °C（常用硝酸钾/硝酸钠二元盐），既用于光热电站也用于绿电高温储热改造。"
+  },
+  "ess_phase_change_material_st_59a94b05": {
+    "exampleEn": "Phase change material storage buffers cooling peaks in commercial buildings by absorbing latent heat at near-constant temperature.",
+    "exampleZh": "相变储能通过在近恒温状态下吸收潜热，有效缓冲商业建筑的制冷负荷高峰。",
+    "note": "利用物质固-液相变潜热储/放热（如冰蓄冷、石蜡基材料），能量密度显著高于同等温差下的水显热储热。"
+  },
+  "ess_electromagnetic_energy_s_c2db01ff": {
+    "exampleEn": "Electromagnetic energy storage encompasses both high-field magnetic coils and electrostatic supercapacitor banks.",
+    "exampleZh": "电磁储能广义上涵盖高磁场超导线圈储能以及静电场超级电容器储能体系。",
+    "note": "直接以电场或磁场形式存储能量，省去电化学反应过程，具备微秒至毫秒级超快功率吞吐响应。"
+  },
+  "ess_superconducting_magnetic_36af1c33": {
+    "exampleEn": "Superconducting magnetic energy storage stores DC energy in a cryogenic coil's magnetic field for instant pulse power.",
+    "exampleZh": "超导磁储能将直流电能直接储存在低温超导线圈的磁场中，可提供瞬时脉冲功率支撑。",
+    "note": "需液氦/低温制冷系统维持超导零电阻状态，造价昂贵，主要用于实验室强脉冲电源或电网阻尼抑制。"
+  }
+}

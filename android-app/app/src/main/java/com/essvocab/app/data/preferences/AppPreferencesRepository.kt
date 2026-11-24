@@ -52,6 +52,7 @@ data class AppSettings(
     val manifestEtag: String = "",
     val lastSyncAtMillis: Long = 0L,
     val dailyNewLimit: Int = 20,
+    val dailyReviewLimit: Int = 50,
     val desiredRetention: Double = 0.90,
     val autoPlayAudio: Boolean = true,
     val ttsAccent: TtsAccent = TtsAccent.US,
@@ -90,10 +91,14 @@ data class AppSettings(
     }
 }
 
+interface StudySettingsSource {
+    suspend fun getCurrentSettings(): AppSettings
+}
+
 @Singleton
 class AppPreferencesRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-) {
+) : StudySettingsSource {
     private object Keys {
         val ONLINE_SYNC_CONSENT = booleanPreferencesKey("online_sync_consent_granted")
         val MANIFEST_URL = stringPreferencesKey("manifest_url")
@@ -101,6 +106,7 @@ class AppPreferencesRepository @Inject constructor(
         val MANIFEST_ETAG = stringPreferencesKey("manifest_etag")
         val LAST_SYNC_AT = longPreferencesKey("last_sync_at")
         val DAILY_NEW_LIMIT = intPreferencesKey("daily_new_limit")
+        val DAILY_REVIEW_LIMIT = intPreferencesKey("daily_review_limit")
         val DESIRED_RETENTION = doublePreferencesKey("desired_retention")
         val AUTO_PLAY_AUDIO = booleanPreferencesKey("auto_play_audio")
         val TTS_ACCENT = stringPreferencesKey("tts_accent")
@@ -118,6 +124,7 @@ class AppPreferencesRepository @Inject constructor(
             manifestEtag = prefs[Keys.MANIFEST_ETAG] ?: "",
             lastSyncAtMillis = prefs[Keys.LAST_SYNC_AT] ?: 0L,
             dailyNewLimit = prefs[Keys.DAILY_NEW_LIMIT] ?: 20,
+            dailyReviewLimit = prefs[Keys.DAILY_REVIEW_LIMIT] ?: 50,
             desiredRetention = prefs[Keys.DESIRED_RETENTION] ?: 0.90,
             autoPlayAudio = prefs[Keys.AUTO_PLAY_AUDIO] ?: true,
             ttsAccent = TtsAccent.fromCode(prefs[Keys.TTS_ACCENT]),
@@ -127,7 +134,7 @@ class AppPreferencesRepository @Inject constructor(
         )
     }
 
-    suspend fun getCurrentSettings(): AppSettings = settingsFlow.first()
+    override suspend fun getCurrentSettings(): AppSettings = settingsFlow.first()
 
     suspend fun setOnlineSyncConsent(granted: Boolean) {
         context.settingsDataStore.edit { prefs ->
@@ -159,6 +166,12 @@ class AppPreferencesRepository @Inject constructor(
     suspend fun updateDailyNewLimit(limit: Int) {
         context.settingsDataStore.edit { prefs ->
             prefs[Keys.DAILY_NEW_LIMIT] = limit.coerceIn(5, 100)
+        }
+    }
+
+    suspend fun updateDailyReviewLimit(limit: Int) {
+        context.settingsDataStore.edit { prefs ->
+            prefs[Keys.DAILY_REVIEW_LIMIT] = limit.coerceIn(10, 200)
         }
     }
 

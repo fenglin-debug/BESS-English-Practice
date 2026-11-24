@@ -37,6 +37,7 @@ data class HomeUiState(
     val bookMasteredWords: Int = 0,
     val todayNewRemaining: Int = 0,
     val todayReviewRemaining: Int = 0,
+    val overdueBacklogCount: Int = 0,
     val estimatedDaysLeft: Int = 0,
     val notebookCount: Int = 0,
     val streakSummary: StreakSummary = ShanbayMechanics.calculateStreak(emptyList()),
@@ -91,6 +92,9 @@ class HomeViewModel @Inject constructor(
             bookStats.unseenWords,
             max(0, settings.dailyNewLimit - bookStats.todayNewLearned),
         )
+        val reviewCapRemaining = max(0, settings.dailyReviewLimit - bookStats.todayOldReviewed)
+        val todayReviewRemaining = min(bookStats.dueWords, reviewCapRemaining)
+        val overdueBacklogCount = max(0, bookStats.dueWords - todayReviewRemaining)
         val remainingToMaster = (bookStats.totalWords - bookStats.masteredWords).coerceAtLeast(0)
         val estimatedDays = if (remainingToMaster == 0) {
             0
@@ -105,7 +109,8 @@ class HomeViewModel @Inject constructor(
             bookTotalWords = bookStats.totalWords,
             bookMasteredWords = bookStats.masteredWords,
             todayNewRemaining = dailyNewRemaining,
-            todayReviewRemaining = bookStats.dueWords,
+            todayReviewRemaining = todayReviewRemaining,
+            overdueBacklogCount = overdueBacklogCount,
             estimatedDaysLeft = estimatedDays,
             notebookCount = meta.notebookCount,
             streakSummary = meta.streak,

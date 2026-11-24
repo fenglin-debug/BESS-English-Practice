@@ -117,6 +117,7 @@ class DictionaryViewModel @Inject constructor(
                 audioUrl = item.word.audioUrl,
                 accent = settings.ttsAccent,
                 speechRate = settings.ttsSpeechRate,
+                allowNetworkAudio = settings.onlineSyncConsentGranted,
             )
         }
     }

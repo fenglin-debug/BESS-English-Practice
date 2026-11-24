@@ -311,7 +311,7 @@ class VocabSyncRepository @Inject constructor(
                     exampleEn = dto.exampleEn,
                     exampleZh = dto.exampleZh,
                     note = dto.note,
-                    audioUrl = dto.audioUrl,
+                    audioUrl = resolveAssetUrl(manifestUrlStr, dto.audioUrl),
                     isActive = true,
                 )
             }
@@ -465,6 +465,12 @@ class VocabSyncRepository @Inject constructor(
             }
             val baseDir = manifestUrlStr.trim().substringBefore('?').substringBeforeLast('/')
             return "$baseDir/${trimmedPath.trimStart('/')}".toHttpUrlOrNull()
+        }
+
+        fun resolveAssetUrl(manifestUrlStr: String, assetPath: String?): String? {
+            val trimmed = assetPath?.trim().orEmpty()
+            if (trimmed.isEmpty()) return null
+            return resolvePackUrl(manifestUrlStr, trimmed)?.toString()
         }
 
         fun sha256Hex(bytes: ByteArray): String {

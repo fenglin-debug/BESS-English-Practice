@@ -1,7 +1,9 @@
 package com.essvocab.app.ui.dictionary
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +26,8 @@ import androidx.compose.material.icons.automirrored.rounded.VolumeUp
 import androidx.compose.material.icons.rounded.AutoStories
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.Clear
+import androidx.compose.material.icons.rounded.ExpandLess
+import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Restore
 import androidx.compose.material.icons.rounded.Search
@@ -35,6 +39,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -53,6 +58,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -492,6 +498,8 @@ private fun DictionaryWordCard(
     val isFav = item.card?.isFavorite == true
     val isBypassed = item.card?.isMasteredBypass == true
     val lapses = item.card?.lapses ?: 0
+    val hasDetails = !item.word.exampleEn.isNullOrBlank() || !item.word.note.isNullOrBlank()
+    var expanded by rememberSaveable(item.word.id) { mutableStateOf(false) }
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -499,94 +507,178 @@ private fun DictionaryWordCard(
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(5.dp),
-            ) {
-                Text(
-                    text = item.word.en,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                )
-                if (item.word.ipa.isNotBlank()) {
-                    Text(
-                        text = "/ ${item.word.ipa} /",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                .let { mod ->
+                    if (hasDetails) mod.clickable { expanded = !expanded } else mod
                 }
-                Text(
-                    text = item.word.zh,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Medium,
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                .padding(14.dp),
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
                 ) {
-                    ShanbayMasteryBars(level = mastery)
-                    if (isBypassed) {
-                        Surface(
-                            onClick = onRestoreMastered,
-                            color = GoogleGreenSoft,
-                            shape = RoundedCornerShape(999.dp),
-                        ) {
-                            Row(
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(3.dp),
+                    Text(
+                        text = item.word.en,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    if (item.word.ipa.isNotBlank()) {
+                        Text(
+                            text = "/ ${item.word.ipa} /",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Text(
+                        text = item.word.zh,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Medium,
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        ShanbayMasteryBars(level = mastery)
+                        if (isBypassed) {
+                            Surface(
+                                onClick = onRestoreMastered,
+                                color = GoogleGreenSoft,
+                                shape = RoundedCornerShape(999.dp),
                             ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Restore,
-                                    contentDescription = "恢复学习",
-                                    tint = GoogleGreenOnSoft,
-                                    modifier = Modifier.size(12.dp),
-                                )
+                                Row(
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(3.dp),
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Rounded.Restore,
+                                        contentDescription = "恢复学习",
+                                        tint = GoogleGreenOnSoft,
+                                        modifier = Modifier.size(12.dp),
+                                    )
+                                    Text(
+                                        text = "已斩 · 点击恢复",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = GoogleGreenOnSoft,
+                                    )
+                                }
+                            }
+                        } else if (lapses > 0) {
+                            Surface(
+                                color = GoogleRedSoft,
+                                shape = RoundedCornerShape(999.dp),
+                            ) {
                                 Text(
-                                    text = "已斩 · 点击恢复",
+                                    text = "错记 $lapses 次",
                                     style = MaterialTheme.typography.labelMedium,
-                                    color = GoogleGreenOnSoft,
+                                    color = GoogleRedOnSoft,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                                 )
                             }
                         }
-                    } else if (lapses > 0) {
-                        Surface(
-                            color = GoogleRedSoft,
-                            shape = RoundedCornerShape(999.dp),
-                        ) {
-                            Text(
-                                text = "错记 $lapses 次",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = GoogleRedOnSoft,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                            )
+                        if (hasDetails) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(2.dp),
+                            ) {
+                                Text(
+                                    text = if (expanded) "收起例句" else "例句注解",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                                Icon(
+                                    imageVector = if (expanded) Icons.Rounded.ExpandLess else Icons.Rounded.ExpandMore,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(16.dp),
+                                )
+                            }
                         }
                     }
                 }
+
+                IconButton(onClick = onToggleFavorite) {
+                    Icon(
+                        imageVector = if (isFav) Icons.Rounded.Star else Icons.Rounded.StarBorder,
+                        contentDescription = if (isFav) "取消收藏" else "加入生词本",
+                        tint = if (isFav) GoogleYellowOnSoft else MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+
+                IconButton(onClick = onSpeak) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.VolumeUp,
+                        contentDescription = "朗读发音",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(22.dp),
+                    )
+                }
             }
 
-            IconButton(onClick = onToggleFavorite) {
-                Icon(
-                    imageVector = if (isFav) Icons.Rounded.Star else Icons.Rounded.StarBorder,
-                    contentDescription = if (isFav) "取消收藏" else "加入生词本",
-                    tint = if (isFav) GoogleYellowOnSoft else MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            IconButton(onClick = onSpeak) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Rounded.VolumeUp,
-                    contentDescription = "朗读发音",
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(22.dp),
-                )
+            AnimatedVisibility(visible = expanded && hasDetails) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                    if (!item.word.exampleEn.isNullOrBlank()) {
+                        Surface(
+                            color = MaterialTheme.colorScheme.surfaceVariant,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(10.dp),
+                                verticalArrangement = Arrangement.spacedBy(4.dp),
+                            ) {
+                                Text(
+                                    text = item.word.exampleEn,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Medium,
+                                )
+                                if (!item.word.exampleZh.isNullOrBlank()) {
+                                    Text(
+                                        text = item.word.exampleZh,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    if (!item.word.note.isNullOrBlank()) {
+                        Surface(
+                            color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.55f),
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(10.dp),
+                                verticalArrangement = Arrangement.spacedBy(2.dp),
+                            ) {
+                                Text(
+                                    text = "工程师注解",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                Text(
+                                    text = item.word.note,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }

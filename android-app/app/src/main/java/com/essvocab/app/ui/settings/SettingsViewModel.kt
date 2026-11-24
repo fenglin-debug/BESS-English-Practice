@@ -246,6 +246,10 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch { preferencesRepository.updateDailyNewLimit(limit) }
     }
 
+    fun updateDailyReviewLimit(limit: Int) {
+        viewModelScope.launch { preferencesRepository.updateDailyReviewLimit(limit) }
+    }
+
     fun updateDesiredRetention(retention: Double) {
         viewModelScope.launch { preferencesRepository.updateDesiredRetention(retention) }
     }

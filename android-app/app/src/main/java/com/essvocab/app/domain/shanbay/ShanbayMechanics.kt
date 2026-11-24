@@ -45,15 +45,21 @@ object ShanbayMechanics {
         else -> "已掌握"
     }
 
+    fun maxHintLevel(exampleEn: String?): Int = if (!exampleEn.isNullOrBlank()) 2 else 1
+
     /**
      * Progressive hint shown when the user taps "模糊" in Shanbay Stage 1.
-     * Reveals category, abbreviation badges, and masked first-char Chinese hint
-     * without giving away the full Chinese answer.
+     * - When an engineering context sentence (exampleEn) is available:
+     *   - hintLevel = 1: reveals category, abbreviation badges, and English example context without Chinese answer.
+     *   - hintLevel >= 2: appends masked first-char Chinese hint.
+     * - When exampleEn is absent: reveals category, abbreviation badges, and masked first-char Chinese hint.
      */
     fun buildProgressiveHint(
         zh: String,
         packName: String,
         abbreviations: List<String>,
+        exampleEn: String? = null,
+        hintLevel: Int = 1,
     ): String {
         val parts = mutableListOf<String>()
         if (packName.isNotBlank()) {
@@ -62,14 +68,22 @@ object ShanbayMechanics {
         if (abbreviations.isNotEmpty()) {
             parts.add("常见缩写：${abbreviations.joinToString(" / ")}")
         }
-        val cleanZh = zh.trim()
-        if (cleanZh.length >= 2) {
-            val firstChar = cleanZh.first()
-            val maskedTail = List(minOf(cleanZh.length - 1, 6)) { "_" }.joinToString(" ")
-            val suffix = if (cleanZh.length > 7) " …" else ""
-            parts.add("中文首字提示：$firstChar $maskedTail$suffix")
-        } else if (cleanZh.isNotEmpty()) {
-            parts.add("中文提示：共 ${cleanZh.length} 个字")
+
+        val cleanExample = exampleEn?.trim().orEmpty()
+        if (cleanExample.isNotEmpty()) {
+            parts.add("工程语境：$cleanExample")
+        }
+
+        if (cleanExample.isEmpty() || hintLevel >= 2) {
+            val cleanZh = zh.trim()
+            if (cleanZh.length >= 2) {
+                val firstChar = cleanZh.first()
+                val maskedTail = List(minOf(cleanZh.length - 1, 6)) { "_" }.joinToString(" ")
+                val suffix = if (cleanZh.length > 7) " …" else ""
+                parts.add("中文首字提示：$firstChar $maskedTail$suffix")
+            } else if (cleanZh.isNotEmpty()) {
+                parts.add("中文提示：共 ${cleanZh.length} 个字")
+            }
         }
         return parts.joinToString("\n")
     }

@@ -1,0 +1,1298 @@
+{
+  "ess_peak_shaving_71592623": {
+    "engine": "winrt",
+    "hash": "8a183ed259ca43da978568a6452d67e909825df692131e7e3233382e03e027ef",
+    "spokenText": "Peak shaving",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_load_shifting_be2f4f9c": {
+    "engine": "winrt",
+    "hash": "f2661cde74c170d887189fc3f6968e63be168a7dc0cd040fc83e80c6dc3a834e",
+    "spokenText": "Load shifting",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_demand_charge_management_5670af53": {
+    "engine": "winrt",
+    "hash": "0c4b5591e0c0bb85d41891a7918c2778d3300eca9f1a21dd96e37f551a514101",
+    "spokenText": "Demand charge management",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14061
+  },
+  "ess_energy_arbitrage_time_of_8c5844cc": {
+    "engine": "winrt",
+    "hash": "a88d48a524b0e0e6f983143fbf4374e869f0c019631f0b4e94ad2a247d21c3ae",
+    "spokenText": "Energy arbitrage, Time-of-use arbitrage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 22989
+  },
+  "ess_primary_frequency_regula_d4287af3": {
+    "engine": "winrt",
+    "hash": "90cf663ea2bf7e8be914293edbf58780cd7ac9c2df475357b202e4fa75db2aaa",
+    "spokenText": "Primary frequency regulation",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16509
+  },
+  "ess_secondary_frequency_regu_6292ae36": {
+    "engine": "winrt",
+    "hash": "127e2bf8bda303cba20a6a2cf60b5e9e51787b89b3b38ce74601733aa56fb3d9",
+    "spokenText": "Secondary frequency regulation",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17085
+  },
+  "ess_enhanced_frequency_respo_d0fdd984": {
+    "engine": "winrt",
+    "hash": "2c081f36f094f5158f287bdc7b649d96084aa8c9be79660b3a3ca2b3b21ec524",
+    "spokenText": "Enhanced frequency response",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15933
+  },
+  "ess_voltage_regulation_volta_0b4202d1": {
+    "engine": "winrt",
+    "hash": "8ef85b240e2b08d83bc8d6fb388ef9ce9d29bb4bf877b15ceb3610e920947b4f",
+    "spokenText": "Voltage regulation, Voltage support",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 19677
+  },
+  "ess_reactive_power_compensat_105c2cb3": {
+    "engine": "winrt",
+    "hash": "9870649f821ce9c368351b9d77eb6771d2573ca244860385a74234ed3ca5f9e2",
+    "spokenText": "Reactive power compensation",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15501
+  },
+  "ess_variability_damping_smoo_d803f0da": {
+    "engine": "winrt",
+    "hash": "992266152a7a28ee077f5f051becb230e815c09af9809c8db4f5a5788864c805",
+    "spokenText": "Variability damping, Smoothing",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17517
+  },
+  "ess_backup_power_46efc53c": {
+    "engine": "winrt",
+    "hash": "f336df3d85403f2c9a640e336bca343fea0381941098d45fef4c698187335a4e",
+    "spokenText": "Backup power",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_black_start_0f118f3a": {
+    "engine": "winrt",
+    "hash": "071a9799cbb8bbae91f79a97ec1a0713344599c0c28472042ab2b806db2f6313",
+    "spokenText": "Black start",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10029
+  },
+  "ess_demand_response_0067d1cd": {
+    "engine": "winrt",
+    "hash": "74ccdc0cbefe0c2d998777797b6cb921c4748b14e59185e918dbcd7ab28f6e36",
+    "spokenText": "Demand response",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12333
+  },
+  "ess_load_forecasting_cb2abda7": {
+    "engine": "winrt",
+    "hash": "9907d221b68bc283669ff44308f3193979949a7e73754cf6a4347cbbd174f60f",
+    "spokenText": "Load forecasting",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11469
+  },
+  "ess_renewable_energy_forecas_0f68f060": {
+    "engine": "winrt",
+    "hash": "bd59819f91332d2b0863e98b7874ddbfcd2e05844943b693c55553c1a3e524c5",
+    "spokenText": "Renewable energy forecasting",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15213
+  },
+  "ess_pv_storage_integration_s_1bd5bd49": {
+    "engine": "winrt",
+    "hash": "6fda5845f37df60067170abe5cc3e0663b3ed05adb6de8b7524e5000c9d0c632",
+    "spokenText": "PV-storage integration, Solar-plus-storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 22701
+  },
+  "ess_vehicle_to_grid_894e3485": {
+    "engine": "winrt",
+    "hash": "af9dda501a69bd57b0926a18f00eac2283a61e9bb8485644b9c2379f5bd9f54a",
+    "spokenText": "Vehicle-to-grid",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_ancillary_services_ed924065": {
+    "engine": "winrt",
+    "hash": "37b31138342f6f0d63952acde8db459278cff5650a4494f721f6352c90014b2b",
+    "spokenText": "Ancillary services",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13053
+  },
+  "ess_spinning_reserve_8ce70194": {
+    "engine": "winrt",
+    "hash": "f7087203464b4c66e68a7a8688039695049095e43cd6b10e9c55206dfb1ec882",
+    "spokenText": "Spinning reserve",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11325
+  },
+  "ess_non_spinning_reserve_f1c54675": {
+    "engine": "winrt",
+    "hash": "435c5ee6fec9c6200d7363438381c402a9e23965269ce7eb6e2cc24b1d7c324f",
+    "spokenText": "Non-spinning reserve",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12477
+  },
+  "ess_active_power_flow_contro_0f2bf99c": {
+    "engine": "winrt",
+    "hash": "0357717fac368f1894a377f4be89d46932f54084f6824f66eaaa220dabbfe355",
+    "spokenText": "Active power flow control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14205
+  },
+  "ess_feeder_current_control_20738ecf": {
+    "engine": "winrt",
+    "hash": "96c27702f7d631f2cdc3d53b90f6e29699ab669b69914e032bca7410c6d59d7e",
+    "spokenText": "Feeder current control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12909
+  },
+  "ess_nodal_voltage_control_9232d73d": {
+    "engine": "winrt",
+    "hash": "b83d33503397c91bb7ffaabdc25628abad55ec38066b741c2b18fb74680cc4cb",
+    "spokenText": "Nodal voltage control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13197
+  },
+  "ess_power_quality_events_mit_48116a55": {
+    "engine": "winrt",
+    "hash": "d9c962eb35d5f0f88d7c2f15efea7a4ad5f8a5e0a128dc4666f7752821a81967",
+    "spokenText": "Power quality events mitigation",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16365
+  },
+  "ess_electrical_energy_storag_58e89d18": {
+    "engine": "winrt",
+    "hash": "2fd0a6ea5eba2553ddf6c3aa4e6e0e49a49ed76ca227c8d7dcf358d1d7b66649",
+    "spokenText": "Electrical energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15069
+  },
+  "ess_electrical_energy_storag_8f3b5c54": {
+    "engine": "winrt",
+    "hash": "e29579661c6f11b32a62beff25a72b99d8706784827af1d87179c5b68820b08c",
+    "spokenText": "Electrical energy storage system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16653
+  },
+  "ess_battery_energy_storage_s_c7610945": {
+    "engine": "winrt",
+    "hash": "a68103f7f873a1dbe2bfce835ec6132ee4782b5bc48e5dcb7ae042919c0851ae",
+    "spokenText": "Battery energy storage system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_energy_storage_power_sta_df9e6157": {
+    "engine": "winrt",
+    "hash": "8f04b35285490d6fae9e339ed3e9885e594d20bc1c16fe0307e42cdeee1cfe42",
+    "spokenText": "Energy storage power station",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15357
+  },
+  "ess_energy_storage_unit_ff57b6d0": {
+    "engine": "winrt",
+    "hash": "3071b0a9c2dcb7d4dc76f5634af24e0fc87a94328e5a38c1c35391e6d7fe74dd",
+    "spokenText": "Energy storage unit",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12765
+  },
+  "ess_battery_cell_e15abce2": {
+    "engine": "winrt",
+    "hash": "43ce4c8a170b3286ebc798603a3c3590c074912d606438f2ebe3c1370c83a09d",
+    "spokenText": "Battery cell",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10029
+  },
+  "ess_battery_module_561bbc61": {
+    "engine": "winrt",
+    "hash": "8b292f59c762d172e93e649792245e74f0c165b857e269a1b52f437f327152cf",
+    "spokenText": "Battery module",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11037
+  },
+  "ess_battery_pack_10e330d1": {
+    "engine": "winrt",
+    "hash": "68a0fb3c02518417b7544cd799753b5b1b63e88d038d086b1a5a80f23c2ad91d",
+    "spokenText": "Battery pack",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_battery_cluster_battery_43d7af17": {
+    "engine": "winrt",
+    "hash": "ef88ad31c138038af39ce538b78e997efd8bc7621b65cedad267a653756e4119",
+    "spokenText": "Battery cluster, Battery rack",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17517
+  },
+  "ess_battery_stack_battery_ar_d062128f": {
+    "engine": "winrt",
+    "hash": "629acd850d068ecb8263b29024a9e9296103961ae4d80ffa238f29a93bb7de6a",
+    "spokenText": "Battery stack, Battery array",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16797
+  },
+  "ess_battery_collection_panel_d222161b": {
+    "engine": "winrt",
+    "hash": "6d95883e430b1a73f4ad6fbeb77d6f619c927b4a10651860651b4a76e55a043b",
+    "spokenText": "Battery collection panel",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13197
+  },
+  "ess_high_voltage_box_high_vo_0d20c8fe": {
+    "engine": "winrt",
+    "hash": "37a7eef9cd064446b7620debda33a5aa5486538556b6f5c18fa6d64ea8623746",
+    "spokenText": "High voltage box, High voltage panel",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 19965
+  },
+  "ess_self_contained_eess_cont_12129ea4": {
+    "engine": "winrt",
+    "hash": "9f8aa103eb4d60bd0449c574bc9c0932fa2641e70485dda7e44003bcc5afb296",
+    "spokenText": "Self-contained E E S S, Containerized B E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 26445
+  },
+  "ess_low_voltage_eess_3773a6df": {
+    "engine": "winrt",
+    "hash": "f1593f0b071c98086838b40dcc5bf0707fc8514eed0bcbaa89718003958159bc",
+    "spokenText": "Low voltage E E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14349
+  },
+  "ess_medium_voltage_eess_a7ba1196": {
+    "engine": "winrt",
+    "hash": "07724b34614df15bb6351ba885b4650f41f6df5b4319e600f7d22343fe356b67",
+    "spokenText": "Medium voltage E E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15789
+  },
+  "ess_high_voltage_eess_d8dddd63": {
+    "engine": "winrt",
+    "hash": "750488cdbe91abd53c3b65dd58af2130d570eda4ed0b3efd932d9723c52d0b7f",
+    "spokenText": "High voltage E E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14637
+  },
+  "ess_residential_eess_546c909d": {
+    "engine": "winrt",
+    "hash": "2d401485dee8d1147aab4f4dd4c91f16d50551b5fbd14ea08374bf426ec56bb9",
+    "spokenText": "Residential E E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14349
+  },
+  "ess_commercial_and_industria_981108e0": {
+    "engine": "winrt",
+    "hash": "65826405369bd2127feea795df74af25eddd1ef130ce21cc004b86c5c3c50317",
+    "spokenText": "Commercial and industrial E E S S",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17949
+  },
+  "ess_grid_connected_ecfb7cc1": {
+    "engine": "winrt",
+    "hash": "f08380597779136d4c91bbfefaac7e34ae15b84a5d3b7eba02d50350e3164a93",
+    "spokenText": "Grid-connected",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10317
+  },
+  "ess_microgrid_4ee1d5ad": {
+    "engine": "winrt",
+    "hash": "01fa04dc682788e239b05ab4ccb70740d1d30cababb24d02a233bba11d5aa647",
+    "spokenText": "Microgrid",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_islanding_78b082de": {
+    "engine": "winrt",
+    "hash": "15d936924c76b824cb6973901b4c411d3cd542fc58b3097c6e0b6bdd56a690ed",
+    "spokenText": "Islanding",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 8877
+  },
+  "ess_virtual_power_plant_607577a1": {
+    "engine": "winrt",
+    "hash": "e4b8816696429dc7a12f0a54e24eede091cf616f34046cd93cfc115b9467b278",
+    "spokenText": "Virtual power plant",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13341
+  },
+  "ess_distributed_energy_resou_0e3ffaa2": {
+    "engine": "winrt",
+    "hash": "268e30fadef8fb6c2971248884d22e32818651a389cf39bfbac50ce19f23e5b8",
+    "spokenText": "Distributed energy resource",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15357
+  },
+  "ess_lithium_ion_battery_bb5960af": {
+    "engine": "winrt",
+    "hash": "077c43bdc649b17b042f76fd6181446ad888bf9e145f52ff99fb7443b046eab8",
+    "spokenText": "Lithium-ion battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12765
+  },
+  "ess_lithium_iron_phosphate_b_c324aba2": {
+    "engine": "winrt",
+    "hash": "ae2a2f303401806f95b6aaaea4eb41e3012c664452b951b2d1e3f8da93206f53",
+    "spokenText": "Lithium iron phosphate battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16221
+  },
+  "ess_nmc_nca_battery_c042e141": {
+    "engine": "winrt",
+    "hash": "8b5d9e06350af5ccf3944033744fe0d73f4be39fa1ffd8caedf2e247bdfc97ed",
+    "spokenText": "N M C or N C A battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15501
+  },
+  "ess_lithium_manganese_oxide_bdf0d15f": {
+    "engine": "winrt",
+    "hash": "f138809ff62c96dbb888451b575f11b5c6855b71e765884531450ed7508fd772",
+    "spokenText": "Lithium manganese oxide battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16941
+  },
+  "ess_lithium_titanate_battery_0ce73363": {
+    "engine": "winrt",
+    "hash": "2bd2fa8d924ece3886a4f74687c02b7314fec373d899f401d6774dc6ac9eb6be",
+    "spokenText": "Lithium titanate battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_lead_acid_battery_f23afa94": {
+    "engine": "winrt",
+    "hash": "4fed1244ea0ea5ff951e4f44bf2232be8a96ad561926ba7f972cab4f5c5b18ed",
+    "spokenText": "Lead-acid battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11469
+  },
+  "ess_valve_regulated_lead_aci_fdbd103f": {
+    "engine": "winrt",
+    "hash": "aa8924f1f371587e1394a5b2458c500e6b0935794bb218cd7477db2d80cf93db",
+    "spokenText": "Valve-regulated lead-acid battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16797
+  },
+  "ess_sodium_ion_battery_c443b7fe": {
+    "engine": "winrt",
+    "hash": "5ba53c36f0e24cc749dd7c310a2e635053b62fddcb77b4d78fc479beeaf1da2e",
+    "spokenText": "Sodium-ion battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12765
+  },
+  "ess_sodium_sulfur_battery_5efd87e4": {
+    "engine": "winrt",
+    "hash": "e1433fda28c3a5144e057566840c58380896493d24302f20a0f934a389fa26a8",
+    "spokenText": "Sodium-sulfur battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13485
+  },
+  "ess_vanadium_redox_flow_batt_a51ddb42": {
+    "engine": "winrt",
+    "hash": "c441bc7c6bb81e0f711a755f793345ecf290bfede9e6ef225e85f50911120a1a",
+    "spokenText": "Vanadium redox flow battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_zinc_bromine_flow_batter_f5f1d645": {
+    "engine": "winrt",
+    "hash": "c1a582d119fb4ea20c9137c7d87175289d05d8113e2c0d017a360b50b96386ab",
+    "spokenText": "Zinc-bromine flow battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13917
+  },
+  "ess_flow_battery_13ddffa5": {
+    "engine": "winrt",
+    "hash": "3ac1a6ba76691209e62439b53aadc484fd557557dd2282a2f688dd2c1c787d6c",
+    "spokenText": "Flow battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_solid_state_battery_5ae7aef0": {
+    "engine": "winrt",
+    "hash": "047ab295db83d50f060d89964eef582d7764a9a282ccbeef6e62357bb765db5b",
+    "spokenText": "Solid-state battery",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12333
+  },
+  "ess_supercapacitor_electric_b47493f1": {
+    "engine": "winrt",
+    "hash": "27bba9b01257464c2c3168a43c41efc49463d5796b214e44538d426d0017b8bd",
+    "spokenText": "Supercapacitor, Electric double-layer capacitor",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 23421
+  },
+  "ess_cathode_positive_electro_da8998fc": {
+    "engine": "winrt",
+    "hash": "9224c44c7f57c4993c3fe2d027b58249f6ab89bdf1e180bb6d04499a9316482f",
+    "spokenText": "Cathode, Positive electrode",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16797
+  },
+  "ess_anode_negative_electrode_4471421c": {
+    "engine": "winrt",
+    "hash": "71abc168bdace2df0134d981885e09c49d9f504fadef3eed7f00575a07bd07aa",
+    "spokenText": "Anode, Negative electrode",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15357
+  },
+  "ess_electrolyte_f2b8e962": {
+    "engine": "winrt",
+    "hash": "39b596a3d64c80547d0cc8bb036470553013ab725b31810f534e821f6a29d621",
+    "spokenText": "Electrolyte",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10029
+  },
+  "ess_separator_485b382c": {
+    "engine": "winrt",
+    "hash": "40fe09ea6a2ad27f61734471ffde58cd4dce0153fe5b28d1d94ad90dcfef2652",
+    "spokenText": "Separator",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9453
+  },
+  "ess_current_collector_210099b0": {
+    "engine": "winrt",
+    "hash": "8be1627ebd9f25d1a26c8d0ad510ec0473124ad013c56467dff1ca4f40e4c7af",
+    "spokenText": "Current collector",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10893
+  },
+  "ess_levelized_cost_of_energy_418112a9": {
+    "engine": "winrt",
+    "hash": "8498e9b7b86e0d02e3dbf1a20ead2268af353b686f3ff1f2bec2f87a2614f952",
+    "spokenText": "Levelized cost of energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17373
+  },
+  "ess_cost_per_kilowatt_hour_3e8683d1": {
+    "engine": "winrt",
+    "hash": "707bd28929a51c05b8017896b4d96c1eb891626a6be0620e2690a598806164e0",
+    "spokenText": "Cost per kilowatt-hour",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13629
+  },
+  "ess_power_purchase_agreement_ee3e55ff": {
+    "engine": "winrt",
+    "hash": "b4e3fcb077a03aa76db2e51e22409d5964700b91bad789bc9545acac1ee11d1b",
+    "spokenText": "Power purchase agreement",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_net_metering_ea054355": {
+    "engine": "winrt",
+    "hash": "15a03689eecfa56895f40f0ef1cf58dce78a9c43ac4471796e58960b26d6b940",
+    "spokenText": "Net metering",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_time_of_use_pricing_b3df7e58": {
+    "engine": "winrt",
+    "hash": "8bc74ee802cb63ab2bae3cff95d07d0e9f0bf77e19a1f4896bc96156e6fb9978",
+    "spokenText": "Time-of-use pricing",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12621
+  },
+  "ess_demand_charge_5c23b513": {
+    "engine": "winrt",
+    "hash": "1324b73025769c7a0dd3ac6803dcdfb331fcbb3afddc7442f113bcd20b7c59d0",
+    "spokenText": "Demand charge",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11181
+  },
+  "ess_energy_service_company_d942f875": {
+    "engine": "winrt",
+    "hash": "adf0b34e791c6e005fdd44fc985031848c2626f50d7161f8a659468092c90d07",
+    "spokenText": "Energy service company",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13053
+  },
+  "ess_independent_power_produc_902fd3d0": {
+    "engine": "winrt",
+    "hash": "c287171425794694b5e55812527f493dd84925439268a5f06b542162845f974a",
+    "spokenText": "Independent power producer",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14493
+  },
+  "ess_load_serving_entity_68c18291": {
+    "engine": "winrt",
+    "hash": "a34f56eb5afd0d82696fbd918f919ff14890b1371ed31346ef23e9e289189fd7",
+    "spokenText": "Load-serving entity",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11613
+  },
+  "ess_engineering_procurement_2e51113c": {
+    "engine": "winrt",
+    "hash": "0331e9562e2cfcbe9e64214ec821c471e98a7b19d244cbd0f8151f4f7c9f562a",
+    "spokenText": "Engineering, procurement, and construction",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 20829
+  },
+  "ess_commercial_operation_dat_e56a13ac": {
+    "engine": "winrt",
+    "hash": "22f236fa166c896ea1903421c95295852b6a7214954bc23db9951712f527cb62",
+    "spokenText": "Commercial operation date",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13917
+  },
+  "ess_energy_payback_time_0afdbb51": {
+    "engine": "winrt",
+    "hash": "c44739ae9580219631b7527e780af682154e7e689c93d9433e39ad224c981f4a",
+    "spokenText": "Energy payback time",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12765
+  },
+  "ess_grid_parity_d854520a": {
+    "engine": "winrt",
+    "hash": "eca4b560447e03dfa0df664626b14c5bc67adf7944e5f5b79e89f16b1f8b2d27",
+    "spokenText": "Grid parity",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_energy_curtailment_44557cca": {
+    "engine": "winrt",
+    "hash": "4ba81cdf16166960ddec909fbef84ab9946450731b6f09c4d929fef509019b0b",
+    "spokenText": "Energy curtailment",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12045
+  },
+  "ess_grid_resiliency_30220ab6": {
+    "engine": "winrt",
+    "hash": "1794a87d9f93e12c8f8e9c6aac7432e25218fadd763b45a9ad2fef02323d7f86",
+    "spokenText": "Grid resiliency",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11325
+  },
+  "ess_smart_grid_037825ef": {
+    "engine": "winrt",
+    "hash": "61b4b427d283eac305060548f5001119ee642d4ec25b8c8689d6b47e019052f9",
+    "spokenText": "Smart grid",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10029
+  },
+  "ess_demand_side_management_f7d10811": {
+    "engine": "winrt",
+    "hash": "84f7b307b264debdbfcdbd738c144ff9b466c50f485a8fc9b94d0d23ffd599d9",
+    "spokenText": "Demand-side management",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_battery_management_syste_7899d391": {
+    "engine": "winrt",
+    "hash": "f275bd8466a64d0260b22df9e06441f0aad41ea0e171facfe394bdfa0eef2dfd",
+    "spokenText": "Battery management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13917
+  },
+  "ess_battery_management_unit_ed9ae0e7": {
+    "engine": "winrt",
+    "hash": "ac564f997a56998ad84797c20c658fce3affce74a2044a6f8786c7d20bed97f4",
+    "spokenText": "Battery management unit",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13629
+  },
+  "ess_battery_cluster_manageme_031d5e22": {
+    "engine": "winrt",
+    "hash": "dd73432b40eb5be6488c3494dc4b6eaf4f042e6bf68b58df3954e031e902c53b",
+    "spokenText": "Battery cluster management unit",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16221
+  },
+  "ess_battery_array_unit_7bd54651": {
+    "engine": "winrt",
+    "hash": "9848d22725c53c083ddf593b84499175f0617213d91fc28283bd52f16d6cbd2f",
+    "spokenText": "Battery array unit",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12045
+  },
+  "ess_energy_management_system_b83c0a78": {
+    "engine": "winrt",
+    "hash": "12de4bfe1b1212b291ff9677e7b6235b38612efbe8a770b47748625dd26f090d",
+    "spokenText": "Energy management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_home_energy_management_s_7263bd70": {
+    "engine": "winrt",
+    "hash": "afb0a9cb81ad33e113e1fc10da89f186512ec4eac6939a1bdbedb5b0918e5fe5",
+    "spokenText": "Home energy management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15213
+  },
+  "ess_building_energy_manageme_26294711": {
+    "engine": "winrt",
+    "hash": "f91be77dfc6e5694d1cb609bdc303fb9cd9b98322184b4d99266266be8c6368f",
+    "spokenText": "Building energy management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15933
+  },
+  "ess_local_power_management_s_f579b6d9": {
+    "engine": "winrt",
+    "hash": "7dcba3c0abccbc6900b3a4c187cc27a266b4feec0ef4d8cff6713ec561ce9b5e",
+    "spokenText": "Local power management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15501
+  },
+  "ess_scada_d178a760": {
+    "engine": "winrt",
+    "hash": "96b38912280fc6756312320ecc7cc703769e33fe0709799fb18638a93f2f5e43",
+    "spokenText": "SCADA, Supervisory Control and Data Acquisition",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 24717
+  },
+  "ess_programmable_logic_contr_e9ebc70a": {
+    "engine": "winrt",
+    "hash": "4e139290a12714a84f15444fc6389855c8b4f525478ca0239bd2e2b473fe6270",
+    "spokenText": "Programmable logic controller",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_human_machine_interface_1e48abc6": {
+    "engine": "winrt",
+    "hash": "406d22e0bc5312c70dc5bb1ebc314de72b85b07e27cc85e6f487ebdee3b1df23",
+    "spokenText": "Human-machine interface",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_distributed_energy_resou_42cf4fa6": {
+    "engine": "winrt",
+    "hash": "b5f0952ee0c1cfd9970b46fa812b23f143d2cf53eac6528ad712b17e78640c57",
+    "spokenText": "Distributed energy resource management system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 20253
+  },
+  "ess_remote_monitoring_c3c42af4": {
+    "engine": "winrt",
+    "hash": "e36eb2933c01845030b2969a3051e2c69ee0e40ee02fc11eb61cf8511b9c128e",
+    "spokenText": "Remote monitoring",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11325
+  },
+  "ess_data_logging_8d299b45": {
+    "engine": "winrt",
+    "hash": "2078339fd62f0cc48316169425889861c82e00e6d7e22fa9b9d5c2a249d61910",
+    "spokenText": "Data logging",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9885
+  },
+  "ess_alarm_system_efa553d8": {
+    "engine": "winrt",
+    "hash": "3c8f40990a2bcca6ae8dd4fcb9d605933fcb03aff231366409b5dce69f0e2ad1",
+    "spokenText": "Alarm system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10461
+  },
+  "ess_fault_diagnosis_8a2a40a1": {
+    "engine": "winrt",
+    "hash": "ffc5e7d5af205923a487c4437e53e94c3c3fcea6806789ce5999b7a8dc2012b8",
+    "spokenText": "Fault diagnosis",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12909
+  },
+  "ess_communication_protocol_a0f9ec9e": {
+    "engine": "winrt",
+    "hash": "35f9ef88e2179f354409325acf921ad1e1f085146f030fac5de4993216c0bdb2",
+    "spokenText": "Communication protocol",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_iec_61850_8785616b": {
+    "engine": "winrt",
+    "hash": "283b0b566ff7c335efee86870c0f5417fa3930d09ad5d02262b543e2e10facb9",
+    "spokenText": "I E C 6 1 8 5 0",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16941
+  },
+  "ess_modbus_7c0f5eaf": {
+    "engine": "winrt",
+    "hash": "0cc07982c68e250550536bb10e278ce83a8f482ce157a303f4925074e655bdb5",
+    "spokenText": "Modbus",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9597
+  },
+  "ess_over_the_air_update_6ed06a43": {
+    "engine": "winrt",
+    "hash": "bb2abd62d735dbc98374471d0f57236bc5ab450988eb6af7ac591a0199329b6b",
+    "spokenText": "Over-the-air update",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_redundancy_control_c744a6ab": {
+    "engine": "winrt",
+    "hash": "1ab186c2c172207024fdfe80c3eaed67bcea1f78f15ed2a6bd20874bfe615557",
+    "spokenText": "Redundancy control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12333
+  },
+  "ess_sequence_control_f85f665c": {
+    "engine": "winrt",
+    "hash": "8e6abaae1041542b4f6deffdf596f98780eb8a0151f04a5e069f868426ae41f2",
+    "spokenText": "Sequence control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_automatic_control_89e8c4b5": {
+    "engine": "winrt",
+    "hash": "c8b3aea1ab2c06725408a13b4ef6e0d8e330b88c728d9ffe69ad6e2cc1ec5463",
+    "spokenText": "Automatic control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_manual_control_8790a925": {
+    "engine": "winrt",
+    "hash": "c0919e815478d1f21e04f26860567235a5bb23aa5a405b45d3a1c867a2de1ab5",
+    "spokenText": "Manual control",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11613
+  },
+  "ess_pumped_hydro_storage_ba614de0": {
+    "engine": "winrt",
+    "hash": "4bb967b7d578677a29e3b2345eadf19ee31fa79240429e339a2a1ec5fcdfdca9",
+    "spokenText": "Pumped hydro storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13341
+  },
+  "ess_compressed_air_energy_st_c3b808ad": {
+    "engine": "winrt",
+    "hash": "9fafd3a1386dd8fa84d5638f939f31f3304c765814536ac8c17b280afdb93b18",
+    "spokenText": "Compressed air energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15501
+  },
+  "ess_flywheel_energy_storage_e1b50adc": {
+    "engine": "winrt",
+    "hash": "87d414fd524932e8d2717c32ba3945aabfd86fc15e7a4b5fcd9b9e31bc9e90fd",
+    "spokenText": "Flywheel energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14493
+  },
+  "ess_hydrogen_energy_storage_fc56c2a4": {
+    "engine": "winrt",
+    "hash": "61efbacc50d44ad506816de2a5efa32dfe354af2ccb6652099357fb92e22508b",
+    "spokenText": "Hydrogen energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14493
+  },
+  "ess_green_hydrogen_58652e71": {
+    "engine": "winrt",
+    "hash": "6e054d3c0d8bc95c4158df4ae538a2deee22629ec1156736812fa66d461c8570",
+    "spokenText": "Green hydrogen",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_thermal_energy_storage_6d6259f5": {
+    "engine": "winrt",
+    "hash": "3141a9db7895948d9f34dd0aa2057d7f72c7c348937d6d9f681f6a632d04c795",
+    "spokenText": "Thermal energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13773
+  },
+  "ess_molten_salt_storage_a8a0b527": {
+    "engine": "winrt",
+    "hash": "fb6364069d1d23109ef5cb22bd22290b907ccfacb4d4e012637275455ba9e6bb",
+    "spokenText": "Molten salt storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13197
+  },
+  "ess_phase_change_material_st_59a94b05": {
+    "engine": "winrt",
+    "hash": "941412d9387f36aef1feb4641924d32e25e76329c261493997ebbe4f9f72c229",
+    "spokenText": "Phase change material storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 16077
+  },
+  "ess_electromagnetic_energy_s_c2db01ff": {
+    "engine": "winrt",
+    "hash": "040224a897c3b741dd8285a3186b88d84a4fd2671c65494a6c6a73833b602905",
+    "spokenText": "Electromagnetic energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17517
+  },
+  "ess_superconducting_magnetic_36af1c33": {
+    "engine": "winrt",
+    "hash": "3db474816fc5b68d2dc5633c5450d44a3877b91ead5abae24a603fc11ae1a97e",
+    "spokenText": "Superconducting magnetic energy storage",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 19821
+  },
+  "ess_power_conversion_system_2014afe4": {
+    "engine": "winrt",
+    "hash": "0a90b98b4a73980968823dda1df7cf1a34326299478a2dfd6823812141f14acf",
+    "spokenText": "Power conversion system",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13629
+  },
+  "ess_rectifier_85684ef3": {
+    "engine": "winrt",
+    "hash": "8189d622522e2a8268fb1c9f611ed9a102c1ef4f61eb271a7c0f60e65302492f",
+    "spokenText": "Rectifier",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9741
+  },
+  "ess_inverter_3013bf74": {
+    "engine": "winrt",
+    "hash": "8262d6bd407a1f8d45ee443920291ac6f620ec7540b3da6b07379e5d3998fe21",
+    "spokenText": "Inverter",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 8445
+  },
+  "ess_dc_dc_converter_9dfbcd10": {
+    "engine": "winrt",
+    "hash": "3ceb75a5f42874d575d70e061121978f83f25ac5ff39343b5c638ed07e179fff",
+    "spokenText": "D C to D C converter",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14349
+  },
+  "ess_boost_converter_2fab6784": {
+    "engine": "winrt",
+    "hash": "684bc1c13f1c7dda0832d1f9c30c52ad4cf04159fca5cda4ce47bc9ea874070c",
+    "spokenText": "Boost converter",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10461
+  },
+  "ess_buck_converter_ae50eb43": {
+    "engine": "winrt",
+    "hash": "c55abd1de7f1d9bec77c8051a18962095ba2c611b848ce5be65e6dc7d0c75bad",
+    "spokenText": "Buck converter",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10173
+  },
+  "ess_dc_bus_6706fa88": {
+    "engine": "winrt",
+    "hash": "1d7c436e82926b843e629bd578460eef04b831370ae7ed1b543b23103f212d01",
+    "spokenText": "DC bus",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10461
+  },
+  "ess_ac_bus_792cac10": {
+    "engine": "winrt",
+    "hash": "4a62c5d660d16bb1db3050123d53e3cd418733a7d7057636e2b5dbe9834928f2",
+    "spokenText": "AC bus",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10173
+  },
+  "ess_insulated_gate_bipolar_t_73ccd736": {
+    "engine": "winrt",
+    "hash": "b053153c0c88ed8418685756aac2c3d84e79f365c995e19012d17ac2b69949bc",
+    "spokenText": "Insulated gate bipolar transistor",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17661
+  },
+  "ess_integrated_gate_commutat_74c30cb0": {
+    "engine": "winrt",
+    "hash": "6b6dd9bc931cc4dbe9a137dcd5fb5ef84b3cf4938267907a1d165c5b3efe9775",
+    "spokenText": "Integrated gate commutated thyristor",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 17949
+  },
+  "ess_circuit_breaker_c143a1e2": {
+    "engine": "winrt",
+    "hash": "a65be0316dd2a5744dbfe3355997124a466e0b89a1d3010b0e14adb7b9b36687",
+    "spokenText": "Circuit breaker",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_air_circuit_breaker_596c2fdc": {
+    "engine": "winrt",
+    "hash": "da555138efe90469fc313892435808a885a2108202e8a0f8a65fa63f59a8ba7c",
+    "spokenText": "Air circuit breaker",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_high_speed_circuit_break_946d7846": {
+    "engine": "winrt",
+    "hash": "1d7860ee469daea13738c7431003fff9d88b6610e44002302f6bb90a9234592f",
+    "spokenText": "High-speed circuit breaker",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13341
+  },
+  "ess_gas_insulation_switchgea_5198e0b4": {
+    "engine": "winrt",
+    "hash": "92ecd94f2fa5ccde7bc1f98215b8b1d8564640df6e58ee7093c94f63d383863f",
+    "spokenText": "Gas insulation switchgear",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14349
+  },
+  "ess_electric_insulation_swit_0bcabcec": {
+    "engine": "winrt",
+    "hash": "ef9c27ddf8ffa70451dc2700bea1bbe6d119e7fbf71e521c5b79588b0e2e7624",
+    "spokenText": "Electric insulation switchgear",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_filter_4bb4ca75": {
+    "engine": "winrt",
+    "hash": "8cf929679eb8cff65b5f759455cf38a2bd4221a794d8afa4c94b91c9ee63593a",
+    "spokenText": "Filter",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 8157
+  },
+  "ess_uninterruptible_power_su_b956cab4": {
+    "engine": "winrt",
+    "hash": "0980b0144be00fcadf19c7ae879a0a31ae7950517356aa9747c16b0e25205d24",
+    "spokenText": "Uninterruptible power supply",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15501
+  },
+  "ess_transformer_9236e026": {
+    "engine": "winrt",
+    "hash": "045faf415d1901cd7ab2032c19835a6a1688fa5ef523414f7626ec7fbb8adcb5",
+    "spokenText": "Transformer",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10173
+  },
+  "ess_point_of_common_coupling_c286fcf7": {
+    "engine": "winrt",
+    "hash": "c751b26c6ebb4d09ed64c0ab4d5092630ec0d2c2d4f164eac120d2e856c669cc",
+    "spokenText": "Point of common coupling",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 13053
+  },
+  "ess_grid_following_mode_e0ff5d4e": {
+    "engine": "winrt",
+    "hash": "116ed061f5bb63ebfa6a3a67c422687513f2db6706f419e77081cdc9ede6b049",
+    "spokenText": "Grid-following mode",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_grid_forming_mode_5ef99b2b": {
+    "engine": "winrt",
+    "hash": "7f210ae3c83034ad8cbeabfeb550b4c928f8c1c23569fdc0f0fb28a82d85abd1",
+    "spokenText": "Grid-forming mode",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11469
+  },
+  "ess_harmonic_distortion_5639e4ed": {
+    "engine": "winrt",
+    "hash": "cb4560686d8f81428704a57142aabd3645ce1766cb8f36fe6d4b7af0c9ce1292",
+    "spokenText": "Harmonic distortion",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12189
+  },
+  "ess_total_harmonic_distortio_012cbd2d": {
+    "engine": "winrt",
+    "hash": "a3cfd5755902d794cd90c3c3ad0fd3ad87da7a614cb34829ccc9e3fd38e199ba",
+    "spokenText": "Total harmonic distortion",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 14061
+  },
+  "ess_power_factor_55aff8af": {
+    "engine": "winrt",
+    "hash": "c68b447be14ccf1f4b5bdd0bfc12c4ef22865e5c9779b92a4747a07739c4152a",
+    "spokenText": "Power factor",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10461
+  },
+  "ess_capacity_7cb1f56d": {
+    "engine": "winrt",
+    "hash": "2bb54ecea9bac627012212a47afc5d28df9da4903d1dacb7b5168901c09e039b",
+    "spokenText": "Capacity",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9453
+  },
+  "ess_rated_power_power_rating_07d86042": {
+    "engine": "winrt",
+    "hash": "444b9feb68265c671c6ab857461a4ab47c7ca388848602a7dc6eb3cd58328565",
+    "spokenText": "Rated power, Power rating",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_energy_density_79c8cd50": {
+    "engine": "winrt",
+    "hash": "87899f8fad16178f0b8bf79ac6d5c2605c261282fce6dc9f40d5af901867ac2d",
+    "spokenText": "Energy density",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10749
+  },
+  "ess_power_density_f8594c41": {
+    "engine": "winrt",
+    "hash": "d93118a841a4a57a8fc501911c7f3b1fef5c0911dd345b8a701d10f84168509f",
+    "spokenText": "Power density",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10461
+  },
+  "ess_state_of_charge_b3fc7f66": {
+    "engine": "winrt",
+    "hash": "f2e270f6bedad804232ce812a77cde98060e10d42646c3a201e354ff73f691f2",
+    "spokenText": "State of charge",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11325
+  },
+  "ess_state_of_health_ef671bce": {
+    "engine": "winrt",
+    "hash": "7a101403b74c73b1bf87b22a6f3f6a9b07fa2167a4668bf0774c9ffb4d4b217e",
+    "spokenText": "State of health",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10749
+  },
+  "ess_state_of_energy_d1c101ff": {
+    "engine": "winrt",
+    "hash": "5f095a0956c405ab43127fa05e12078a0c3da7ea97a3dbea9f753c108a5bdc59",
+    "spokenText": "State of energy",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10749
+  },
+  "ess_depth_of_discharge_dab9e075": {
+    "engine": "winrt",
+    "hash": "c346ba601974afdee2e1ffb321dd01929efb8727f207b20bedc5355da9dbe60c",
+    "spokenText": "Depth of discharge",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12045
+  },
+  "ess_c_rate_72bded54": {
+    "engine": "winrt",
+    "hash": "58072927446a689e01ba3086f9cd8fdef97d7b160195467d7334dd98f16e257e",
+    "spokenText": "C rate, charge or discharge rate",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 18813
+  },
+  "ess_cycle_life_5b0803ca": {
+    "engine": "winrt",
+    "hash": "2ab6f19c42315eb0fd096daa9417b55718299803d3302e3edc67ab10f9a2c51a",
+    "spokenText": "Cycle life",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10605
+  },
+  "ess_calendar_life_45df7068": {
+    "engine": "winrt",
+    "hash": "dda7d02ada5e49531a88b0ebc0b7a59b26ef6f9111ba3a8929f81d6a7d79f32d",
+    "spokenText": "Calendar life",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11181
+  },
+  "ess_round_trip_efficiency_db6f3f4b": {
+    "engine": "winrt",
+    "hash": "401971379a13051acfec74e7c4381a5c980087948ded63430fa84eb8acdba7bf",
+    "spokenText": "Round-trip efficiency",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12621
+  },
+  "ess_self_discharge_rate_29e844f9": {
+    "engine": "winrt",
+    "hash": "fb14d64e887cf129099660da530187bda44585f53d43f6b89c91ea5051a42f2b",
+    "spokenText": "Self-discharge rate",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 12045
+  },
+  "ess_degradation_b927ef9b": {
+    "engine": "winrt",
+    "hash": "a50ede589c59e1e7ea2253fe52eb6f5f7d1bc85527a3e2dba7f0052f047cb313",
+    "spokenText": "Degradation",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9741
+  },
+  "ess_response_time_2d09a418": {
+    "engine": "winrt",
+    "hash": "d714901e4422b2a8df8d017b50ff4bd3c6eb94d602cf35d04e880b527b33d0fe",
+    "spokenText": "Response time",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10749
+  },
+  "ess_dead_band_d38ffbe7": {
+    "engine": "winrt",
+    "hash": "4af81eb6052db756bf36ab0a8fb0f9318a3937d276444b1b9654002166826e3f",
+    "spokenText": "Dead band",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 9597
+  },
+  "ess_thermal_runaway_471793d3": {
+    "engine": "winrt",
+    "hash": "bc2b1a54759377bd183f898043ca82ee545fda99e2bb59ac6e1d2bf203b7247a",
+    "spokenText": "Thermal runaway",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 10749
+  },
+  "ess_thermal_management_afd58897": {
+    "engine": "winrt",
+    "hash": "0900cd1ae325cc4eb0a4b9a9d5ad29446d4702523b86f120073790769d33beb6",
+    "spokenText": "Thermal management",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11757
+  },
+  "ess_balancing_equalization_b6e6be98": {
+    "engine": "winrt",
+    "hash": "996a96d0c5a34c8da9a81531eb0e56f8e5c67f56a3226f140e3f835d9dd4977c",
+    "spokenText": "Balancing, Equalization",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 15645
+  },
+  "ess_active_balancing_8b520269": {
+    "engine": "winrt",
+    "hash": "a1562d7760bf2162ad3bf9a2c728367278c45c701ff61c02b20b1a59e121bdcb",
+    "spokenText": "Active balancing",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11181
+  },
+  "ess_passive_balancing_fc0f0faf": {
+    "engine": "winrt",
+    "hash": "c55612b7cc937f6e0fc9700ae02a9732c03aae808eb0e26a2f3512b321ad2c88",
+    "spokenText": "Passive balancing",
+    "voice": "Microsoft Mark",
+    "rate": "+0%",
+    "bytes": 11613
+  }
+}

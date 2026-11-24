@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.Undo
 import androidx.compose.material.icons.automirrored.rounded.VolumeUp
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.CheckCircle
@@ -45,13 +46,17 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -88,9 +93,18 @@ fun StudyScreen(
     viewModel: StudyViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(state.feedbackMessage) {
+        state.feedbackMessage?.let { msg ->
+            snackbarHostState.showSnackbar(msg)
+            viewModel.dismissFeedbackMessage()
+        }
+    }
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -106,6 +120,15 @@ fun StudyScreen(
                     }
                 },
                 actions = {
+                    if (state.canUndo) {
+                        IconButton(onClick = viewModel::onUndoLastReview) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Rounded.Undo,
+                                contentDescription = "撤回上一词",
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
                     if (state.stage != StudyStage.COMPLETED && state.currentWord != null) {
                         IconButton(onClick = viewModel::onToggleFavorite) {
                             Icon(
@@ -185,7 +208,9 @@ fun StudyScreen(
                             }
                         }
 
-                        if (state.ttsAvailability == TtsAvailability.MISSING_ENGLISH_VOICE) {
+                        if (state.ttsAvailability == TtsAvailability.MISSING_ENGLISH_VOICE &&
+                            wordItem.word.audioUrl.isNullOrBlank()
+                        ) {
                             Spacer(Modifier.height(8.dp))
                             Surface(
                                 color = GoogleYellowSoft,
@@ -212,6 +237,7 @@ fun StudyScreen(
                             ratingPreviews = state.ratingPreviews,
                             onSpeakNormal = { viewModel.speakCurrent(slowMode = false) },
                             onSpeakSlow = { viewModel.speakCurrent(slowMode = true) },
+                            onSpeakExample = viewModel::speakExample,
                             modifier = Modifier.weight(1f),
                         )
 
@@ -220,6 +246,7 @@ fun StudyScreen(
                         ShanbayBottomActionBar(
                             stage = state.stage,
                             hintLevel = state.hintLevel,
+                            maxHintLevel = state.maxHintLevel,
                             initialVerdict = state.initialVerdict,
                             ratingPreviews = state.ratingPreviews,
                             onKnown = viewModel::onChooseKnown,
@@ -249,6 +276,7 @@ private fun ShanbayStudyCard(
     ratingPreviews: Map<FsrsRating, FsrsScheduleOutcome>,
     onSpeakNormal: () -> Unit,
     onSpeakSlow: () -> Unit,
+    onSpeakExample: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val mastery = ShanbayMechanics.masteryLevel(item.card)
@@ -391,13 +419,40 @@ private fun ShanbayStudyCard(
                 ) {
                     Column(
                         modifier = Modifier.padding(14.dp),
-                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalArrangement = Arrangement.spacedBy(6.dp),
                     ) {
-                        Text(
-                            text = "记忆提示",
-                            style = MaterialTheme.typography.labelMedium,
-                            fontWeight = FontWeight.Bold,
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = if (!item.word.exampleEn.isNullOrBlank()) "记忆提示 · 语境线索" else "记忆提示",
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            if (!item.word.exampleEn.isNullOrBlank()) {
+                                TextButton(
+                                    onClick = onSpeakExample,
+                                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp),
+                                    modifier = Modifier.height(28.dp),
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.AutoMirrored.Rounded.VolumeUp,
+                                        contentDescription = "听例句",
+                                        tint = GoogleYellowOnSoft,
+                                        modifier = Modifier.size(15.dp),
+                                    )
+                                    Spacer(Modifier.width(4.dp))
+                                    Text(
+                                        text = "听例句",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = GoogleYellowOnSoft,
+                                        fontWeight = FontWeight.SemiBold,
+                                    )
+                                }
+                            }
+                        }
                         Text(
                             text = hintText,
                             style = MaterialTheme.typography.bodyMedium,
@@ -447,8 +502,36 @@ private fun ShanbayStudyCard(
                     ) {
                         Column(
                             modifier = Modifier.padding(14.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                            verticalArrangement = Arrangement.spacedBy(6.dp),
                         ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(
+                                    text = "工程例句",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary,
+                                )
+                                TextButton(
+                                    onClick = onSpeakExample,
+                                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp),
+                                    modifier = Modifier.height(28.dp),
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.AutoMirrored.Rounded.VolumeUp,
+                                        contentDescription = "朗读例句",
+                                        modifier = Modifier.size(15.dp),
+                                    )
+                                    Spacer(Modifier.width(4.dp))
+                                    Text(
+                                        text = "朗读例句",
+                                        style = MaterialTheme.typography.labelMedium,
+                                    )
+                                }
+                            }
                             Text(
                                 text = item.word.exampleEn,
                                 style = MaterialTheme.typography.bodyMedium,
@@ -467,12 +550,27 @@ private fun ShanbayStudyCard(
 
                 if (!item.word.note.isNullOrBlank()) {
                     Spacer(Modifier.height(10.dp))
-                    Text(
-                        text = item.word.note,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                    )
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.60f),
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        shape = RoundedCornerShape(16.dp),
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(14.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
+                            Text(
+                                text = "工程师注解 · 实战辨析",
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Text(
+                                text = item.word.note,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                        }
+                    }
                 }
             } else if (hintLevel == 0) {
                 Spacer(Modifier.height(24.dp))
@@ -512,6 +610,7 @@ fun ShanbayMasteryBars(level: Int, modifier: Modifier = Modifier) {
 private fun ShanbayBottomActionBar(
     stage: StudyStage,
     hintLevel: Int,
+    maxHintLevel: Int,
     initialVerdict: InitialVerdict,
     ratingPreviews: Map<FsrsRating, FsrsScheduleOutcome>,
     onKnown: () -> Unit,
@@ -546,6 +645,36 @@ private fun ShanbayBottomActionBar(
                 ShanbayChoicePill(
                     title = "不认识",
                     subtitle = "稍后复测",
+                    containerColor = GoogleRedSoft,
+                    contentColor = GoogleRedOnSoft,
+                    onClick = onUnknown,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        } else if (hintLevel < maxHintLevel) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                ShanbayChoicePill(
+                    title = "想起来了",
+                    subtitle = ratingPreviews[FsrsRating.HARD]?.intervalLabel ?: "",
+                    containerColor = GoogleGreenSoft,
+                    contentColor = GoogleGreenOnSoft,
+                    onClick = onConfirmHintRecalled,
+                    modifier = Modifier.weight(1f),
+                )
+                ShanbayChoicePill(
+                    title = "首字提示",
+                    subtitle = "再给提示",
+                    containerColor = GoogleYellowSoft,
+                    contentColor = GoogleYellowOnSoft,
+                    onClick = onVague,
+                    modifier = Modifier.weight(1f),
+                )
+                ShanbayChoicePill(
+                    title = "不认识",
+                    subtitle = "查看释义",
                     containerColor = GoogleRedSoft,
                     contentColor = GoogleRedOnSoft,
                     onClick = onUnknown,

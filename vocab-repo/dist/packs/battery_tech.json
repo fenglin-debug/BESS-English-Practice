@@ -2,7 +2,7 @@
   "packId": "battery_tech",
   "packName": "电池技术",
   "description": "锂电、钠电、液流电池、电化学结构与热失控核心词",
-  "version": 1,
+  "version": 4,
   "words": [
     {
       "id": "ess_lithium_ion_battery_bb5960af",
@@ -11,14 +11,13 @@
       "en": "Lithium-ion (Li-ion) battery",
       "ttsText": "Lithium-ion battery",
       "abbreviations": [
-        "Li-ion",
-        "Lithium-ion"
+        "Li-ion"
       ],
       "ipa": "ˈlɪθiəm ˈaɪɒn ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Lithium-ion batteries dominate utility-scale storage projects due to high energy density and falling pack costs.",
+      "exampleZh": "凭借高能量密度和持续下降的电池包成本，锂离子电池主导了大型电网侧储能项目。",
+      "note": "锂电大家族统称，涵盖 LFP、NMC、NCA、LMO、LTO 等正负极体系；简称 Li-ion。",
+      "audioUrl": "audio/ess_lithium_ion_battery_bb5960af.mp3"
     },
     {
       "id": "ess_lithium_iron_phosphate_b_c324aba2",
@@ -30,10 +29,10 @@
         "LFP"
       ],
       "ipa": "ˈlɪθiəm aɪərn ˈfɑsfeɪt ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Most grid-scale BESS projects select LFP batteries for superior thermal stability and over 6,000-cycle longevity.",
+      "exampleZh": "绝大多数电网级储能项目选用磷酸铁锂电池，因其热稳定性更佳且循环寿命超过 6000 次。",
+      "note": "大储绝对主流路线（化学式 LiFePO4），标称电压约 3.2 V，无钴更安全，高温/过充耐受优于三元。",
+      "audioUrl": "audio/ess_lithium_iron_phosphate_b_c324aba2.mp3"
     },
     {
       "id": "ess_nmc_nca_battery_c042e141",
@@ -46,10 +45,10 @@
         "NCA"
       ],
       "ipa": "ɛn ɛm siː / ɛn siː eɪ ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "While NMC/NCA batteries offer higher energy density, stricter UL 9540A thermal barriers are required in stationary storage.",
+      "exampleZh": "虽然三元锂电池能量密度更高，但在固定式储能应用中需要更严格的 UL 9540A 热隔离防护。",
+      "note": "高能量密度路线，标称电压约 3.6~3.7 V，过去多用于动力电池与部分早期海外调频储能项目。",
+      "audioUrl": "audio/ess_nmc_nca_battery_c042e141.mp3"
     },
     {
       "id": "ess_lithium_manganese_oxide_bdf0d15f",
@@ -61,10 +60,10 @@
         "LMO"
       ],
       "ipa": "ˈlɪθiəm ˈmæŋgəˌniz ˈɑkˌsaɪd ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Lithium manganese oxide batteries provide high power capability but suffer faster capacity fade at elevated temperatures.",
+      "exampleZh": "锰酸锂电池具备较高功率输出能力，但在高温环境下容量衰减更快。",
+      "note": "正极体系为 LiMn2O4，成本较低但高温循环寿命受限，在现代大型储能电站中已较少单独采用。",
+      "audioUrl": "audio/ess_lithium_manganese_oxide_bdf0d15f.mp3"
     },
     {
       "id": "ess_lithium_titanate_battery_0ce73363",
@@ -76,10 +75,10 @@
         "LTO"
       ],
       "ipa": "ˈlɪθiəm ˈtaɪtəˌneɪt ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "LTO batteries endure 10C fast charging and sub-zero temperatures, making them suitable for heavy-duty frequency regulation.",
+      "exampleZh": "钛酸锂电池可耐受 10C 快充与零下低温，适合高倍率调频及轨道交通能量回收场景。",
+      "note": "特点是“高倍率、超长寿命（>15000 次）、极高安全性、耐低温”，但能量密度较低且单瓦时成本高。",
+      "audioUrl": "audio/ess_lithium_titanate_battery_0ce73363.mp3"
     },
     {
       "id": "ess_lead_acid_battery_f23afa94",
@@ -88,14 +87,13 @@
       "en": "Lead-acid (LA) battery",
       "ttsText": "Lead-acid battery",
       "abbreviations": [
-        "LA",
-        "Lead-acid"
+        "LA"
       ],
       "ipa": "lɛd ˈæsɪd ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Legacy substations are gradually replacing aging lead-acid batteries with LFP racks to cut maintenance and footprint.",
+      "exampleZh": "老旧变电站正逐步用磷酸铁锂电池簇替换老化的铅酸电池，以降低运维工作量并节省占地。",
+      "note": "传统成熟路线，循环寿命短（约 300~800 次）且能量密度低，目前多用于低成本备用电源与通信基站。",
+      "audioUrl": "audio/ess_lead_acid_battery_f23afa94.mp3"
     },
     {
       "id": "ess_valve_regulated_lead_aci_fdbd103f",
@@ -107,10 +105,10 @@
         "VRLA"
       ],
       "ipa": "vælv ˈrɛɡjəleɪtɪd lɛd ˈæsɪd ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "VRLA batteries require no routine water topping, making them standard for indoor UPS and switchgear backup rooms.",
+      "exampleZh": "阀控式铅酸蓄电池无需日常补水维护，常用于室内 UPS 及开关站直流屏备电。",
+      "note": "密封免维护铅酸电池，常见 AGM 吸附式与 Gel 胶体两类，注意其对环境温度敏感。",
+      "audioUrl": "audio/ess_valve_regulated_lead_aci_fdbd103f.mp3"
     },
     {
       "id": "ess_sodium_ion_battery_c443b7fe",
@@ -118,14 +116,12 @@
       "zh": "钠离子电池",
       "en": "Sodium-ion battery",
       "ttsText": "Sodium-ion battery",
-      "abbreviations": [
-        "Sodium-ion"
-      ],
+      "abbreviations": [],
       "ipa": "ˈsoʊdiəm ˈaɪɒn ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Sodium-ion batteries show strong low-temperature discharge performance and eliminate dependence on lithium carbonate prices.",
+      "exampleZh": "钠离子电池展现出优异的低温放电性能，且摆脱了对碳酸锂价格波动的依赖。",
+      "note": "资源储量丰富、支持零伏运输、-20°C 容量保持率高，正作为锂电补充路线切入工商业与极寒地区储能。",
+      "audioUrl": "audio/ess_sodium_ion_battery_c443b7fe.mp3"
     },
     {
       "id": "ess_sodium_sulfur_battery_5efd87e4",
@@ -137,10 +133,10 @@
         "Na-S"
       ],
       "ipa": "ˈsoʊdiəm ˈsʌlfər ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Sodium-sulfur batteries operate at around 300 °C and are deployed in multi-hour utility load-shifting installations.",
+      "exampleZh": "钠硫电池工作温度约 300 °C，主要用于多小时级电网侧负荷转移项目。",
+      "note": "高温熔融态储能电池（需严格保温加热与防火管理），典型放电时长 6 小时左右，日本 NGK 为代表厂商。",
+      "audioUrl": "audio/ess_sodium_sulfur_battery_5efd87e4.mp3"
     },
     {
       "id": "ess_vanadium_redox_flow_batt_a51ddb42",
@@ -152,10 +148,10 @@
         "VRFB"
       ],
       "ipa": "vəˈneɪdiəm ˈriːdɒks floʊ ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "A vanadium redox flow battery decouples power rating from energy capacity and delivers over 20 years of non-flammable operation.",
+      "exampleZh": "全钒液流电池实现了功率与容量的解耦设计，且无燃爆风险，可稳定运行 20 年以上。",
+      "note": "长时储能（4~12 小时）代表技术：电堆决定功率（kW），电解液储罐体积决定容量（kWh），本质安全。",
+      "audioUrl": "audio/ess_vanadium_redox_flow_batt_a51ddb42.mp3"
     },
     {
       "id": "ess_zinc_bromine_flow_batter_f5f1d645",
@@ -167,10 +163,10 @@
         "ZBFB"
       ],
       "ipa": "zɪŋk ˈbroʊmiːn floʊ ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Zinc-bromine flow batteries offer higher theoretical energy density than vanadium systems while handling deep 100% DoD cycling.",
+      "exampleZh": "锌溴液流电池的理论能量密度高于全钒体系，同时支持 100% 深度充放电循环。",
+      "note": "混合液流电池路线，负极涉及锌沉积/溶解，对循环效率与溴络合安全控制要求较高。",
+      "audioUrl": "audio/ess_zinc_bromine_flow_batter_f5f1d645.mp3"
     },
     {
       "id": "ess_flow_battery_13ddffa5",
@@ -180,10 +176,10 @@
       "ttsText": "Flow battery",
       "abbreviations": [],
       "ipa": "floʊ ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Developers evaluate flow battery technologies whenever grid tenders mandate 8-hour or longer discharge durations.",
+      "exampleZh": "当电网招标明确要求 8 小时及以上的长时放电能力时，开发商常会评估液流电池方案。",
+      "note": "水系电解液几乎无热失控风险，容量衰减小，但初始投资较高且常规往返效率（RTE）约为 65%~75%。",
+      "audioUrl": "audio/ess_flow_battery_13ddffa5.mp3"
     },
     {
       "id": "ess_solid_state_battery_5ae7aef0",
@@ -191,14 +187,12 @@
       "zh": "固态电池",
       "en": "Solid-state battery",
       "ttsText": "Solid-state battery",
-      "abbreviations": [
-        "Solid-state"
-      ],
+      "abbreviations": [],
       "ipa": "ˈsɑlədˈsteɪt ˈbætəri",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Solid-state batteries replace flammable liquid electrolytes with ceramic or polymer conductors to boost safety and energy density.",
+      "exampleZh": "固态电池采用陶瓷或聚合物固态电解质替代易燃液态电解液，以同时提升安全性与能量密度。",
+      "note": "下一代前沿电池技术（当前工程落地多处于半固态 Semi-solid-state 过渡阶段）。",
+      "audioUrl": "audio/ess_solid_state_battery_5ae7aef0.mp3"
     },
     {
       "id": "ess_supercapacitor_electric_b47493f1",
@@ -210,10 +204,10 @@
         "EDLC"
       ],
       "ipa": "ˈsuːpərkəˈpæsɪtər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Hybrid systems pair supercapacitors with LFP batteries to absorb millisecond-level power spikes and extend battery life.",
+      "exampleZh": "混合储能系统将超级电容器与磷酸铁锂电池搭配使用，用以吸收毫秒级功率冲击并延长电池寿命。",
+      "note": "功率密度极高、可循环数十万次、毫秒级响应，但能量密度低，不适合长时能量存储。",
+      "audioUrl": "audio/ess_supercapacitor_electric_b47493f1.mp3"
     },
     {
       "id": "ess_cathode_positive_electro_da8998fc",
@@ -223,10 +217,10 @@
       "ttsText": "Cathode, Positive electrode",
       "abbreviations": [],
       "ipa": "ˈkæˌθoʊd",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Cathode chemistry largely determines a cell's nominal voltage, thermal runaway onset temperature, and raw material cost.",
+      "exampleZh": "正极材料体系很大程度上决定了电芯的标称电压、热失控起始温度以及原材料成本。",
+      "note": "常见正极材料即 LFP、NMC、NCA；注意在放电状态下锂离子从负极脱出并嵌入正极。",
+      "audioUrl": "audio/ess_cathode_positive_electro_da8998fc.mp3"
     },
     {
       "id": "ess_anode_negative_electrode_4471421c",
@@ -236,10 +230,10 @@
       "ttsText": "Anode, Negative electrode",
       "abbreviations": [],
       "ipa": "ˈæˌnoʊd",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Graphite serves as the standard anode material, though silicon-doped composites are emerging for higher capacity.",
+      "exampleZh": "石墨是目前最主流的负极材料，而掺硅复合负极正逐步用于追求更高容量的电芯。",
+      "note": "低温大倍率充电时易在负极表面发生析锂（Lithium plating），是造成安全隐患与衰减的主因之一。",
+      "audioUrl": "audio/ess_anode_negative_electrode_4471421c.mp3"
     },
     {
       "id": "ess_electrolyte_f2b8e962",
@@ -249,10 +243,10 @@
       "ttsText": "Electrolyte",
       "abbreviations": [],
       "ipa": "ɪˈlɛktrəlaɪt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Low-viscosity electrolyte formulations improve lithium-ion transport and reduce internal resistance at sub-zero temperatures.",
+      "exampleZh": "低粘度电解液配方有助于改善零下低温环境中的锂离子传输并降低电芯内阻。",
+      "note": "电芯内传导离子的介质；常规碳酸酯有机电解液易燃，也是热失控发生时释放可燃气体（Off-gas）的源头。",
+      "audioUrl": "audio/ess_electrolyte_f2b8e962.mp3"
     },
     {
       "id": "ess_separator_485b382c",
@@ -262,10 +256,10 @@
       "ttsText": "Separator",
       "abbreviations": [],
       "ipa": "ˈsɛpəˌreɪtər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Ceramic-coated separators resist thermal shrinkage up to 180 °C, preventing internal short circuits between electrodes.",
+      "exampleZh": "陶瓷涂覆隔膜在高达 180 °C 下仍能保持尺寸稳定不收缩，从而防止正负极发生内部短路。",
+      "note": "隔膜核心作用是“通离子、阻电子”；一旦受热收缩破损，正负极直接接触即可能触发内短路和热失控。",
+      "audioUrl": "audio/ess_separator_485b382c.mp3"
     },
     {
       "id": "ess_current_collector_210099b0",
@@ -275,10 +269,10 @@
       "ttsText": "Current collector",
       "abbreviations": [],
       "ipa": "ˈkɑrənt kəˈlɛktər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Batteries typically use aluminum foil as the cathode current collector and copper foil on the anode side.",
+      "exampleZh": "锂电池通常采用铝箔作为正极集流体、铜箔作为负极集流体。",
+      "note": "记忆口诀：正铝负铜（过放时负极电位升高可能导致铜集流体溶解，进而引发内短路）。",
+      "audioUrl": "audio/ess_current_collector_210099b0.mp3"
     }
   ]
 }

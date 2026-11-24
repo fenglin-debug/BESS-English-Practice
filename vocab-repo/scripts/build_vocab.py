@@ -87,18 +87,28 @@ def extract_abbreviations(en: str) -> list[str]:
             if candidate not in abbrs:
                 abbrs.append(candidate)
 
-    # 2. Leading uppercase abbreviations followed by parenthetical expansion, e.g. SCADA (...), NMC/NCA (...)
-    prefix = en.split("(", 1)[0].strip()
-    for token in re.split(r"[\s/]+", prefix):
+    # 2. Abbreviations outside parentheses, e.g. SCADA (...), NMC/NCA (...), Commercial and industrial (C&I) EESS, C-rate
+    outside_parens = PAREN_RE.sub(" ", en)
+    for token in re.split(r"[\s/]+", outside_parens):
         token_clean = token.strip()
         if (
-            token_clean
-            and any(ch.isupper() for ch in token_clean)
-            and ABBR_TOKEN_RE.match(token_clean)
-            and (token_clean.isupper() or "-" in token_clean or "&" in token_clean)
-            and len(token_clean) >= 2
-            and token_clean not in {"IEC", "DC", "AC"}
+            not token_clean
+            or len(token_clean) < 2
+            or token_clean in {"IEC", "DC", "AC"}
+            or not ABBR_TOKEN_RE.match(token_clean)
         ):
+            continue
+
+        is_pure_acronym = (
+            all(ch.isupper() or ch.isdigit() or ch == "&" for ch in token_clean)
+            and any(ch.isupper() for ch in token_clean)
+        )
+        is_mixed_ess_abbr = (
+            bool(re.match(r"^(?:[A-Z][a-z]?-[A-Za-z]+|DoD)$", token_clean))
+            and not re.match(r"^[A-Z][a-z]{2,}(?:-[a-z]+)+$", token_clean)
+            and not re.match(r"^[A-Z]{2,}-[a-z]+$", token_clean)
+        )
+        if is_pure_acronym or is_mixed_ess_abbr:
             if token_clean not in abbrs:
                 abbrs.append(token_clean)
     return abbrs
@@ -150,6 +160,23 @@ def load_previous_manifest(manifest_path: Path) -> dict:
         return {}
 
 
+def load_enrichment_map(enrichment_dir: Path) -> dict[str, dict[str, str]]:
+    if not enrichment_dir.exists():
+        return {}
+    merged: dict[str, dict[str, str]] = {}
+    for json_file in sorted(enrichment_dir.glob("*.json")):
+        data = json.loads(json_file.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError(f"Enrichment file must contain a JSON object: {json_file}")
+        for word_id, entry in data.items():
+            if word_id in merged:
+                raise ValueError(f"Duplicate word_id '{word_id}' in enrichment file: {json_file}")
+            if not isinstance(entry, dict):
+                raise ValueError(f"Enrichment entry for '{word_id}' must be an object in {json_file}")
+            merged[word_id] = entry
+    return merged
+
+
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     repo_root = Path(__file__).resolve().parents[2]
@@ -167,6 +194,18 @@ def main() -> int:
         help="Category mapping config JSON.",
     )
     parser.add_argument(
+        "--enrichment-dir",
+        type=Path,
+        default=repo_root / "vocab-repo" / "config" / "enrichment",
+        help="Directory containing per-pack enrichment JSON overlays.",
+    )
+    parser.add_argument(
+        "--audio-dir",
+        type=Path,
+        default=repo_root / "vocab-repo" / "dist" / "audio",
+        help="Directory containing generated MP3 audio files (<word_id>.mp3).",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=repo_root / "vocab-repo" / "dist",
@@ -178,6 +217,11 @@ def main() -> int:
         default="",
         help="Optional datasetVersion override (e.g. 2026.11.23.1).",
     )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Fail if any term lacks exampleEn/exampleZh/note/audioUrl or if orphan enrichment keys exist.",
+    )
     args = parser.parse_args()
 
     if not args.input.exists():
@@ -188,10 +232,13 @@ def main() -> int:
     if args.config.exists():
         cat_cfg = json.loads(args.config.read_text(encoding="utf-8")).get("categories", {})
 
+    enrichment_map = load_enrichment_map(args.enrichment_dir)
+
     rows = read_xlsx_rows(args.input)
     packs: list[dict] = []
     current_pack: dict | None = None
     seen_ids: set[str] = set()
+    strict_errors: list[str] = []
 
     for row in rows:
         col_a = row.get("A", "")
@@ -237,18 +284,39 @@ def main() -> int:
                 word_id = f"{word_id}_{col_a}"
             seen_ids.add(word_id)
 
-            # Optional future columns E=例句英文, F=例句中文, G=备注, H=音频URL
-            example_en = row.get("E", "") or None
-            example_zh = row.get("F", "") or None
-            note = row.get("G", "") or None
-            audio_url = row.get("H", "") or None
+            enrich = enrichment_map.get(word_id, {})
+
+            # Priority: Excel non-empty E/F/G/H > enrichment/*.json > auto-discovered MP3
+            example_en = (row.get("E", "") or enrich.get("exampleEn") or "").strip() or None
+            example_zh = (row.get("F", "") or enrich.get("exampleZh") or "").strip() or None
+            note = (row.get("G", "") or enrich.get("note") or "").strip() or None
+            tts_text = (enrich.get("ttsText") or "").strip() or build_tts_text(col_c)
+            audio_url = (row.get("H", "") or enrich.get("audioUrl") or "").strip() or None
+
+            local_mp3 = args.audio_dir / f"{word_id}.mp3"
+            if not audio_url and local_mp3.exists() and local_mp3.stat().st_size > 0:
+                audio_url = f"audio/{word_id}.mp3"
+
+            if args.strict:
+                if not example_en:
+                    strict_errors.append(f"{word_id} ({col_c}): missing exampleEn")
+                if not example_zh:
+                    strict_errors.append(f"{word_id} ({col_c}): missing exampleZh")
+                if not note:
+                    strict_errors.append(f"{word_id} ({col_c}): missing note")
+                if not audio_url:
+                    strict_errors.append(f"{word_id} ({col_c}): missing audioUrl / MP3 file")
+                elif audio_url.startswith("audio/"):
+                    mp3_path = args.audio_dir / audio_url.removeprefix("audio/")
+                    if not mp3_path.exists() or mp3_path.stat().st_size <= 1024:
+                        strict_errors.append(f"{word_id} ({col_c}): invalid audio file {mp3_path}")
 
             word_item = {
                 "id": word_id,
                 "seq": int(col_a),
                 "zh": col_b,
                 "en": col_c,
-                "ttsText": build_tts_text(col_c),
+                "ttsText": tts_text,
                 "abbreviations": extract_abbreviations(col_c),
                 "ipa": col_d,
                 "exampleEn": example_en,
@@ -257,6 +325,18 @@ def main() -> int:
                 "audioUrl": audio_url,
             }
             current_pack["words"].append(word_item)
+
+    if args.strict:
+        orphan_keys = sorted(set(enrichment_map.keys()) - seen_ids)
+        for orphan in orphan_keys:
+            strict_errors.append(f"Orphan enrichment key not found in Excel: {orphan}")
+        if strict_errors:
+            print(f"ERROR: --strict validation failed with {len(strict_errors)} issue(s):", file=sys.stderr)
+            for err in strict_errors[:30]:
+                print(f"  - {err}", file=sys.stderr)
+            if len(strict_errors) > 30:
+                print(f"  ... and {len(strict_errors) - 30} more", file=sys.stderr)
+            return 1
 
     if not packs:
         print("ERROR: No vocabulary packs parsed from Excel.", file=sys.stderr)

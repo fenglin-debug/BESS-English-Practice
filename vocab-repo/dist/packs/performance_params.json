@@ -2,7 +2,7 @@
   "packId": "performance_params",
   "packName": "性能参数",
   "description": "SOC/SOH/DoD、C-rate、RTE、循环寿命与均衡参数",
-  "version": 1,
+  "version": 4,
   "words": [
     {
       "id": "ess_capacity_7cb1f56d",
@@ -12,10 +12,10 @@
       "ttsText": "Capacity",
       "abbreviations": [],
       "ipa": "kəˈpæsɪti",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The vendor guarantees 200 MWh usable AC capacity at the point of interconnection on the commercial operation date.",
+      "exampleZh": "供应商保证在商业运营日于并网点提供 200 MWh 的交流侧可用容量。",
+      "note": "合同中最核心辨析：标称容量（Nominal/Nameplate capacity）vs 可用容量（Usable capacity，扣除了保留 SOC 与损耗）。",
+      "audioUrl": "audio/ess_capacity_7cb1f56d.mp3"
     },
     {
       "id": "ess_rated_power_power_rating_07d86042",
@@ -25,10 +25,10 @@
       "ttsText": "Rated power, Power rating",
       "abbreviations": [],
       "ipa": "ˈreɪtɪd paʊər",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "This 2-hour system carries a continuous rated power of 50 MW at ambient temperatures up to 45 °C without derating.",
+      "exampleZh": "该 2 小时储能系统在最高 45 °C 环境温度下仍具备 50 MW 持续额定功率且不降额。",
+      "note": "衡量充放电速度的功率指标（MW/kW）；电站规模通常写成“功率/能量”，如 50 MW / 100 MWh。",
+      "audioUrl": "audio/ess_rated_power_power_rating_07d86042.mp3"
     },
     {
       "id": "ess_energy_density_79c8cd50",
@@ -38,10 +38,10 @@
       "ttsText": "Energy density",
       "abbreviations": [],
       "ipa": "ˈɛnərʤi ˈdɛnsɪti",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Increasing cell energy density from 165 to 185 Wh/kg allowed 5 MWh of LFP storage inside a standard 20-foot container.",
+      "exampleZh": "电芯能量密度从 165 提升至 185 Wh/kg，使标准 20 英尺集装箱得以装入 5 MWh 磷酸铁锂储能。",
+      "note": "分质量能量密度（Wh/kg）与体积能量密度（Wh/L），直接影响储能舱单箱容量与项目用地面积。",
+      "audioUrl": "audio/ess_energy_density_79c8cd50.mp3"
     },
     {
       "id": "ess_power_density_f8594c41",
@@ -51,10 +51,10 @@
       "ttsText": "Power density",
       "abbreviations": [],
       "ipa": "paʊər ˈdɛnsɪti",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Frequency regulation assets prioritize high power density over bulk energy capacity to deliver rapid short-duration bursts.",
+      "exampleZh": "调频型储能资产更看重高功率密度而非单纯的大容量，以满足短时大功率快速吞吐需求。",
+      "note": "单位质量或体积的功率输出能力（W/kg 或 W/L），如飞轮、超级电容与 LTO 均具备极高功率密度。",
+      "audioUrl": "audio/ess_power_density_f8594c41.mp3"
     },
     {
       "id": "ess_state_of_charge_b3fc7f66",
@@ -66,10 +66,10 @@
         "SOC"
       ],
       "ipa": "steɪt əv ʧɑrʤ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "To limit lithium-ion degradation, the BMS restricts daily cycling between 10% and 95% state of charge (SOC).",
+      "exampleZh": "为减缓锂电池衰减，BMS 将日常循环的荷电状态（SOC）工作窗口限制在 10% 至 95% 之间。",
+      "note": "类比手机电量百分比（当前剩余电量/当前实际最大可用容量）；注意在 100% 满充校准前易产生累计误差。",
+      "audioUrl": "audio/ess_state_of_charge_b3fc7f66.mp3"
     },
     {
       "id": "ess_state_of_health_ef671bce",
@@ -81,10 +81,10 @@
         "SOH"
       ],
       "ipa": "steɪt əv hɛlθ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Battery capacity warranty terms typically trigger cell augmentation once state of health (SOH) falls below 70%.",
+      "exampleZh": "电池容量质保条款通常约定，当健康状态（SOH）衰减至 70% 以下时触发补容机制。",
+      "note": "SOH = 当前实际满充容量 / 出厂额定容量（或结合内阻衡量寿命老化程度）；大储质保终点通常为 60%~70%。",
+      "audioUrl": "audio/ess_state_of_health_ef671bce.mp3"
     },
     {
       "id": "ess_state_of_energy_d1c101ff",
@@ -96,10 +96,10 @@
         "SOE"
       ],
       "ipa": "steɪt əv ˈɛnərʤi",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "EMS market bidding relies on state of energy (SOE) rather than SOC because terminal voltage drops during deep discharge.",
+      "exampleZh": "EMS 参与电力市场申报时更依赖能量状态（SOE）而非 SOC，因为深度放电期间电池端电压会持续下降。",
+      "note": "SOE 反映剩余可用电能（kWh 比例），而 SOC 反映剩余电荷量（Ah 比例）；做精确电价套利测算应以 SOE 为准。",
+      "audioUrl": "audio/ess_state_of_energy_d1c101ff.mp3"
     },
     {
       "id": "ess_depth_of_discharge_dab9e075",
@@ -111,10 +111,10 @@
         "DoD"
       ],
       "ipa": "dɛpθ əv ˈdɪsˌʧɑrʤ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Operating LFP racks at 90% depth of discharge (DoD) yields substantially longer cycle life than running full 100% cycles.",
+      "exampleZh": "让磷酸铁锂电池簇以 90% 放电深度（DoD）运行，相比 100% 满放满充可获得显著更长的循环寿命。",
+      "note": "DoD ≈ 100% − 最低 SOC；海外标书常用 80%~95% DoD 换算等效满充满放循环（Equivalent full cycles）。",
+      "audioUrl": "audio/ess_depth_of_discharge_dab9e075.mp3"
     },
     {
       "id": "ess_c_rate_72bded54",
@@ -126,10 +126,10 @@
         "C-rate"
       ],
       "ipa": "siː reɪt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The 2-hour utility project operates at a 0.5 C-rate, while short-duration frequency assets require 1C or 2C cells.",
+      "exampleZh": "2 小时独立储能项目按 0.5C 充放电倍率运行，而短时调频资产则需采用 1C 或 2C 高倍率电芯。",
+      "note": "1C 代表 1 小时放空额定容量，0.5C 为 2 小时系统，0.25C 为 4 小时系统；C-rate 越高对散热与电芯温升越严苛。",
+      "audioUrl": "audio/ess_c_rate_72bded54.mp3"
     },
     {
       "id": "ess_cycle_life_5b0803ca",
@@ -139,10 +139,10 @@
       "ttsText": "Cycle life",
       "abbreviations": [],
       "ipa": "ˈsaɪkəl laɪf",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The datasheet specifies a cycle life of 8,000 cycles at 0.5C and 25 °C down to 70% capacity retention.",
+      "exampleZh": "规格书标明在 25 °C、0.5C 工况下，电池衰减至 70% 容量保持率时的循环寿命为 8000 次。",
+      "note": "对比 Calendar life：Cycle life 指循环衰减；读取参数时务必看清测试条件（温度、倍率、DoD 与 EOL 阈值）。",
+      "audioUrl": "audio/ess_cycle_life_5b0803ca.mp3"
     },
     {
       "id": "ess_calendar_life_45df7068",
@@ -152,10 +152,10 @@
       "ttsText": "Calendar life",
       "abbreviations": [],
       "ipa": "ˈkæləndər laɪf",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Even for standby backup stations cycled rarely, calendar life dictates battery replacement after 12 to 15 years.",
+      "exampleZh": "即使对于极少充放电循环的备用电源电站，日历寿命也会决定电池在 12 至 15 年后需进行更换。",
+      "note": "指电池在静置或极低频使用条件下随时间自然老化的年限；高温和高 SOC 满电静置会急剧缩短日历寿命。",
+      "audioUrl": "audio/ess_calendar_life_45df7068.mp3"
     },
     {
       "id": "ess_round_trip_efficiency_db6f3f4b",
@@ -164,14 +164,13 @@
       "en": "Round-trip efficiency (RTE)",
       "ttsText": "Round-trip efficiency",
       "abbreviations": [
-        "RTE",
-        "Round-trip"
+        "RTE"
       ],
       "ipa": "raʊnd trɪp ɪˈfɪʃənsi",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "The tender requires a minimum AC-to-AC round-trip efficiency (RTE) of 86% at BOL including auxiliary cooling loads.",
+      "exampleZh": "招标文件要求储能系统在生命周期初期（BOL）含辅助液冷功耗的交流侧往返效率（RTE）不低于 86%。",
+      "note": "RTE = 放出电量 / 充入电量。谈判极易踩坑：务必明确是直流侧 RTE、交流侧 RTE，还是含辅助功耗（Aux load）的整站 RTE。",
+      "audioUrl": "audio/ess_round_trip_efficiency_db6f3f4b.mp3"
     },
     {
       "id": "ess_self_discharge_rate_29e844f9",
@@ -181,10 +180,10 @@
       "ttsText": "Self-discharge rate",
       "abbreviations": [],
       "ipa": "sɛlf ˈdɪstʃɑrdʒ reɪt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "LFP cells exhibit a monthly self-discharge rate below 3%, keeping standby energy losses minimal between seasonal dispatches.",
+      "exampleZh": "磷酸铁锂电芯的月自放电率低于 3%，可在跨季节闲置期间将静态电量损耗降至最低。",
+      "note": "包含电化学自身微弱漏电以及 BMS 静态功耗造成的电量下降，海运长途存放前通常预充至 30%~50% SOC。",
+      "audioUrl": "audio/ess_self_discharge_rate_29e844f9.mp3"
     },
     {
       "id": "ess_degradation_b927ef9b",
@@ -194,10 +193,10 @@
       "ttsText": "Degradation",
       "abbreviations": [],
       "ipa": "ˌdɛgrəˈdeɪʃən",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Project financial models account for annual capacity degradation by scheduling DC battery augmentation in years five and ten.",
+      "exampleZh": "项目财务模型计入了逐年容量衰减，并规划在第 5 年和第 10 年进行直流侧电池补容。",
+      "note": "常见区分：日历衰减（Calendar degradation）与循环衰减（Cycle degradation）；合同中通常附带逐年衰减保证曲线。",
+      "audioUrl": "audio/ess_degradation_b927ef9b.mp3"
     },
     {
       "id": "ess_response_time_2d09a418",
@@ -207,10 +206,10 @@
       "ttsText": "Response time",
       "abbreviations": [],
       "ipa": "rɪˈspɑns taɪm",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Fast frequency markets mandate a full-power step response time under 200 milliseconds from grid disturbance detection.",
+      "exampleZh": "快速调频市场要求系统在检测到电网频率扰动后 200 毫秒内完成满功率阶跃响应。",
+      "note": "衡量一次调频/惯量支撑能力的核心指标，包含信号采样延迟、EMS/PPC 通信时间与 PCS 功率爬坡时间。",
+      "audioUrl": "audio/ess_response_time_2d09a418.mp3"
     },
     {
       "id": "ess_dead_band_d38ffbe7",
@@ -220,10 +219,10 @@
       "ttsText": "Dead band",
       "abbreviations": [],
       "ipa": "dɛd bænd",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Setting a ±0.015 Hz frequency dead band prevents the BESS from cycling unnecessarily on minor normal grid fluctuations.",
+      "exampleZh": "设置 ±0.015 Hz 频率死区可避免储能系统因电网正常微幅波动而频繁无效动作。",
+      "note": "在死区范围内系统不响应调节以减少电池磨损与损耗；海外并网规范（如澳洲 AEMO / 英国）常严格规定死区上限。",
+      "audioUrl": "audio/ess_dead_band_d38ffbe7.mp3"
     },
     {
       "id": "ess_thermal_runaway_471793d3",
@@ -233,10 +232,10 @@
       "ttsText": "Thermal runaway",
       "abbreviations": [],
       "ipa": "ˈθərməl ˈrənəˌweɪ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "UL 9540A testing evaluates whether a single-cell thermal runaway propagates to adjacent modules or racks.",
+      "exampleZh": "UL 9540A 测试重点评估单颗电芯发生热失控后是否会向相邻模组或电池簇蔓延。",
+      "note": "储能安全头号红线（热失控蔓延称为 Thermal runaway propagation）；防护核心是隔热阻燃、可燃气体排爆与喷淋降温。",
+      "audioUrl": "audio/ess_thermal_runaway_471793d3.mp3"
     },
     {
       "id": "ess_thermal_management_afd58897",
@@ -246,10 +245,10 @@
       "ttsText": "Thermal management",
       "abbreviations": [],
       "ipa": "ˈθərməl ˈmænɪʤmənt",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Liquid-cooling thermal management keeps intra-rack cell temperature gradients within 3 °C during continuous 0.5C operation.",
+      "exampleZh": "液冷热管理系统在 0.5C 持续充放电工况下可将单簇内电芯温差控制在 3 °C 以内。",
+      "note": "主流方案从风冷（Air cooling）全面转向液冷（Liquid cooling）；极低温温差小可显著延缓簇内衰减分化。",
+      "audioUrl": "audio/ess_thermal_management_afd58897.mp3"
     },
     {
       "id": "ess_balancing_equalization_b6e6be98",
@@ -259,10 +258,10 @@
       "ttsText": "Balancing, Equalization",
       "abbreviations": [],
       "ipa": "ˈbælənsɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Routine cell balancing recovers lost usable pack capacity caused by minor self-discharge differences among series cells.",
+      "exampleZh": "定期电芯均衡可消除串联电芯因微小自放电差异导致的木桶效应，找回损失的可用容量。",
+      "note": "解决电芯一致性偏离的关键手段（即消除“短板效应”），在满充末段电压爬升区实施效果最明显。",
+      "audioUrl": "audio/ess_balancing_equalization_b6e6be98.mp3"
     },
     {
       "id": "ess_active_balancing_8b520269",
@@ -272,10 +271,10 @@
       "ttsText": "Active balancing",
       "abbreviations": [],
       "ipa": "ˈæktɪv ˈbælənsɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Active balancing transfers excess charge from high-voltage cells to low-voltage cells via DC/DC circuits instead of wasting heat.",
+      "exampleZh": "主动均衡通过 DC/DC 电路将高电压电芯的多余电量转移至低电压电芯，避免以热能形式白白耗散。",
+      "note": "能量转移型，均衡电流较大（通常 1~5 A）且发热小，但电路成本高、控制复杂度高。",
+      "audioUrl": "audio/ess_active_balancing_8b520269.mp3"
     },
     {
       "id": "ess_passive_balancing_fc0f0faf",
@@ -285,10 +284,10 @@
       "ttsText": "Passive balancing",
       "abbreviations": [],
       "ipa": "ˈpæsɪv ˈbælənsɪŋ",
-      "exampleEn": null,
-      "exampleZh": null,
-      "note": null,
-      "audioUrl": null
+      "exampleEn": "Most utility BESS racks use cost-effective passive balancing resistors to bleed down overcharged cells near top of charge.",
+      "exampleZh": "目前多数大型储能电池簇采用性价比高的被动均衡电阻，在充电末期将高电压电芯多余电量放掉。",
+      "note": "能量耗散型（电阻放热），结构简单、可靠性高、成本低，均衡电流较小（通常 50~200 mA），是目前大储主流。",
+      "audioUrl": "audio/ess_passive_balancing_fc0f0faf.mp3"
     }
   ]
 }

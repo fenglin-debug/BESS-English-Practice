@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.essvocab.app.data.StudyMode
 import com.essvocab.app.data.StudyRepository
+import com.essvocab.app.data.local.ReviewCardEntity
 import com.essvocab.app.data.local.WordWithReview
 import com.essvocab.app.data.preferences.AppPreferencesRepository
 import com.essvocab.app.domain.audio.PronunciationPlayer
@@ -39,6 +40,7 @@ data class StudyUiState(
     val stage: StudyStage = StudyStage.RECOGNIZE,
     val currentWord: WordWithReview? = null,
     val hintLevel: Int = 0,
+    val maxHintLevel: Int = 1,
     val hintText: String = "",
     val initialVerdict: InitialVerdict = InitialVerdict.NONE,
     val ratingPreviews: Map<FsrsRating, FsrsScheduleOutcome> = emptyMap(),
@@ -47,6 +49,8 @@ data class StudyUiState(
     val completedCount: Int = 0,
     val goodOrEasyCount: Int = 0,
     val slashedCount: Int = 0,
+    val canUndo: Boolean = false,
+    val feedbackMessage: String? = null,
     val streakSummary: StreakSummary = ShanbayMechanics.calculateStreak(emptyList()),
     val ttsAvailability: TtsAvailability = TtsAvailability.INITIALIZING,
 )
@@ -59,9 +63,22 @@ class StudyViewModel @Inject constructor(
     private val pronunciationPlayer: PronunciationPlayer,
 ) : ViewModel() {
 
+    private data class UndoEntry(
+        val queueSnapshot: List<WordWithReview>,
+        val wordId: String,
+        val previousCard: ReviewCardEntity?,
+        val logId: Long,
+        val completedCount: Int,
+        val goodOrEasyCount: Int,
+        val slashedCount: Int,
+    )
+
     private val rawMode: String = savedStateHandle.get<String>("mode") ?: "book"
 
     private val queue = ArrayDeque<WordWithReview>()
+    private val undoStack = ArrayDeque<UndoEntry>()
+    private var isCommitting = false
+
     private val _uiState = MutableStateFlow(StudyUiState())
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
 
@@ -81,11 +98,15 @@ class StudyViewModel @Inject constructor(
 
     fun loadSession(overrideExtra: Boolean = false) {
         viewModelScope.launch {
+            undoStack.clear()
+            isCommitting = false
             _uiState.value = _uiState.value.copy(
                 isLoading = true,
                 completedCount = 0,
                 goodOrEasyCount = 0,
                 slashedCount = 0,
+                canUndo = false,
+                feedbackMessage = null,
             )
             queue.clear()
 
@@ -126,6 +147,7 @@ class StudyViewModel @Inject constructor(
                     stage = StudyStage.COMPLETED,
                     currentWord = null,
                     remainingCount = 0,
+                    canUndo = false,
                 )
             } else {
                 showNextCard(titleOverride = resolvedTitle)
@@ -141,27 +163,38 @@ class StudyViewModel @Inject constructor(
                 stage = StudyStage.COMPLETED,
                 currentWord = null,
                 hintLevel = 0,
+                maxHintLevel = 1,
                 hintText = "",
                 initialVerdict = InitialVerdict.NONE,
                 ratingPreviews = emptyMap(),
                 remainingCount = 0,
+                canUndo = undoStack.isNotEmpty(),
             )
             return
         }
 
         val previews = studyRepository.previewRatings(next)
         val settings = preferencesRepository.getCurrentSettings()
+        val maxLevel = ShanbayMechanics.maxHintLevel(next.word.exampleEn)
+
         _uiState.value = _uiState.value.copy(
             isLoading = false,
             sessionTitle = titleOverride ?: _uiState.value.sessionTitle,
             stage = StudyStage.RECOGNIZE,
             currentWord = next,
             hintLevel = 0,
+            maxHintLevel = maxLevel,
             hintText = "",
             initialVerdict = InitialVerdict.NONE,
             ratingPreviews = previews,
             isFavorite = next.card?.isFavorite ?: false,
             remainingCount = queue.size,
+            canUndo = undoStack.isNotEmpty(),
+        )
+
+        pronunciationPlayer.prefetch(
+            audioUrls = queue.take(4).mapNotNull { it.word.audioUrl },
+            allowNetwork = settings.onlineSyncConsentGranted,
         )
 
         if (settings.autoPlayAudio) {
@@ -170,6 +203,7 @@ class StudyViewModel @Inject constructor(
                 audioUrl = next.word.audioUrl,
                 accent = settings.ttsAccent,
                 speechRate = settings.ttsSpeechRate,
+                allowNetworkAudio = settings.onlineSyncConsentGranted,
             )
         }
     }
@@ -184,14 +218,19 @@ class StudyViewModel @Inject constructor(
 
     fun onChooseVague() {
         val current = _uiState.value.currentWord ?: return
-        if (_uiState.value.hintLevel == 0) {
+        val maxLevel = ShanbayMechanics.maxHintLevel(current.word.exampleEn)
+        val nextHintLevel = _uiState.value.hintLevel + 1
+        if (nextHintLevel <= maxLevel) {
             val hint = ShanbayMechanics.buildProgressiveHint(
                 zh = current.word.zh,
                 packName = current.packName,
                 abbreviations = current.word.abbreviationsList(),
+                exampleEn = current.word.exampleEn,
+                hintLevel = nextHintLevel,
             )
             _uiState.value = _uiState.value.copy(
-                hintLevel = 1,
+                hintLevel = nextHintLevel,
+                maxHintLevel = maxLevel,
                 hintText = hint,
             )
         } else {
@@ -232,42 +271,135 @@ class StudyViewModel @Inject constructor(
         }
     }
 
+    private fun pushUndo(entry: UndoEntry) {
+        if (undoStack.size >= MAX_UNDO_STEPS) {
+            undoStack.removeFirst()
+        }
+        undoStack.addLast(entry)
+    }
+
     private fun commitAndAdvance(rating: FsrsRating, requeueOffset: Int?) {
-        val current = queue.removeFirstOrNull() ?: return
+        if (isCommitting) return
+        val current = queue.firstOrNull() ?: return
+        isCommitting = true
+        val queueSnapshot = queue.toList()
+        val prevCompleted = _uiState.value.completedCount
+        val prevGoodOrEasy = _uiState.value.goodOrEasyCount
+        val prevSlashed = _uiState.value.slashedCount
+
         viewModelScope.launch {
-            val outcome = studyRepository.submitReview(current, rating)
-            val updatedItem = current.copy(card = outcome.updatedCard)
+            try {
+                queue.removeFirstOrNull()
+                val recorded = studyRepository.submitReview(current, rating)
+                pushUndo(
+                    UndoEntry(
+                        queueSnapshot = queueSnapshot,
+                        wordId = current.word.id,
+                        previousCard = recorded.previousCard,
+                        logId = recorded.logId,
+                        completedCount = prevCompleted,
+                        goodOrEasyCount = prevGoodOrEasy,
+                        slashedCount = prevSlashed,
+                    ),
+                )
 
-            val shouldRequeue = when {
-                rating == FsrsRating.AGAIN && requeueOffset != null -> true
-                rating == FsrsRating.HARD && requeueOffset != null && outcome.updatedCard.scheduledDays == 0 -> true
-                else -> false
-            }
-            if (shouldRequeue && requeueOffset != null) {
-                val insertPos = minOf(requeueOffset, queue.size)
-                queue.add(insertPos, updatedItem)
-            }
+                val updatedItem = current.copy(card = recorded.outcome.updatedCard)
+                val shouldRequeue = when {
+                    rating == FsrsRating.AGAIN && requeueOffset != null -> true
+                    rating == FsrsRating.HARD && requeueOffset != null && recorded.outcome.updatedCard.scheduledDays == 0 -> true
+                    else -> false
+                }
+                if (shouldRequeue && requeueOffset != null) {
+                    val insertPos = minOf(requeueOffset, queue.size)
+                    queue.add(insertPos, updatedItem)
+                }
 
-            _uiState.value = _uiState.value.copy(
-                completedCount = _uiState.value.completedCount + 1,
-                goodOrEasyCount = _uiState.value.goodOrEasyCount +
-                    if (rating == FsrsRating.GOOD || rating == FsrsRating.EASY) 1 else 0,
-            )
-            showNextCard()
+                _uiState.value = _uiState.value.copy(
+                    completedCount = prevCompleted + 1,
+                    goodOrEasyCount = prevGoodOrEasy +
+                        if (rating == FsrsRating.GOOD || rating == FsrsRating.EASY) 1 else 0,
+                    canUndo = undoStack.isNotEmpty(),
+                )
+                showNextCard()
+            } finally {
+                isCommitting = false
+            }
         }
     }
 
     fun onSlashTooEasy() {
-        val current = queue.removeFirstOrNull() ?: return
+        if (isCommitting) return
+        val current = queue.firstOrNull() ?: return
+        isCommitting = true
+        val queueSnapshot = queue.toList()
+        val prevCompleted = _uiState.value.completedCount
+        val prevGoodOrEasy = _uiState.value.goodOrEasyCount
+        val prevSlashed = _uiState.value.slashedCount
+
         viewModelScope.launch {
-            studyRepository.markTooEasy(current)
-            _uiState.value = _uiState.value.copy(
-                completedCount = _uiState.value.completedCount + 1,
-                goodOrEasyCount = _uiState.value.goodOrEasyCount + 1,
-                slashedCount = _uiState.value.slashedCount + 1,
-            )
-            showNextCard()
+            try {
+                queue.removeFirstOrNull()
+                val recorded = studyRepository.markTooEasy(current)
+                pushUndo(
+                    UndoEntry(
+                        queueSnapshot = queueSnapshot,
+                        wordId = current.word.id,
+                        previousCard = recorded.previousCard,
+                        logId = recorded.logId,
+                        completedCount = prevCompleted,
+                        goodOrEasyCount = prevGoodOrEasy,
+                        slashedCount = prevSlashed,
+                    ),
+                )
+                _uiState.value = _uiState.value.copy(
+                    completedCount = prevCompleted + 1,
+                    goodOrEasyCount = prevGoodOrEasy + 1,
+                    slashedCount = prevSlashed + 1,
+                    canUndo = undoStack.isNotEmpty(),
+                )
+                showNextCard()
+            } finally {
+                isCommitting = false
+            }
         }
+    }
+
+    fun onUndoLastReview() {
+        if (isCommitting) return
+        val entry = undoStack.removeLastOrNull() ?: return
+        isCommitting = true
+        viewModelScope.launch {
+            try {
+                studyRepository.undoReview(
+                    wordId = entry.wordId,
+                    previousCard = entry.previousCard,
+                    logId = entry.logId,
+                )
+                queue.clear()
+                val restoredQueue = entry.queueSnapshot.mapIndexed { idx, item ->
+                    if (idx == 0 && item.word.id == entry.wordId) {
+                        item.copy(card = entry.previousCard)
+                    } else {
+                        item
+                    }
+                }
+                queue.addAll(restoredQueue)
+                _uiState.value = _uiState.value.copy(
+                    completedCount = entry.completedCount,
+                    goodOrEasyCount = entry.goodOrEasyCount,
+                    slashedCount = entry.slashedCount,
+                    canUndo = undoStack.isNotEmpty(),
+                    feedbackMessage = "已撤回上一词，记忆状态已还原",
+                )
+                showNextCard()
+            } finally {
+                isCommitting = false
+            }
+        }
+    }
+
+    fun dismissFeedbackMessage() {
+        _uiState.value = _uiState.value.copy(feedbackMessage = null)
     }
 
     fun onToggleFavorite() {
@@ -296,6 +428,21 @@ class StudyViewModel @Inject constructor(
                 audioUrl = current.word.audioUrl,
                 accent = settings.ttsAccent,
                 speechRate = rate,
+                allowNetworkAudio = settings.onlineSyncConsentGranted,
+            )
+        }
+    }
+
+    fun speakExample() {
+        val example = _uiState.value.currentWord?.word?.exampleEn?.takeIf { it.isNotBlank() } ?: return
+        viewModelScope.launch {
+            val settings = preferencesRepository.getCurrentSettings()
+            pronunciationPlayer.speak(
+                ttsText = example,
+                audioUrl = null,
+                accent = settings.ttsAccent,
+                speechRate = settings.ttsSpeechRate,
+                allowNetworkAudio = false,
             )
         }
     }
@@ -313,5 +460,9 @@ class StudyViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         pronunciationPlayer.stop()
+    }
+
+    private companion object {
+        const val MAX_UNDO_STEPS = 20
     }
 }
