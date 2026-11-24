@@ -8,16 +8,24 @@ import com.essvocab.app.data.preferences.AppSettings
 import com.essvocab.app.data.remote.RemoteManifestDto
 import com.essvocab.app.data.remote.RemotePackPayloadDto
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 import java.security.MessageDigest
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.coroutines.resume
 
 interface SyncStateStore {
     suspend fun isOnlineSyncConsentGranted(): Boolean
@@ -73,33 +81,43 @@ class VocabSyncRepository @Inject constructor(
      * Fetches manifest.json from the configured remote source and incrementally downloads
      * only packs whose SHA-256 hash changed or are missing locally.
      * Enforces strict user consent before any HTTP request is issued.
-     * Existing user FSRS progress in review_cards is NEVER overwritten or deleted.
+     * When using the official GitHub repo source, races multiple China-friendly CDN mirrors
+     * concurrently so the fastest reachable node wins.
      */
     suspend fun sync(forceFullCheck: Boolean = false): SyncResult = withContext(Dispatchers.IO) {
         if (!syncStateStore.isOnlineSyncConsentGranted()) {
             return@withContext SyncResult.ConsentRequired
         }
 
-        val configuredUrlStr = syncStateStore.getManifestUrl().trim()
-        if (configuredUrlStr.isBlank()) {
-            return@withContext SyncResult.Error("请先在「设置」中配置有效的远程词库 manifest.json 地址")
+        val configuredUrlStr = AppSettings.normalizeManifestUrl(syncStateStore.getManifestUrl())
+        val candidateUrls = if (configuredUrlStr in AppSettings.OFFICIAL_MIRROR_URLS) {
+            buildList {
+                add(configuredUrlStr)
+                AppSettings.OFFICIAL_MIRROR_URLS.forEach { mirror ->
+                    if (mirror != configuredUrlStr) add(mirror)
+                }
+            }
+        } else {
+            listOf(configuredUrlStr)
         }
 
-        val candidateUrls = buildList {
-            add(configuredUrlStr)
-            if (configuredUrlStr == AppSettings.DEFAULT_MANIFEST_URL) {
-                add(AppSettings.GITHUB_RAW_MANIFEST_URL)
-            }
-        }
+        syncFromCandidates(candidateUrls, forceFullCheck)
+    }
 
-        var lastError: SyncResult.Error? = null
-        for (urlStr in candidateUrls) {
-            when (val res = syncFromSingleUrl(urlStr, forceFullCheck)) {
-                is SyncResult.Updated, is SyncResult.UpToDate, is SyncResult.ConsentRequired -> return@withContext res
-                is SyncResult.Error -> lastError = res
-            }
+    internal suspend fun syncFromCandidates(
+        candidateUrls: List<String>,
+        forceFullCheck: Boolean,
+    ): SyncResult = withContext(Dispatchers.IO) {
+        if (!syncStateStore.isOnlineSyncConsentGranted()) {
+            return@withContext SyncResult.ConsentRequired
         }
-        lastError ?: SyncResult.Error("同步失败，请稍后重试")
+        if (candidateUrls.isEmpty()) {
+            return@withContext SyncResult.Error("未配置有效的远程词库地址")
+        }
+        if (candidateUrls.size == 1) {
+            return@withContext syncFromSingleUrl(candidateUrls.first(), forceFullCheck)
+        }
+        syncWithMirrorRace(candidateUrls, forceFullCheck)
     }
 
     private suspend fun syncFromSingleUrl(
@@ -122,6 +140,87 @@ class VocabSyncRepository @Inject constructor(
             is ManifestFetchResult.Failure -> return SyncResult.Error(fetched.message)
         }
 
+        return applyManifestFromMirror(
+            manifestUrlStr = manifestUrlStr,
+            manifestDto = manifestDto,
+            newEtag = newEtag,
+            localPacksBefore = localPacksBefore,
+            forceFullCheck = forceFullCheck,
+        )
+    }
+
+    private suspend fun syncWithMirrorRace(
+        candidateUrls: List<String>,
+        forceFullCheck: Boolean,
+    ): SyncResult = supervisorScope {
+        val localPacksBefore = vocabDao.getAllPacks().associateBy { it.id }
+        val previousEtag = if (forceFullCheck || localPacksBefore.isEmpty()) "" else syncStateStore.getManifestEtag()
+
+        val channel = Channel<MirrorManifestAttempt>(Channel.BUFFERED)
+        val probeJobs = candidateUrls.map { mirrorUrlStr ->
+            launch(Dispatchers.IO) {
+                val httpUrl = mirrorUrlStr.toHttpUrlOrNull()
+                val fetchResult = if (httpUrl == null) {
+                    ManifestFetchResult.Failure("词库地址格式无效：$mirrorUrlStr")
+                } else {
+                    fetchManifestCancellable(httpUrl, previousEtag)
+                }
+                channel.trySend(MirrorManifestAttempt(mirrorUrlStr, fetchResult))
+            }
+        }
+
+        var lastError: SyncResult.Error? = null
+        try {
+            repeat(candidateUrls.size) {
+                val attempt = channel.receive()
+                when (val fetched = attempt.result) {
+                    is ManifestFetchResult.NotModified -> {
+                        probeJobs.forEach { it.cancel() }
+                        val count = vocabDao.countActiveWords()
+                        return@supervisorScope SyncResult.UpToDate(datasetVersion = "", totalWords = count)
+                    }
+
+                    is ManifestFetchResult.Success -> {
+                        val applied = applyManifestFromMirror(
+                            manifestUrlStr = attempt.mirrorUrlStr,
+                            manifestDto = fetched.dto,
+                            newEtag = fetched.etag,
+                            localPacksBefore = localPacksBefore,
+                            forceFullCheck = forceFullCheck,
+                        )
+                        when (applied) {
+                            is SyncResult.Updated,
+                            is SyncResult.UpToDate,
+                            is SyncResult.ConsentRequired,
+                            -> {
+                                probeJobs.forEach { it.cancel() }
+                                return@supervisorScope applied
+                            }
+
+                            is SyncResult.Error -> lastError = applied
+                        }
+                    }
+
+                    is ManifestFetchResult.Failure -> {
+                        lastError = SyncResult.Error(fetched.message)
+                    }
+                }
+            }
+        } finally {
+            probeJobs.forEach { it.cancel() }
+            channel.close()
+        }
+
+        SyncResult.Error("已自动尝试多个加速节点仍无法连接，请检查手机网络后重试（${lastError?.message ?: "网络超时"}）")
+    }
+
+    private suspend fun applyManifestFromMirror(
+        manifestUrlStr: String,
+        manifestDto: RemoteManifestDto,
+        newEtag: String?,
+        localPacksBefore: Map<String, VocabPackEntity>,
+        forceFullCheck: Boolean,
+    ): SyncResult {
         if (manifestDto.packs.isEmpty()) {
             return SyncResult.Error("远程清单未包含任何词库分类")
         }
@@ -152,11 +251,17 @@ class VocabSyncRepository @Inject constructor(
                 continue
             }
 
-            val packUrl = manifestHttpUrl.resolve(packMeta.path)
+            val packUrl = resolvePackUrl(manifestUrlStr, packMeta.path)
                 ?: return SyncResult.Error("无法解析分类包地址：${packMeta.path}")
 
+            val packRequest = Request.Builder()
+                .url(packUrl)
+                .header("User-Agent", USER_AGENT)
+                .get()
+                .build()
+
             val packBytes = try {
-                okHttpClient.newCall(Request.Builder().url(packUrl).get().build()).execute().use { resp ->
+                okHttpClient.newCall(packRequest).execute().use { resp ->
                     if (!resp.isSuccessful) {
                         return SyncResult.Error(
                             "下载分类「${packMeta.name}」失败（HTTP ${resp.code}）",
@@ -239,9 +344,10 @@ class VocabSyncRepository @Inject constructor(
         }
     }
 
-    private fun fetchManifest(manifestHttpUrl: HttpUrl, previousEtag: String): ManifestFetchResult {
-        val request = Request.Builder()
+    private fun buildManifestRequest(manifestHttpUrl: HttpUrl, previousEtag: String): Request {
+        return Request.Builder()
             .url(manifestHttpUrl)
+            .header("User-Agent", USER_AGENT)
             .apply {
                 if (previousEtag.isNotBlank()) {
                     header("If-None-Match", previousEtag)
@@ -249,25 +355,68 @@ class VocabSyncRepository @Inject constructor(
             }
             .get()
             .build()
+    }
 
+    private fun parseManifestResponse(response: Response): ManifestFetchResult {
+        if (response.code == 304) {
+            return ManifestFetchResult.NotModified
+        }
+        if (!response.isSuccessful) {
+            return ManifestFetchResult.Failure("拉取词库清单失败（HTTP ${response.code}）")
+        }
+        val bodyStr = response.body?.string()
+            ?: return ManifestFetchResult.Failure("词库清单响应内容为空")
+        return try {
+            val parsed = json.decodeFromString<RemoteManifestDto>(bodyStr)
+            ManifestFetchResult.Success(parsed, response.header("ETag"))
+        } catch (e: Exception) {
+            ManifestFetchResult.Failure("词库清单解析失败：${e.message ?: "JSON 格式错误"}")
+        }
+    }
+
+    private fun fetchManifest(manifestHttpUrl: HttpUrl, previousEtag: String): ManifestFetchResult {
+        val request = buildManifestRequest(manifestHttpUrl, previousEtag)
         return try {
             okHttpClient.newCall(request).execute().use { response ->
-                if (response.code == 304) {
-                    return ManifestFetchResult.NotModified
-                }
-                if (!response.isSuccessful) {
-                    return ManifestFetchResult.Failure("拉取词库清单失败（HTTP ${response.code}）")
-                }
-                val bodyStr = response.body?.string()
-                    ?: return ManifestFetchResult.Failure("词库清单响应内容为空")
-                val parsed = json.decodeFromString<RemoteManifestDto>(bodyStr)
-                ManifestFetchResult.Success(parsed, response.header("ETag"))
+                parseManifestResponse(response)
             }
         } catch (e: IOException) {
             ManifestFetchResult.Failure("网络连接失败：${e.message ?: "请检查网络或词库源地址"}")
         } catch (e: Exception) {
             ManifestFetchResult.Failure("词库清单解析失败：${e.message ?: "JSON 格式错误"}")
         }
+    }
+
+    private suspend fun fetchManifestCancellable(
+        manifestHttpUrl: HttpUrl,
+        previousEtag: String,
+    ): ManifestFetchResult = suspendCancellableCoroutine { cont ->
+        val call = okHttpClient.newCall(buildManifestRequest(manifestHttpUrl, previousEtag))
+        cont.invokeOnCancellation { call.cancel() }
+        call.enqueue(
+            object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    if (cont.isActive) {
+                        cont.resume(
+                            ManifestFetchResult.Failure(
+                                "网络连接失败：${e.message ?: "请检查网络或词库源地址"}",
+                            ),
+                        )
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val result = try {
+                        response.use { parseManifestResponse(it) }
+                    } catch (e: Exception) {
+                        ManifestFetchResult.Failure("词库清单解析失败：${e.message ?: "JSON 格式错误"}")
+                    }
+                    if (cont.isActive) {
+                        cont.resume(result)
+                    }
+                }
+            },
+        )
     }
 
     suspend fun testConnection(url: String): SyncResult = withContext(Dispatchers.IO) {
@@ -277,7 +426,8 @@ class VocabSyncRepository @Inject constructor(
         val httpUrl = url.trim().toHttpUrlOrNull()
             ?: return@withContext SyncResult.Error("URL 格式不正确")
         try {
-            okHttpClient.newCall(Request.Builder().url(httpUrl).get().build()).execute().use { resp ->
+            val req = Request.Builder().url(httpUrl).header("User-Agent", USER_AGENT).get().build()
+            okHttpClient.newCall(req).execute().use { resp ->
                 if (!resp.isSuccessful) {
                     return@withContext SyncResult.Error("连接失败（HTTP ${resp.code}）")
                 }
@@ -294,6 +444,11 @@ class VocabSyncRepository @Inject constructor(
         }
     }
 
+    private data class MirrorManifestAttempt(
+        val mirrorUrlStr: String,
+        val result: ManifestFetchResult,
+    )
+
     private sealed interface ManifestFetchResult {
         data object NotModified : ManifestFetchResult
         data class Success(val dto: RemoteManifestDto, val etag: String?) : ManifestFetchResult
@@ -301,6 +456,17 @@ class VocabSyncRepository @Inject constructor(
     }
 
     companion object {
+        private const val USER_AGENT = "EssVocab-Android/1.0"
+
+        fun resolvePackUrl(manifestUrlStr: String, packPath: String): HttpUrl? {
+            val trimmedPath = packPath.trim()
+            if (trimmedPath.startsWith("http://") || trimmedPath.startsWith("https://")) {
+                return trimmedPath.toHttpUrlOrNull()
+            }
+            val baseDir = manifestUrlStr.trim().substringBefore('?').substringBeforeLast('/')
+            return "$baseDir/${trimmedPath.trimStart('/')}".toHttpUrlOrNull()
+        }
+
         fun sha256Hex(bytes: ByteArray): String {
             val digest = MessageDigest.getInstance("SHA-256").digest(bytes)
             return digest.joinToString("") { "%02x".format(it) }

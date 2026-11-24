@@ -5,6 +5,7 @@ import com.essvocab.app.data.local.VocabDao
 import com.essvocab.app.data.local.VocabPackEntity
 import com.essvocab.app.data.local.VocabWordEntity
 import com.essvocab.app.data.local.WordWithReview
+import com.essvocab.app.data.preferences.AppSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -219,6 +220,108 @@ class VocabSyncRepositoryTest {
         assertTrue(res is SyncResult.Error)
         assertTrue((res as SyncResult.Error).message.contains("SHA-256"))
         assertEquals(0, vocabDao.countActiveWords())
+    }
+
+    @Test
+    fun normalizeManifestUrlRecoversFromGithubRepoUrlAndPlaceholders() {
+        assertEquals(
+            AppSettings.DEFAULT_MANIFEST_URL,
+            AppSettings.normalizeManifestUrl("https://github.com/fenglin-debug/BESS-English-Practice.git"),
+        )
+        assertEquals(
+            AppSettings.DEFAULT_MANIFEST_URL,
+            AppSettings.normalizeManifestUrl("https://github.com/fenglin-debug/BESS-English-Practice"),
+        )
+        assertEquals(
+            AppSettings.DEFAULT_MANIFEST_URL,
+            AppSettings.normalizeManifestUrl("https://raw.githubusercontent.com/<YOUR_GITHUB_USER>/repo/main/manifest.json"),
+        )
+        assertEquals(
+            AppSettings.DEFAULT_MANIFEST_URL,
+            AppSettings.normalizeManifestUrl("   "),
+        )
+        assertEquals(
+            "http://10.0.2.2:8000/manifest.json",
+            AppSettings.normalizeManifestUrl("http://10.0.2.2:8000/manifest.json"),
+        )
+    }
+
+    @Test
+    fun resolvePackUrlPreservesProxyPrefixUrls() {
+        val resolved = VocabSyncRepository.resolvePackUrl(
+            "https://ghfast.top/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/manifest.json",
+            "packs/basic_system.json",
+        )
+        assertEquals(
+            "https://ghfast.top/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/packs/basic_system.json",
+            resolved?.toString(),
+        )
+    }
+
+    @Test
+    fun syncMirrorRaceSucceedsWhenPrimaryMirrorFails() = runTest {
+        val mirror2 = MockWebServer()
+        mirror2.start()
+        try {
+            val packJson = """
+                {
+                  "packId": "basic_system",
+                  "packName": "基础术语与系统",
+                  "description": "储能基础术语",
+                  "version": 1,
+                  "words": [
+                    {
+                      "id": "ess_bess_001",
+                      "seq": 1,
+                      "zh": "电池储能系统",
+                      "en": "Battery energy storage system (BESS)",
+                      "ttsText": "Battery energy storage system",
+                      "abbreviations": ["BESS"],
+                      "ipa": "ˈbætəri ˈɛnərʤi ˈstɔrɪʤ ˈsɪstəm"
+                    }
+                  ]
+                }
+            """.trimIndent()
+            val packHash = VocabSyncRepository.sha256Hex(packJson.toByteArray())
+            val manifestJson = """
+                {
+                  "schemaVersion": 1,
+                  "datasetVersion": "2026.11.24.1",
+                  "totalWords": 1,
+                  "packs": [
+                    {
+                      "id": "basic_system",
+                      "name": "基础术语与系统",
+                      "order": 1,
+                      "wordCount": 1,
+                      "version": 1,
+                      "sha256": "$packHash",
+                      "path": "packs/basic_system.json"
+                    }
+                  ]
+                }
+            """.trimIndent()
+
+            // Mirror 1 fails immediately with HTTP 500
+            server.enqueue(MockResponse().setResponseCode(500))
+            // Mirror 2 succeeds with valid manifest + pack
+            mirror2.enqueue(MockResponse().setBody(manifestJson).addHeader("ETag", "\"m2-v1\""))
+            mirror2.enqueue(MockResponse().setBody(packJson))
+
+            val res = repository.syncFromCandidates(
+                candidateUrls = listOf(
+                    server.url("/manifest.json").toString(),
+                    mirror2.url("/manifest.json").toString(),
+                ),
+                forceFullCheck = true,
+            )
+
+            assertTrue("Expected Updated but got $res", res is SyncResult.Updated)
+            assertEquals(1, (res as SyncResult.Updated).totalWords)
+            assertEquals("电池储能系统", vocabDao.words["ess_bess_001"]?.zh)
+        } finally {
+            mirror2.shutdown()
+        }
     }
 
     private class FakeSyncStateStore(

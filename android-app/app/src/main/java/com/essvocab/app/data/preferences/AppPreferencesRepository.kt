@@ -51,6 +51,28 @@ data class AppSettings(
         const val GITHUB_RAW_MANIFEST_URL =
             "https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/manifest.json"
         const val EMULATOR_LOCAL_URL = "http://10.0.2.2:8000/manifest.json"
+
+        val OFFICIAL_MIRROR_URLS: List<String> = listOf(
+            DEFAULT_MANIFEST_URL,
+            "https://fastly.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/manifest.json",
+            "https://gcore.jsdelivr.net/gh/fenglin-debug/BESS-English-Practice@main/vocab-repo/dist/manifest.json",
+            "https://ghfast.top/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/manifest.json",
+            "https://gh-proxy.com/https://raw.githubusercontent.com/fenglin-debug/BESS-English-Practice/main/vocab-repo/dist/manifest.json",
+            GITHUB_RAW_MANIFEST_URL,
+        )
+
+        fun normalizeManifestUrl(rawUrl: String?): String {
+            val trimmed = rawUrl?.trim().orEmpty()
+            if (trimmed.isBlank()) return DEFAULT_MANIFEST_URL
+            val pathWithoutQuery = trimmed.substringBefore('?').lowercase()
+            val isInvalidRepoOrPlaceholder =
+                trimmed.contains("<YOUR_GITHUB_USER>") ||
+                    trimmed.contains("<你的用户名>") ||
+                    pathWithoutQuery.contains("://github.com/") ||
+                    pathWithoutQuery.endsWith(".git") ||
+                    !pathWithoutQuery.endsWith(".json")
+            return if (isInvalidRepoOrPlaceholder) DEFAULT_MANIFEST_URL else trimmed
+        }
     }
 }
 
@@ -72,16 +94,7 @@ class AppPreferencesRepository @Inject constructor(
     }
 
     val settingsFlow: Flow<AppSettings> = context.settingsDataStore.data.map { prefs ->
-        val rawUrl = prefs[Keys.MANIFEST_URL]
-        val resolvedUrl = if (
-            rawUrl.isNullOrBlank() ||
-            rawUrl.contains("<YOUR_GITHUB_USER>") ||
-            rawUrl.contains("<你的用户名>")
-        ) {
-            AppSettings.DEFAULT_MANIFEST_URL
-        } else {
-            rawUrl
-        }
+        val resolvedUrl = AppSettings.normalizeManifestUrl(prefs[Keys.MANIFEST_URL])
         AppSettings(
             onlineSyncConsentGranted = prefs[Keys.ONLINE_SYNC_CONSENT] ?: false,
             manifestUrl = resolvedUrl,
@@ -105,7 +118,7 @@ class AppPreferencesRepository @Inject constructor(
     }
 
     suspend fun updateManifestUrl(url: String) {
-        val cleaned = url.trim()
+        val cleaned = AppSettings.normalizeManifestUrl(url)
         context.settingsDataStore.edit { prefs ->
             val changed = prefs[Keys.MANIFEST_URL] != cleaned
             prefs[Keys.MANIFEST_URL] = cleaned
