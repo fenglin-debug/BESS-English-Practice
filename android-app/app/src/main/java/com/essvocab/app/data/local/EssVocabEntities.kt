@@ -46,7 +46,7 @@ data class VocabWordEntity(
 }
 
 /**
- * Decoupled FSRS memory state keyed by wordId.
+ * Decoupled FSRS + Shanbay memory state keyed by wordId.
  * Never overwritten or deleted during remote vocabulary pack updates.
  */
 @Entity(
@@ -67,6 +67,8 @@ data class ReviewCardEntity(
     val lapses: Int = 0,
     val dueAtMillis: Long = 0L,
     val lastReviewAtMillis: Long? = null,
+    val isFavorite: Boolean = false,
+    val isMasteredBypass: Boolean = false,
 ) {
     companion object {
         const val CARD_STATE_NEW = 0
@@ -89,6 +91,14 @@ data class ReviewLogEntity(
     val difficultyAfter: Double,
     val scheduledDays: Int,
     val reviewedAtMillis: Long,
+)
+
+@Entity(tableName = "daily_checkins")
+data class DailyCheckInEntity(
+    @PrimaryKey val dateKey: String,
+    val reviewedCount: Int,
+    val newLearnedCount: Int,
+    val checkedInAtMillis: Long,
 )
 
 data class WordWithReview(

@@ -2,6 +2,7 @@ package com.essvocab.app.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.essvocab.app.data.BookStats
 import com.essvocab.app.data.StudyRepository
 import com.essvocab.app.data.local.PackSummaryRow
 import com.essvocab.app.data.preferences.AppPreferencesRepository
@@ -9,30 +10,43 @@ import com.essvocab.app.data.preferences.AppSettings
 import com.essvocab.app.data.sync.SyncResult
 import com.essvocab.app.data.sync.VocabSyncRepository
 import com.essvocab.app.data.sync.VocabSyncScheduler
+import com.essvocab.app.domain.shanbay.ShanbayMechanics
+import com.essvocab.app.domain.shanbay.StreakSummary
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.ceil
+import kotlin.math.max
+import kotlin.math.min
 
 data class HomeUiState(
     val settings: AppSettings = AppSettings(),
-    val packs: List<PackSummaryRow> = emptyList(),
-    val totalWords: Int = 0,
-    val dueCount: Int = 0,
-    val unseenCount: Int = 0,
-    val todayReviewedCount: Int = 0,
-    val masteredCount: Int = 0,
+    val totalActiveWords: Int = 0,
+    val selectedBookName: String = "储能行业全套词汇",
+    val bookTotalWords: Int = 0,
+    val bookMasteredWords: Int = 0,
+    val todayNewRemaining: Int = 0,
+    val todayReviewRemaining: Int = 0,
+    val estimatedDaysLeft: Int = 0,
+    val notebookCount: Int = 0,
+    val streakSummary: StreakSummary = ShanbayMechanics.calculateStreak(emptyList()),
     val isSyncing: Boolean = false,
     val showConsentDialog: Boolean = false,
     val syncBannerMessage: String? = null,
     val syncBannerIsError: Boolean = false,
 )
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val studyRepository: StudyRepository,
@@ -45,30 +59,56 @@ class HomeViewModel @Inject constructor(
     private var pendingForceFullCheck = false
     private var hasHandledStartupCheck = false
 
-    private val statsFlow = combine(
+    private val bookStatsFlow = preferencesRepository.settingsFlow
+        .map { it.selectedPackId }
+        .distinctUntilChanged()
+        .flatMapLatest { packId ->
+            studyRepository.observeBookStats(packId)
+        }
+
+    private val repoMetaFlow = combine(
         studyRepository.observeTotalActiveWords(),
-        studyRepository.observeDueCount(),
-        studyRepository.observeUnseenCount(),
-        studyRepository.observeTodayReviewedCount(),
-        studyRepository.observeMasteredCount(),
-    ) { total, due, unseen, today, mastered ->
-        HomeStats(total, due, unseen, today, mastered)
+        studyRepository.observePackSummaries(),
+        studyRepository.observeNotebookCount(),
+        studyRepository.observeCheckInStreak(),
+    ) { totalActive, packs, notebookCount, streak ->
+        RepoMeta(totalActive, packs, notebookCount, streak)
     }
 
     val uiState: StateFlow<HomeUiState> = combine(
         preferencesRepository.settingsFlow,
-        studyRepository.observePackSummaries(),
-        statsFlow,
+        bookStatsFlow,
+        repoMetaFlow,
         syncState,
-    ) { settings, packs, stats, sync ->
+    ) { settings, bookStats, meta, sync ->
+        val selectedPackName = if (settings.selectedPackId.isBlank()) {
+            "储能行业全套词汇"
+        } else {
+            meta.packs.firstOrNull { it.id == settings.selectedPackId }?.name ?: "储能行业全套词汇"
+        }
+
+        val dailyNewRemaining = min(
+            bookStats.unseenWords,
+            max(0, settings.dailyNewLimit - bookStats.todayNewLearned),
+        )
+        val remainingToMaster = (bookStats.totalWords - bookStats.masteredWords).coerceAtLeast(0)
+        val estimatedDays = if (remainingToMaster == 0) {
+            0
+        } else {
+            ceil(remainingToMaster.toDouble() / settings.dailyNewLimit.coerceAtLeast(1)).toInt()
+        }
+
         HomeUiState(
             settings = settings,
-            packs = packs,
-            totalWords = stats.totalWords,
-            dueCount = stats.dueCount,
-            unseenCount = stats.unseenCount,
-            todayReviewedCount = stats.todayReviewedCount,
-            masteredCount = stats.masteredCount,
+            totalActiveWords = meta.totalActive,
+            selectedBookName = selectedPackName,
+            bookTotalWords = bookStats.totalWords,
+            bookMasteredWords = bookStats.masteredWords,
+            todayNewRemaining = dailyNewRemaining,
+            todayReviewRemaining = bookStats.dueWords,
+            estimatedDaysLeft = estimatedDays,
+            notebookCount = meta.notebookCount,
+            streakSummary = meta.streak,
             isSyncing = sync.isSyncing,
             showConsentDialog = sync.showConsentDialog,
             syncBannerMessage = sync.message,
@@ -177,7 +217,6 @@ class HomeViewModel @Inject constructor(
 
             is SyncResult.Error -> {
                 if (silentWhenUpToDateOrOffline) {
-                    // Stay unobtrusive when offline and user already has local cached words
                     syncState.value = SyncUiStatus(isSyncing = false)
                 } else {
                     syncState.value = SyncUiStatus(
@@ -194,12 +233,11 @@ class HomeViewModel @Inject constructor(
         syncState.value = syncState.value.copy(message = null, isError = false)
     }
 
-    private data class HomeStats(
-        val totalWords: Int,
-        val dueCount: Int,
-        val unseenCount: Int,
-        val todayReviewedCount: Int,
-        val masteredCount: Int,
+    private data class RepoMeta(
+        val totalActive: Int,
+        val packs: List<PackSummaryRow>,
+        val notebookCount: Int,
+        val streak: StreakSummary,
     )
 
     private data class SyncUiStatus(

@@ -1,10 +1,8 @@
 package com.essvocab.app.ui.study
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,13 +18,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.VolumeUp
+import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.CheckCircle
+import androidx.compose.material.icons.rounded.ContentCut
+import androidx.compose.material.icons.rounded.LocalFireDepartment
 import androidx.compose.material.icons.rounded.SlowMotionVideo
+import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material.icons.rounded.StarBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -43,11 +47,14 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -55,15 +62,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.essvocab.app.data.local.ReviewCardEntity
 import com.essvocab.app.data.local.WordWithReview
 import com.essvocab.app.domain.audio.TtsAvailability
 import com.essvocab.app.domain.fsrs.FsrsRating
 import com.essvocab.app.domain.fsrs.FsrsScheduleOutcome
-import com.essvocab.app.ui.theme.EnergyAmber
-import com.essvocab.app.ui.theme.EnergyBlue
-import com.essvocab.app.ui.theme.EnergyRed
-import com.essvocab.app.ui.theme.GridEmerald
+import com.essvocab.app.domain.shanbay.ShanbayMechanics
+import com.essvocab.app.ui.theme.GoogleBlue
+import com.essvocab.app.ui.theme.GoogleBlueOnSoft
+import com.essvocab.app.ui.theme.GoogleBlueSoft
+import com.essvocab.app.ui.theme.GoogleFourOnSoftColors
+import com.essvocab.app.ui.theme.GoogleFourSoftColors
+import com.essvocab.app.ui.theme.GoogleGreen
+import com.essvocab.app.ui.theme.GoogleGreenOnSoft
+import com.essvocab.app.ui.theme.GoogleGreenSoft
+import com.essvocab.app.ui.theme.GoogleRed
+import com.essvocab.app.ui.theme.GoogleRedOnSoft
+import com.essvocab.app.ui.theme.GoogleRedSoft
+import com.essvocab.app.ui.theme.GoogleYellowOnSoft
+import com.essvocab.app.ui.theme.GoogleYellowSoft
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,9 +90,13 @@ fun StudyScreen(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
-                title = { Text(state.packTitle, maxLines = 1) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                ),
+                title = { Text(state.sessionTitle, maxLines = 1) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
@@ -86,17 +106,25 @@ fun StudyScreen(
                     }
                 },
                 actions = {
-                    if (!state.sessionFinished && !state.isLoading) {
-                        Surface(
-                            color = MaterialTheme.colorScheme.surfaceVariant,
-                            shape = RoundedCornerShape(999.dp),
-                            modifier = Modifier.padding(end = 12.dp),
-                        ) {
-                            Text(
-                                text = "剩余 ${state.remainingCount}",
-                                style = MaterialTheme.typography.labelMedium,
-                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                    if (state.stage != StudyStage.COMPLETED && state.currentWord != null) {
+                        IconButton(onClick = viewModel::onToggleFavorite) {
+                            Icon(
+                                imageVector = if (state.isFavorite) Icons.Rounded.Star else Icons.Rounded.StarBorder,
+                                contentDescription = if (state.isFavorite) "移出生词本" else "加入生词本",
+                                tint = if (state.isFavorite) GoogleYellowOnSoft else MaterialTheme.colorScheme.onSurfaceVariant,
                             )
+                        }
+                        TextButton(
+                            onClick = viewModel::onSlashTooEasy,
+                            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.ContentCut,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text("斩", fontWeight = FontWeight.Bold)
                         }
                     }
                 },
@@ -113,12 +141,12 @@ fun StudyScreen(
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
 
-                state.sessionFinished || state.currentWord == null -> {
-                    StudySessionCompleteView(
-                        completedCount = state.completedCount,
-                        goodOrEasyCount = state.goodOrEasyCount,
+                state.stage == StudyStage.COMPLETED || state.currentWord == null -> {
+                    ShanbaySessionCompleteView(
+                        state = state,
+                        onCheckIn = viewModel::onCompleteCheckIn,
+                        onExtraRound = viewModel::onStartExtraRound,
                         onBack = onBack,
-                        onReload = viewModel::loadSession,
                     )
                 }
 
@@ -132,24 +160,42 @@ fun StudyScreen(
                             .fillMaxSize()
                             .padding(horizontal = 16.dp, vertical = 8.dp),
                     ) {
-                        LinearProgressIndicator(
-                            progress = { progress },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(5.dp),
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        ) {
+                            LinearProgressIndicator(
+                                progress = { progress },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(6.dp)
+                                    .clip(RoundedCornerShape(999.dp)),
+                            )
+                            Surface(
+                                color = MaterialTheme.colorScheme.surfaceVariant,
+                                shape = RoundedCornerShape(999.dp),
+                            ) {
+                                Text(
+                                    text = "剩余 ${state.remainingCount}",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                                )
+                            }
+                        }
 
                         if (state.ttsAvailability == TtsAvailability.MISSING_ENGLISH_VOICE) {
                             Spacer(Modifier.height(8.dp))
                             Surface(
-                                color = MaterialTheme.colorScheme.secondaryContainer,
-                                shape = RoundedCornerShape(10.dp),
+                                color = GoogleYellowSoft,
+                                contentColor = GoogleYellowOnSoft,
+                                shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier.fillMaxWidth(),
                             ) {
                                 Text(
-                                    text = "系统缺少英文离线语音包，请在系统设置 -> 语音转文字中下载英文语音，以启用离线朗读。",
+                                    text = "系统缺少英文离线语音包，请在系统设置 -> 语音转文字中下载英文语音，即可启用离线朗读。",
                                     style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     modifier = Modifier.padding(10.dp),
                                 )
                             }
@@ -157,46 +203,34 @@ fun StudyScreen(
 
                         Spacer(Modifier.height(14.dp))
 
-                        AnimatedContent(
-                            targetState = wordItem.word.id to state.isRevealed,
-                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                        ShanbayStudyCard(
+                            item = wordItem,
+                            stage = state.stage,
+                            hintLevel = state.hintLevel,
+                            hintText = state.hintText,
+                            initialVerdict = state.initialVerdict,
+                            ratingPreviews = state.ratingPreviews,
+                            onSpeakNormal = { viewModel.speakCurrent(slowMode = false) },
+                            onSpeakSlow = { viewModel.speakCurrent(slowMode = true) },
                             modifier = Modifier.weight(1f),
-                            label = "flashcard_transition",
-                        ) { (_, revealed) ->
-                            FlashcardBody(
-                                item = wordItem,
-                                isRevealed = revealed,
-                                onSpeakNormal = { viewModel.speakCurrent(slowMode = false) },
-                                onSpeakSlow = { viewModel.speakCurrent(slowMode = true) },
-                                onCardTap = {
-                                    if (!revealed) viewModel.revealAnswer()
-                                },
-                            )
-                        }
+                        )
 
-                        Spacer(Modifier.height(16.dp))
+                        Spacer(Modifier.height(14.dp))
 
-                        if (!state.isRevealed) {
-                            Button(
-                                onClick = viewModel::revealAnswer,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(54.dp),
-                                shape = RoundedCornerShape(16.dp),
-                            ) {
-                                Text(
-                                    text = "显示中文术语与解析",
-                                    style = MaterialTheme.typography.titleMedium,
-                                )
-                            }
-                        } else {
-                            FsrsRatingBar(
-                                previews = state.ratingPreviews,
-                                onRate = viewModel::submitRating,
-                            )
-                        }
+                        ShanbayBottomActionBar(
+                            stage = state.stage,
+                            hintLevel = state.hintLevel,
+                            initialVerdict = state.initialVerdict,
+                            ratingPreviews = state.ratingPreviews,
+                            onKnown = viewModel::onChooseKnown,
+                            onVague = viewModel::onChooseVague,
+                            onConfirmHintRecalled = viewModel::onConfirmHintRecalled,
+                            onUnknown = viewModel::onChooseUnknown,
+                            onUndoKnown = viewModel::onUndoKnownToUnknown,
+                            onProceedNext = viewModel::onProceedNext,
+                        )
 
-                        Spacer(Modifier.height(12.dp))
+                        Spacer(Modifier.height(10.dp))
                     }
                 }
             }
@@ -206,33 +240,37 @@ fun StudyScreen(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun FlashcardBody(
+private fun ShanbayStudyCard(
     item: WordWithReview,
-    isRevealed: Boolean,
+    stage: StudyStage,
+    hintLevel: Int,
+    hintText: String,
+    initialVerdict: InitialVerdict,
+    ratingPreviews: Map<FsrsRating, FsrsScheduleOutcome>,
     onSpeakNormal: () -> Unit,
     onSpeakSlow: () -> Unit,
-    onCardTap: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    val cardStateLabel = when (item.card?.state) {
-        null, ReviewCardEntity.CARD_STATE_NEW -> "新词"
-        ReviewCardEntity.CARD_STATE_LEARNING -> "学习中"
-        ReviewCardEntity.CARD_STATE_RELEARNING -> "重学巩固"
-        else -> "间隔复习"
+    val mastery = ShanbayMechanics.masteryLevel(item.card)
+    val masteryLabel = ShanbayMechanics.masteryLabel(mastery)
+    val targetRating = when (initialVerdict) {
+        InitialVerdict.KNOWN -> FsrsRating.GOOD
+        InitialVerdict.VAGUE -> FsrsRating.HARD
+        InitialVerdict.UNKNOWN, InitialVerdict.NONE -> FsrsRating.AGAIN
     }
+    val nextIntervalLabel = ratingPreviews[targetRating]?.intervalLabel ?: "-"
 
     Card(
-        onClick = onCardTap,
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(28.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
-        modifier = Modifier.fillMaxSize(),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        modifier = modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(22.dp),
+                .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
@@ -248,7 +286,7 @@ private fun FlashcardBody(
                         text = item.packName,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                     )
                 }
                 Surface(
@@ -256,7 +294,7 @@ private fun FlashcardBody(
                     shape = RoundedCornerShape(999.dp),
                 ) {
                     Text(
-                        text = cardStateLabel,
+                        text = masteryLabel,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
@@ -267,21 +305,23 @@ private fun FlashcardBody(
             Spacer(Modifier.height(22.dp))
 
             val abbrs = item.word.abbreviationsList()
-            if (abbrs.isNotEmpty()) {
+            if (abbrs.isNotEmpty() && (stage == StudyStage.DETAIL || hintLevel > 0)) {
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
-                    abbrs.forEach { abbr ->
+                    abbrs.forEachIndexed { idx, abbr ->
+                        val bg = GoogleFourSoftColors[idx % GoogleFourSoftColors.size]
+                        val fg = GoogleFourOnSoftColors[idx % GoogleFourOnSoftColors.size]
                         Surface(
-                            color = MaterialTheme.colorScheme.secondaryContainer,
-                            shape = RoundedCornerShape(8.dp),
+                            color = bg,
+                            shape = RoundedCornerShape(10.dp),
                         ) {
                             Text(
                                 text = abbr,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                color = fg,
                                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
                             )
                         }
@@ -292,8 +332,9 @@ private fun FlashcardBody(
 
             Text(
                 text = item.word.en,
-                style = MaterialTheme.typography.headlineMedium.copy(fontSize = 26.sp, lineHeight = 34.sp),
+                style = MaterialTheme.typography.headlineMedium.copy(fontSize = 27.sp, lineHeight = 35.sp),
                 textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface,
             )
 
             if (item.word.ipa.isNotBlank()) {
@@ -306,10 +347,10 @@ private fun FlashcardBody(
                 )
             }
 
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(18.dp))
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 FilledTonalButton(
@@ -339,10 +380,36 @@ private fun FlashcardBody(
                 }
             }
 
-            if (isRevealed) {
-                Spacer(Modifier.height(26.dp))
-                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
+            AnimatedVisibility(visible = stage == StudyStage.RECOGNIZE && hintLevel > 0 && hintText.isNotBlank()) {
+                Surface(
+                    color = GoogleYellowSoft,
+                    contentColor = GoogleYellowOnSoft,
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 18.dp),
+                ) {
+                    Column(
+                        modifier = Modifier.padding(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        Text(
+                            text = "记忆提示",
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = hintText,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                }
+            }
+
+            if (stage == StudyStage.DETAIL) {
                 Spacer(Modifier.height(22.dp))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                Spacer(Modifier.height(20.dp))
 
                 Text(
                     text = item.word.zh,
@@ -351,11 +418,31 @@ private fun FlashcardBody(
                     textAlign = TextAlign.Center,
                 )
 
+                Spacer(Modifier.height(16.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    ShanbayMasteryBars(level = mastery)
+                    Surface(
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        shape = RoundedCornerShape(999.dp),
+                    ) {
+                        Text(
+                            text = "下次复习：$nextIntervalLabel",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                        )
+                    }
+                }
+
                 if (!item.word.exampleEn.isNullOrBlank()) {
                     Spacer(Modifier.height(16.dp))
                     Surface(
-                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        shape = RoundedCornerShape(16.dp),
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(
@@ -387,12 +474,12 @@ private fun FlashcardBody(
                         textAlign = TextAlign.Center,
                     )
                 }
-            } else {
-                Spacer(Modifier.height(28.dp))
+            } else if (hintLevel == 0) {
+                Spacer(Modifier.height(24.dp))
                 Text(
-                    text = "先在脑中回忆中文释义，再轻触卡片翻面",
+                    text = "请先回想该储能术语的中文含义",
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -400,45 +487,147 @@ private fun FlashcardBody(
 }
 
 @Composable
-private fun FsrsRatingBar(
-    previews: Map<FsrsRating, FsrsScheduleOutcome>,
-    onRate: (FsrsRating) -> Unit,
-) {
-    val ratingColors = mapOf(
-        FsrsRating.AGAIN to EnergyRed,
-        FsrsRating.HARD to EnergyAmber,
-        FsrsRating.GOOD to GridEmerald,
-        FsrsRating.EASY to EnergyBlue,
-    )
-
+fun ShanbayMasteryBars(level: Int, modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        FsrsRating.entries.forEach { rating ->
-            val accentColor = ratingColors[rating] ?: MaterialTheme.colorScheme.primary
-            val intervalText = previews[rating]?.intervalLabel ?: "-"
-            Button(
-                onClick = { onRate(rating) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = accentColor.copy(alpha = 0.14f),
-                    contentColor = accentColor,
-                ),
-                shape = RoundedCornerShape(14.dp),
-                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 10.dp),
-                modifier = Modifier.weight(1f),
+        for (i in 1..5) {
+            val active = i <= level
+            Box(
+                modifier = Modifier
+                    .width(12.dp)
+                    .height(6.dp)
+                    .clip(RoundedCornerShape(999.dp))
+                    .background(
+                        if (active) GoogleGreen else MaterialTheme.colorScheme.outlineVariant,
+                    ),
+            )
+        }
+    }
+}
+
+@Composable
+private fun ShanbayBottomActionBar(
+    stage: StudyStage,
+    hintLevel: Int,
+    initialVerdict: InitialVerdict,
+    ratingPreviews: Map<FsrsRating, FsrsScheduleOutcome>,
+    onKnown: () -> Unit,
+    onVague: () -> Unit,
+    onConfirmHintRecalled: () -> Unit,
+    onUnknown: () -> Unit,
+    onUndoKnown: () -> Unit,
+    onProceedNext: () -> Unit,
+) {
+    if (stage == StudyStage.RECOGNIZE) {
+        if (hintLevel == 0) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = rating.labelZh,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        text = intervalText,
-                        style = MaterialTheme.typography.labelMedium,
-                        maxLines = 1,
-                    )
+                ShanbayChoicePill(
+                    title = "认识",
+                    subtitle = ratingPreviews[FsrsRating.GOOD]?.intervalLabel ?: "",
+                    containerColor = GoogleGreenSoft,
+                    contentColor = GoogleGreenOnSoft,
+                    onClick = onKnown,
+                    modifier = Modifier.weight(1f),
+                )
+                ShanbayChoicePill(
+                    title = "模糊",
+                    subtitle = "先看提示",
+                    containerColor = GoogleYellowSoft,
+                    contentColor = GoogleYellowOnSoft,
+                    onClick = onVague,
+                    modifier = Modifier.weight(1f),
+                )
+                ShanbayChoicePill(
+                    title = "不认识",
+                    subtitle = "稍后复测",
+                    containerColor = GoogleRedSoft,
+                    contentColor = GoogleRedOnSoft,
+                    onClick = onUnknown,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        } else {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                ShanbayChoicePill(
+                    title = "想起来了",
+                    subtitle = ratingPreviews[FsrsRating.HARD]?.intervalLabel ?: "",
+                    containerColor = GoogleGreenSoft,
+                    contentColor = GoogleGreenOnSoft,
+                    onClick = onConfirmHintRecalled,
+                    modifier = Modifier.weight(1f),
+                )
+                ShanbayChoicePill(
+                    title = "还是不认识",
+                    subtitle = "查看释义",
+                    containerColor = GoogleRedSoft,
+                    contentColor = GoogleRedOnSoft,
+                    onClick = onUnknown,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        }
+    } else if (stage == StudyStage.DETAIL) {
+        when (initialVerdict) {
+            InitialVerdict.KNOWN -> {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    OutlinedButton(
+                        onClick = onUndoKnown,
+                        shape = RoundedCornerShape(999.dp),
+                        border = BorderStroke(1.dp, GoogleRed.copy(alpha = 0.45f)),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = GoogleRed),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(52.dp),
+                    ) {
+                        Text("记错了", fontWeight = FontWeight.SemiBold)
+                    }
+                    Button(
+                        onClick = onProceedNext,
+                        shape = RoundedCornerShape(999.dp),
+                        modifier = Modifier
+                            .weight(1.6f)
+                            .height(52.dp),
+                    ) {
+                        Text("下一个", style = MaterialTheme.typography.titleMedium)
+                    }
+                }
+            }
+
+            InitialVerdict.VAGUE -> {
+                Button(
+                    onClick = onProceedNext,
+                    shape = RoundedCornerShape(999.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                ) {
+                    Text("继续学习（稍后再次巩固）", style = MaterialTheme.typography.titleMedium)
+                }
+            }
+
+            InitialVerdict.UNKNOWN,
+            InitialVerdict.NONE,
+            -> {
+                Button(
+                    onClick = onProceedNext,
+                    shape = RoundedCornerShape(999.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                ) {
+                    Text("记住这个释义，稍后复测", style = MaterialTheme.typography.titleMedium)
                 }
             }
         }
@@ -446,57 +635,165 @@ private fun FsrsRatingBar(
 }
 
 @Composable
-private fun StudySessionCompleteView(
-    completedCount: Int,
-    goodOrEasyCount: Int,
-    onBack: () -> Unit,
-    onReload: () -> Unit,
+private fun ShanbayChoicePill(
+    title: String,
+    subtitle: String,
+    containerColor: Color,
+    contentColor: Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    val accuracy = if (completedCount > 0) (goodOrEasyCount * 100 / completedCount) else 100
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+        ),
+        shape = RoundedCornerShape(18.dp),
+        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 10.dp),
+        modifier = modifier.height(58.dp),
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
+            if (subtitle.isNotBlank()) {
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.labelMedium,
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ShanbaySessionCompleteView(
+    state: StudyUiState,
+    onCheckIn: () -> Unit,
+    onExtraRound: () -> Unit,
+    onBack: () -> Unit,
+) {
+    val accuracy = if (state.completedCount > 0) {
+        state.goodOrEasyCount * 100 / state.completedCount
+    } else {
+        100
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(28.dp),
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Icon(
-            imageVector = Icons.Rounded.CheckCircle,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(64.dp),
-        )
+        Box(
+            modifier = Modifier
+                .size(72.dp)
+                .clip(CircleShape)
+                .background(if (state.streakSummary.isCheckedInToday) GoogleGreenSoft else GoogleBlueSoft),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = if (state.streakSummary.isCheckedInToday) Icons.Rounded.CheckCircle else Icons.Rounded.AutoAwesome,
+                contentDescription = null,
+                tint = if (state.streakSummary.isCheckedInToday) GoogleGreen else GoogleBlue,
+                modifier = Modifier.size(38.dp),
+            )
+        }
+
         Spacer(Modifier.height(16.dp))
+
         Text(
-            text = if (completedCount > 0) "本轮学习已完成！" else "当前暂无待复习卡片",
+            text = if (state.completedCount > 0) "本组学习已完成" else "今日学习任务已完成",
             style = MaterialTheme.typography.headlineMedium,
         )
+
         Spacer(Modifier.height(8.dp))
+
         Text(
-            text = if (completedCount > 0) {
-                "共完成 $completedCount 次记忆评估，熟悉率 $accuracy%。FSRS 已为你安排下一次最佳复习时间。"
+            text = if (state.completedCount > 0) {
+                "本轮完成 ${state.completedCount} 词评估（含斩词 ${state.slashedCount} 词），熟悉率 $accuracy%。"
             } else {
-                "所有已到期的储能词汇均已完成复习，你可以在设置中调高每日新词量，或稍后再来巩固。"
+                "当前词书今日待新学与待复习词汇已全部清零，建议打个卡或加练一组巩固记忆。"
             },
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
         )
-        Spacer(Modifier.height(24.dp))
-        Button(
-            onClick = onBack,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
+
+        Spacer(Modifier.height(16.dp))
+
+        Surface(
+            color = GoogleYellowSoft,
+            contentColor = GoogleYellowOnSoft,
+            shape = RoundedCornerShape(999.dp),
         ) {
-            Text("返回首页")
+            Row(
+                modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.LocalFireDepartment,
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                )
+                Text(
+                    text = "已连续打卡 ${state.streakSummary.currentStreak} 天 · 累计 ${state.streakSummary.totalCheckInDays} 天",
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
         }
-        Spacer(Modifier.height(10.dp))
-        OutlinedButton(
-            onClick = onReload,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
+
+        Spacer(Modifier.height(24.dp))
+
+        Button(
+            onClick = onCheckIn,
+            enabled = !state.streakSummary.isCheckedInToday,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = if (state.streakSummary.isCheckedInToday) GoogleGreenSoft else GoogleBlue,
+                contentColor = if (state.streakSummary.isCheckedInToday) GoogleGreenOnSoft else Color.White,
+                disabledContainerColor = GoogleGreenSoft,
+                disabledContentColor = GoogleGreenOnSoft,
+            ),
+            shape = RoundedCornerShape(999.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(52.dp),
         ) {
-            Text("检查下一批待学卡片")
+            Icon(
+                imageVector = Icons.Rounded.CheckCircle,
+                contentDescription = null,
+                modifier = Modifier.size(18.dp),
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text = if (state.streakSummary.isCheckedInToday) "今日已打卡 ✓" else "完成今日打卡",
+                style = MaterialTheme.typography.titleMedium,
+            )
+        }
+
+        Spacer(Modifier.height(10.dp))
+
+        FilledTonalButton(
+            onClick = onExtraRound,
+            shape = RoundedCornerShape(999.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
+        ) {
+            Text("再来一组巩固 (10 词)")
+        }
+
+        Spacer(Modifier.height(8.dp))
+
+        TextButton(onClick = onBack) {
+            Text("返回首页")
         }
     }
 }

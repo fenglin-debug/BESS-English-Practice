@@ -20,9 +20,13 @@ import javax.inject.Inject
 
 data class DictionaryUiState(
     val query: String = "",
-    val selectedPackId: String? = null,
+    val selectedFilterPackId: String? = null,
+    val activeBookPackId: String = "",
+    val totalActiveWords: Int = 0,
+    val totalMasteredWords: Int = 0,
     val packs: List<PackSummaryRow> = emptyList(),
     val words: List<WordWithReview> = emptyList(),
+    val notebookWords: List<WordWithReview> = emptyList(),
 )
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -34,25 +38,44 @@ class DictionaryViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val queryFlow = MutableStateFlow("")
-    private val selectedPackIdFlow = MutableStateFlow<String?>(null)
+    private val selectedFilterPackIdFlow = MutableStateFlow<String?>(null)
 
-    private val filteredWordsFlow = combine(selectedPackIdFlow, queryFlow) { packId, query ->
+    private val filteredWordsFlow = combine(selectedFilterPackIdFlow, queryFlow) { packId, query ->
         packId to query
     }.flatMapLatest { (packId, query) ->
         studyRepository.observeWords(packId, query)
     }
 
+    private val booksOverviewFlow = combine(
+        preferencesRepository.settingsFlow,
+        studyRepository.observePackSummaries(),
+        studyRepository.observeTotalActiveWords(),
+        studyRepository.observeBookStats(null),
+    ) { settings, packs, totalWords, allStats ->
+        BooksOverview(
+            activeBookPackId = settings.selectedPackId,
+            packs = packs,
+            totalWords = totalWords,
+            totalMasteredWords = allStats.masteredWords,
+        )
+    }
+
     val uiState: StateFlow<DictionaryUiState> = combine(
         queryFlow,
-        selectedPackIdFlow,
-        studyRepository.observePackSummaries(),
+        selectedFilterPackIdFlow,
+        booksOverviewFlow,
         filteredWordsFlow,
-    ) { query, selectedPackId, packs, words ->
+        studyRepository.observeNotebookWords(),
+    ) { query, filterPackId, overview, words, notebookWords ->
         DictionaryUiState(
             query = query,
-            selectedPackId = selectedPackId,
-            packs = packs,
+            selectedFilterPackId = filterPackId,
+            activeBookPackId = overview.activeBookPackId,
+            totalActiveWords = overview.totalWords,
+            totalMasteredWords = overview.totalMasteredWords,
+            packs = overview.packs,
             words = words,
+            notebookWords = notebookWords,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -64,8 +87,26 @@ class DictionaryViewModel @Inject constructor(
         queryFlow.value = newQuery
     }
 
-    fun selectPack(packId: String?) {
-        selectedPackIdFlow.value = packId
+    fun selectFilterPack(packId: String?) {
+        selectedFilterPackIdFlow.value = packId
+    }
+
+    fun selectActiveBook(packId: String?) {
+        viewModelScope.launch {
+            preferencesRepository.updateSelectedPackId(packId)
+        }
+    }
+
+    fun toggleFavorite(wordId: String) {
+        viewModelScope.launch {
+            studyRepository.toggleFavorite(wordId)
+        }
+    }
+
+    fun restoreFromMastered(wordId: String) {
+        viewModelScope.launch {
+            studyRepository.restoreFromMastered(wordId)
+        }
     }
 
     fun speakWord(item: WordWithReview) {
@@ -79,4 +120,11 @@ class DictionaryViewModel @Inject constructor(
             )
         }
     }
+
+    private data class BooksOverview(
+        val activeBookPackId: String,
+        val packs: List<PackSummaryRow>,
+        val totalWords: Int,
+        val totalMasteredWords: Int,
+    )
 }

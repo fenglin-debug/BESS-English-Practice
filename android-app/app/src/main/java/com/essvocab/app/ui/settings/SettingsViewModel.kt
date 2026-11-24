@@ -2,14 +2,18 @@ package com.essvocab.app.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.essvocab.app.data.StudyRepository
 import com.essvocab.app.data.preferences.AppPreferencesRepository
 import com.essvocab.app.data.preferences.AppSettings
+import com.essvocab.app.data.preferences.AppThemeMode
 import com.essvocab.app.data.preferences.TtsAccent
 import com.essvocab.app.data.sync.SyncResult
 import com.essvocab.app.data.sync.VocabSyncRepository
 import com.essvocab.app.data.sync.VocabSyncScheduler
 import com.essvocab.app.domain.audio.PronunciationPlayer
 import com.essvocab.app.domain.audio.TtsAvailability
+import com.essvocab.app.domain.shanbay.ShanbayMechanics
+import com.essvocab.app.domain.shanbay.StreakSummary
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -27,10 +31,15 @@ data class SettingsUiState(
     val statusMessage: String? = null,
     val statusIsError: Boolean = false,
     val ttsAvailability: TtsAvailability = TtsAvailability.INITIALIZING,
+    val streakSummary: StreakSummary = ShanbayMechanics.calculateStreak(emptyList()),
+    val masteredWords: Int = 0,
+    val totalWords: Int = 0,
+    val totalReviewsAllTime: Int = 0,
 )
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
+    studyRepository: StudyRepository,
     private val preferencesRepository: AppPreferencesRepository,
     private val syncRepository: VocabSyncRepository,
     private val syncScheduler: VocabSyncScheduler,
@@ -41,12 +50,26 @@ class SettingsViewModel @Inject constructor(
     private val actionStatusFlow = MutableStateFlow(ActionStatus())
     private var pendingAction: PendingNetworkAction? = null
 
+    private val profileStatsFlow = combine(
+        studyRepository.observeCheckInStreak(),
+        studyRepository.observeBookStats(null),
+        studyRepository.observeTotalReviewsAllTime(),
+    ) { streak, allBookStats, totalReviews ->
+        ProfileStats(
+            streak = streak,
+            masteredWords = allBookStats.masteredWords,
+            totalWords = allBookStats.totalWords,
+            totalReviewsAllTime = totalReviews,
+        )
+    }
+
     val uiState: StateFlow<SettingsUiState> = combine(
         preferencesRepository.settingsFlow,
         urlInputFlow,
         actionStatusFlow,
         pronunciationPlayer.ttsAvailability,
-    ) { settings, customInput, status, tts ->
+        profileStatsFlow,
+    ) { settings, customInput, status, tts, profile ->
         SettingsUiState(
             settings = settings,
             urlInput = customInput ?: settings.manifestUrl,
@@ -55,6 +78,10 @@ class SettingsViewModel @Inject constructor(
             statusMessage = status.message,
             statusIsError = status.isError,
             ttsAvailability = tts,
+            streakSummary = profile.streak,
+            masteredWords = profile.masteredWords,
+            totalWords = profile.totalWords,
+            totalReviewsAllTime = profile.totalReviewsAllTime,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -211,6 +238,10 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun updateThemeMode(mode: AppThemeMode) {
+        viewModelScope.launch { preferencesRepository.updateThemeMode(mode) }
+    }
+
     fun updateDailyNewLimit(limit: Int) {
         viewModelScope.launch { preferencesRepository.updateDailyNewLimit(limit) }
     }
@@ -242,6 +273,13 @@ class SettingsViewModel @Inject constructor(
     }
 
     private enum class PendingNetworkAction { TEST, SYNC, FORCE_SYNC }
+
+    private data class ProfileStats(
+        val streak: StreakSummary,
+        val masteredWords: Int,
+        val totalWords: Int,
+        val totalReviewsAllTime: Int,
+    )
 
     private data class ActionStatus(
         val isBusy: Boolean = false,

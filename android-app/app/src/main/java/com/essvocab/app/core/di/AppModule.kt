@@ -29,7 +29,9 @@ object AppModule {
             context,
             EssVocabDatabase::class.java,
             "ess_vocab.db",
-        ).build()
+        )
+            .addMigrations(EssVocabDatabase.MIGRATION_1_2)
+            .build()
     }
 
     @Provides

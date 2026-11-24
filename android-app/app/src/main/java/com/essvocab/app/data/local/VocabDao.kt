@@ -19,8 +19,8 @@ interface VocabDao {
             p.orderIndex,
             p.version,
             COUNT(w.id) AS totalWords,
-            SUM(CASE WHEN c.wordId IS NOT NULL AND c.reps > 0 THEN 1 ELSE 0 END) AS learnedWords,
-            SUM(CASE WHEN c.wordId IS NOT NULL AND c.dueAtMillis <= :nowMillis THEN 1 ELSE 0 END) AS dueWords
+            SUM(CASE WHEN c.wordId IS NOT NULL AND (c.reps > 0 OR c.isMasteredBypass = 1) THEN 1 ELSE 0 END) AS learnedWords,
+            SUM(CASE WHEN c.wordId IS NOT NULL AND c.isMasteredBypass = 0 AND c.dueAtMillis <= :nowMillis THEN 1 ELSE 0 END) AS dueWords
         FROM vocab_packs p
         LEFT JOIN vocab_words w ON w.packId = p.id AND w.isActive = 1
         LEFT JOIN review_cards c ON c.wordId = w.id
@@ -71,7 +71,9 @@ interface VocabDao {
             c.reps AS card_reps,
             c.lapses AS card_lapses,
             c.dueAtMillis AS card_dueAtMillis,
-            c.lastReviewAtMillis AS card_lastReviewAtMillis
+            c.lastReviewAtMillis AS card_lastReviewAtMillis,
+            c.isFavorite AS card_isFavorite,
+            c.isMasteredBypass AS card_isMasteredBypass
         FROM vocab_words w
         INNER JOIN vocab_packs p ON p.id = w.packId
         LEFT JOIN review_cards c ON c.wordId = w.id

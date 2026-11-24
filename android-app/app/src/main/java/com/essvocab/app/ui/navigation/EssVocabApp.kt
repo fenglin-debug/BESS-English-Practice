@@ -4,14 +4,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -31,9 +36,9 @@ private enum class TopTab(
     val label: String,
     val icon: ImageVector,
 ) {
-    HOME("home", "首页", Icons.Rounded.Home),
-    DICTIONARY("dictionary", "词表", Icons.AutoMirrored.Rounded.MenuBook),
-    SETTINGS("settings", "设置", Icons.Rounded.Settings),
+    HOME("home", "学习", Icons.Rounded.Home),
+    VOCAB("vocab", "词库", Icons.AutoMirrored.Rounded.MenuBook),
+    PROFILE("profile", "我的", Icons.Rounded.Person),
 }
 
 @Composable
@@ -42,31 +47,40 @@ fun EssVocabApp() {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
+    var vocabRequestedTab by rememberSaveable { mutableIntStateOf(0) }
+    var vocabRequestNonce by rememberSaveable { mutableLongStateOf(0L) }
+
     val showBottomBar = currentRoute == TopTab.HOME.route ||
-        currentRoute?.startsWith(TopTab.DICTIONARY.route) == true ||
-        currentRoute == TopTab.SETTINGS.route
+        currentRoute == TopTab.VOCAB.route ||
+        currentRoute == TopTab.PROFILE.route
+
+    fun navigateTopTab(route: String) {
+        navController.navigate(route) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    fun openVocabSubTab(tabIndex: Int) {
+        vocabRequestedTab = tabIndex
+        vocabRequestNonce += 1L
+        navigateTopTab(TopTab.VOCAB.route)
+    }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             if (showBottomBar) {
-                NavigationBar {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                ) {
                     TopTab.entries.forEach { tab ->
-                        val selected = if (tab == TopTab.DICTIONARY) {
-                            currentRoute?.startsWith(TopTab.DICTIONARY.route) == true
-                        } else {
-                            currentRoute == tab.route
-                        }
                         NavigationBarItem(
-                            selected = selected,
-                            onClick = {
-                                navController.navigate(tab.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
+                            selected = currentRoute == tab.route,
+                            onClick = { navigateTopTab(tab.route) },
                             icon = { Icon(tab.icon, contentDescription = tab.label) },
                             label = { Text(tab.label) },
                         )
@@ -82,39 +96,36 @@ fun EssVocabApp() {
         ) {
             composable(TopTab.HOME.route) {
                 HomeScreen(
-                    onStartStudy = { packId ->
-                        val target = packId ?: "all"
-                        navController.navigate("study/$target")
-                    },
-                    onOpenPackDictionary = { packId ->
-                        navController.navigate("dictionary?packId=$packId")
-                    },
+                    onStartBookStudy = { navController.navigate("study/book") },
+                    onStartExtraStudy = { navController.navigate("study/extra") },
+                    onSwitchBook = { openVocabSubTab(0) },
+                    onOpenDictionarySearch = { openVocabSubTab(1) },
+                    onOpenNotebook = { openVocabSubTab(2) },
                 )
             }
 
-            composable(
-                route = "dictionary?packId={packId}",
-                arguments = listOf(
-                    navArgument("packId") {
-                        type = NavType.StringType
-                        nullable = true
-                        defaultValue = null
+            composable(TopTab.VOCAB.route) {
+                DictionaryScreen(
+                    initialTab = vocabRequestedTab,
+                    requestNonce = vocabRequestNonce,
+                    onStartPackStudy = { packId ->
+                        val target = if (packId.isNullOrBlank()) "pack:all" else "pack:$packId"
+                        navController.navigate("study/$target")
                     },
-                ),
-            ) { entry ->
-                DictionaryScreen(initialPackId = entry.arguments?.getString("packId"))
+                    onStartNotebookStudy = { navController.navigate("study/notebook") },
+                )
             }
 
-            composable(TopTab.SETTINGS.route) {
+            composable(TopTab.PROFILE.route) {
                 SettingsScreen()
             }
 
             composable(
-                route = "study/{packId}",
+                route = "study/{mode}",
                 arguments = listOf(
-                    navArgument("packId") {
+                    navArgument("mode") {
                         type = NavType.StringType
-                        defaultValue = "all"
+                        defaultValue = "book"
                     },
                 ),
             ) {

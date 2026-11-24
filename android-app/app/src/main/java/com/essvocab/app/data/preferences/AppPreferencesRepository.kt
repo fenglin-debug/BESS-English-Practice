@@ -33,6 +33,18 @@ enum class TtsAccent(val code: String, val label: String) {
     }
 }
 
+enum class AppThemeMode(val code: String, val label: String) {
+    LIGHT("LIGHT", "浅色清新"),
+    SYSTEM("SYSTEM", "跟随系统"),
+    DARK("DARK", "深色模式"),
+    ;
+
+    companion object {
+        fun fromCode(code: String?): AppThemeMode =
+            entries.firstOrNull { it.code.equals(code, ignoreCase = true) } ?: LIGHT
+    }
+}
+
 data class AppSettings(
     val onlineSyncConsentGranted: Boolean = false,
     val manifestUrl: String = DEFAULT_MANIFEST_URL,
@@ -44,6 +56,8 @@ data class AppSettings(
     val autoPlayAudio: Boolean = true,
     val ttsAccent: TtsAccent = TtsAccent.US,
     val ttsSpeechRate: Float = 1.0f,
+    val themeMode: AppThemeMode = AppThemeMode.LIGHT,
+    val selectedPackId: String = "",
 ) {
     companion object {
         const val DEFAULT_MANIFEST_URL =
@@ -91,6 +105,8 @@ class AppPreferencesRepository @Inject constructor(
         val AUTO_PLAY_AUDIO = booleanPreferencesKey("auto_play_audio")
         val TTS_ACCENT = stringPreferencesKey("tts_accent")
         val TTS_SPEECH_RATE = floatPreferencesKey("tts_speech_rate")
+        val THEME_MODE = stringPreferencesKey("theme_mode")
+        val SELECTED_PACK_ID = stringPreferencesKey("selected_pack_id")
     }
 
     val settingsFlow: Flow<AppSettings> = context.settingsDataStore.data.map { prefs ->
@@ -106,6 +122,8 @@ class AppPreferencesRepository @Inject constructor(
             autoPlayAudio = prefs[Keys.AUTO_PLAY_AUDIO] ?: true,
             ttsAccent = TtsAccent.fromCode(prefs[Keys.TTS_ACCENT]),
             ttsSpeechRate = prefs[Keys.TTS_SPEECH_RATE] ?: 1.0f,
+            themeMode = AppThemeMode.fromCode(prefs[Keys.THEME_MODE]),
+            selectedPackId = prefs[Keys.SELECTED_PACK_ID] ?: "",
         )
     }
 
@@ -165,6 +183,18 @@ class AppPreferencesRepository @Inject constructor(
     suspend fun updateTtsSpeechRate(rate: Float) {
         context.settingsDataStore.edit { prefs ->
             prefs[Keys.TTS_SPEECH_RATE] = rate.coerceIn(0.5f, 1.5f)
+        }
+    }
+
+    suspend fun updateThemeMode(mode: AppThemeMode) {
+        context.settingsDataStore.edit { prefs ->
+            prefs[Keys.THEME_MODE] = mode.code
+        }
+    }
+
+    suspend fun updateSelectedPackId(packId: String?) {
+        context.settingsDataStore.edit { prefs ->
+            prefs[Keys.SELECTED_PACK_ID] = packId.orEmpty().trim()
         }
     }
 }
